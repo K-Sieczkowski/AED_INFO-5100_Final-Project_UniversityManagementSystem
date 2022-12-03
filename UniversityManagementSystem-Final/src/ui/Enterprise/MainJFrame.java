@@ -11,9 +11,12 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
@@ -30,14 +33,25 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    University system;
+    //University system;
     JPanel JPanel2;
+    private EcoSystem system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public MainJFrame() {
         initComponents();
         this.system = system;
         this.JPanel2 = JPanel2;
-        
-        
+         system = dB4OUtil.retrieveSystem();
+        this.setSize(680, 450);
+        addWindowListener(new WindowAdapter()
+	{
+	@Override
+		public void windowClosing(WindowEvent e)
+			{
+			 dB4OUtil.storeSystem(system);
+					System.exit(0);
+			}
+	});   
     }
 
     /**
@@ -57,18 +71,23 @@ public class MainJFrame extends javax.swing.JFrame {
         lblPassword = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
-        btnRegister = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(10, 23, 850, 850));
+        setMinimumSize(new java.awt.Dimension(1350, 850));
+        setPreferredSize(new java.awt.Dimension(1350, 850));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setMinimumSize(new java.awt.Dimension(200, 850));
+        jPanel1.setPreferredSize(new java.awt.Dimension(200, 850));
 
         lblWelcome.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblWelcome.setText("Welcome Huskies!!");
+        lblWelcome.setText("Welcome Students!!");
 
         lblUserName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUserName.setText("User Name:");
@@ -82,24 +101,17 @@ public class MainJFrame extends javax.swing.JFrame {
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPassword.setText("Password:");
 
-        btnLogin.setText("Login");
+        btnLogin.setText("LOGIN");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
 
-        btnLogout.setText("Logout");
+        btnLogout.setText("LOGOUT");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
-            }
-        });
-
-        btnRegister.setText("REGISTER");
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
             }
         });
 
@@ -109,7 +121,7 @@ public class MainJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUserName)
@@ -117,18 +129,17 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtPassword))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(lblWelcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGap(81, 81, 81)
                 .addComponent(lblUserName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,14 +151,14 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addContainerGap(518, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel2.setMinimumSize(new java.awt.Dimension(1050, 0));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1050, 0));
         jPanel2.setLayout(new java.awt.CardLayout());
 
         lblTitle.setBackground(new java.awt.Color(255, 204, 204));
@@ -162,13 +173,11 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1))
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -180,7 +189,6 @@ public class MainJFrame extends javax.swing.JFrame {
         txtUserName.setEnabled(true);
         txtPassword.setEnabled(true);
         btnLogin.setEnabled(true);
-        btnRegister.setEnabled(true);
 
         txtUserName.setText("");
         txtPassword.setText("");
@@ -190,18 +198,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel2.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) jPanel2.getLayout();
         crdLyt.next(jPanel2);
-     //   dB4OUtil.storeSystem(system);
+        dB4OUtil.storeSystem(system);
 
     }//GEN-LAST:event_btnLogoutActionPerformed
-
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
-     RegisterJPanel registerJPanel = new RegisterJPanel();
-        jPanel2.add("registerJPanel", registerJPanel);
-
-       CardLayout layout=(CardLayout)jPanel2.getLayout();
-        layout.next(jPanel2);
-    }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
@@ -261,6 +260,15 @@ public class MainJFrame extends javax.swing.JFrame {
              CardLayout layout=(CardLayout)jPanel2.getLayout();
              layout.next(jPanel2);
         }
+        else if(name.equals("sys") && pwd.equals("sys123"))
+        {
+            JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
+            SystemAdminWorkAreaJPanel systemadminJPanel = new SystemAdminWorkAreaJPanel();
+             jPanel2.add("systemadminJPanel", systemadminJPanel);
+
+             CardLayout layout=(CardLayout)jPanel2.getLayout();
+             layout.next(jPanel2);
+        }
         else
             JOptionPane.showMessageDialog(null,"Invalid User Name/Password ", "Unsuccessful Login" , JOptionPane.PLAIN_MESSAGE);
     
@@ -308,7 +316,6 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnRegister;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;

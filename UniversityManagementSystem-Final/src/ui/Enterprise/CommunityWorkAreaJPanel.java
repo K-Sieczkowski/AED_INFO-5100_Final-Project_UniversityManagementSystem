@@ -5,6 +5,9 @@
  */
 package ui.Enterprise;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author arfinansari
@@ -27,61 +30,458 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        btnNGO = new javax.swing.JButton();
-        btnSC = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        communityTbl = new javax.swing.JTable();
+        jLabel52 = new javax.swing.JLabel();
+        comSearchBarTxt = new javax.swing.JTextField();
+        clearComSearchBtn = new javax.swing.JButton();
+        viewComBtn = new javax.swing.JButton();
+        deleteComBtn = new javax.swing.JButton();
+        comSearchBtn = new javax.swing.JButton();
+        lblPL = new javax.swing.JLabel();
+        lblComment = new javax.swing.JLabel();
+        txtComment = new javax.swing.JTextField();
+        updateComBtn = new javax.swing.JButton();
+        lblIT = new javax.swing.JLabel();
+        cbPL = new javax.swing.JComboBox<>();
+        cbIT = new javax.swing.JComboBox<>();
+        jPanel11 = new javax.swing.JPanel();
+        lblPLA = new javax.swing.JLabel();
+        lblCommentA = new javax.swing.JLabel();
+        txtCommentA = new javax.swing.JTextField();
+        comSaveBtn1 = new javax.swing.JButton();
+        lblITA = new javax.swing.JLabel();
+        cbPLA = new javax.swing.JComboBox<>();
+        cbITA = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
+        jTabbedPane1.setBackground(new java.awt.Color(224, 237, 242));
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(1070, 850));
+        jTabbedPane1.setPreferredSize(new java.awt.Dimension(1070, 850));
 
-        btnNGO.setText("NGO");
+        jPanel10.setBackground(new java.awt.Color(224, 237, 242));
 
-        btnSC.setText("Spriritual/Cultural");
-        btnSC.addActionListener(new java.awt.event.ActionListener() {
+        communityTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Priority Level", "Involvement Type:", "Comments:"
+            }
+        ));
+        jScrollPane7.setViewportView(communityTbl);
+
+        jScrollPane5.setViewportView(jScrollPane7);
+
+        jLabel52.setText("Search Bar:");
+
+        clearComSearchBtn.setText("Clear Search");
+        clearComSearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSCActionPerformed(evt);
+                clearComSearchBtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnNGO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 242, Short.MAX_VALUE))
+        viewComBtn.setText("View Community Request");
+        viewComBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewComBtnActionPerformed(evt);
+            }
+        });
+
+        deleteComBtn.setText("Delete");
+        deleteComBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteComBtnActionPerformed(evt);
+            }
+        });
+
+        comSearchBtn.setText("Search");
+        comSearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comSearchBtnActionPerformed(evt);
+            }
+        });
+
+        lblPL.setText("Priority Level:");
+
+        lblComment.setText("Comments:");
+
+        txtComment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCommentActionPerformed(evt);
+            }
+        });
+
+        updateComBtn.setText("Update");
+        updateComBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateComBtnActionPerformed(evt);
+            }
+        });
+
+        lblIT.setText("Involvement Type:");
+
+        cbPL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Critical", "High", "Medium", "Low" }));
+
+        cbIT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Spiritual/Cultural/Religious", "NGO", " " }));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel52)
+                        .addGap(18, 18, 18)
+                        .addComponent(comSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(comSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(clearComSearchBtn))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(viewComBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(deleteComBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblComment)
+                            .addComponent(lblPL)
+                            .addComponent(lblIT))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtComment, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbIT, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(135, 135, 135))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                                .addComponent(updateComBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(239, 239, 239)))))
+                .addGap(101, 101, 101))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(btnNGO)
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel52)
+                    .addComponent(comSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearComSearchBtn)
+                    .addComponent(comSearchBtn))
                 .addGap(18, 18, 18)
-                .addComponent(btnSC)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewComBtn)
+                    .addComponent(deleteComBtn))
+                .addGap(55, 55, 55)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPL)
+                    .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIT)
+                    .addComponent(cbIT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblComment)
+                    .addComponent(txtComment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(updateComBtn)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("View Community Request", jPanel10);
+
+        jPanel11.setBackground(new java.awt.Color(224, 237, 242));
+
+        lblPLA.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblPLA.setText("Priority Level:");
+
+        lblCommentA.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCommentA.setText(" Comments:");
+
+        comSaveBtn1.setText("Save");
+        comSaveBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comSaveBtn1ActionPerformed(evt);
+            }
+        });
+
+        lblITA.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblITA.setText("Involvement Type:");
+
+        cbPLA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Critical", "High", "Medium", "Low" }));
+
+        cbITA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Spiritual/Cultural/Religious", "NGO" }));
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPLA)
+                    .addComponent(lblCommentA)
+                    .addComponent(lblITA))
+                .addGap(79, 79, 79)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbPLA, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbITA, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCommentA, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(320, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comSaveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(392, 392, 392))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPLA)
+                    .addComponent(cbPLA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblITA)
+                    .addComponent(cbITA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCommentA)
+                    .addComponent(txtCommentA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(comSaveBtn1)
+                .addContainerGap(388, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Add Community Request", jPanel11);
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Community Work Area");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator2)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1054, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1062, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSCActionPerformed
+    private void comSaveBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comSaveBtn1ActionPerformed
+        if (comHospitalTxt.getText().equals("")) {
+
+            String name = comNameTxt.getText();
+            String city = comCityTxt.getText();
+            String address = txtCommentA.getText();
+            String zipCode = comZipTxt.getText();
+
+            City c2 = cities.addNewCity();
+            c2.setName(city);
+            c2.setZipcode(zipCode);
+
+            Community cm = c2.addNewCommunity();
+            cm.setName(name);
+
+            House hs = communities.addNewHouse();
+            hs.setAddress(address);
+            hs.addCity(c2);
+            hs.addToCommunity(cm);
+
+            JOptionPane.showMessageDialog(this, "Added to community.");
+
+            comNameTxt.setText("");
+            comCityTxt.setText("");
+            txtCommentA.setText("");
+            comZipTxt.setText("");
+
+            populateCommunityTbl();
+
+        } else if (comHospitalTxt.getText().chars().count() > 0) {
+            String name = comNameTxt.getText();
+            String hospitalName = comHospitalTxt.getText();
+
+            Hospital h = hospitals.getHospitalByName(hospitalName);
+            City c1 = cities.getCityByName(h.getCity().getName());
+            Community cm = c1.addNewCommunity();
+            cm.setName(name);
+
+            h.assignToCommunity(cm);
+
+            House hs = h.getHouse();
+            hs.addToCommunity(cm);
+            hs.setCity(c1);
+
+            cm.addHospitalToCommunity(h);
+            cm.addHouseToCommunity(hs);
+
+            JOptionPane.showMessageDialog(this, "Added to community.");
+
+            comNameTxt.setText("");
+            comHospitalTxt.setText("");
+            comCityTxt.setText("");
+            txtCommentA.setText("");
+            comZipTxt.setText("");
+
+            populateCommunityTbl();
+
+        }
+    }//GEN-LAST:event_comSaveBtn1ActionPerformed
+
+    private void updateComBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateComBtnActionPerformed
+        int selectedRowIndex = communityTbl.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
+        House selectedHouse = (House) model.getValueAt(selectedRowIndex, 0);
+
+        selectedHouse.getCommunity().setName(viewComNameTxt.getText());
+        selectedHouse.getCity().setName(viewComCityTxt.getText());
+        selectedHouse.getCity().setZipcode(viewComZipTxt.getText());
+        selectedHouse.setAddress(txtComment.getText());
+
+        JOptionPane.showMessageDialog(this, "Community has been updated.");
+
+        viewComNameTxt.setText("");
+        viewHospitalTxt.setText("");
+        viewComCityTxt.setText("");
+        txtComment.setText("");
+        viewComZipTxt.setText("");
+
+        populateCommunityTbl();
+    }//GEN-LAST:event_updateComBtnActionPerformed
+
+    private void txtCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSCActionPerformed
+    }//GEN-LAST:event_txtCommentActionPerformed
+
+    private void comSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comSearchBtnActionPerformed
+        String s = comSearchBarTxt.getText();
+        newCommunityFilter(s);
+    }//GEN-LAST:event_comSearchBtnActionPerformed
+
+    private void deleteComBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteComBtnActionPerformed
+        int selectedRowIndex = communityTbl.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
+        House selectedHouse = (House) model.getValueAt(selectedRowIndex, 0);
+
+        communities.deleteHouse(selectedHouse);
+
+        JOptionPane.showMessageDialog(this, "Selection has been deleted.");
+
+        populateCommunityTbl();
+    }//GEN-LAST:event_deleteComBtnActionPerformed
+
+    private void viewComBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewComBtnActionPerformed
+        int selectedRowIndex = communityTbl.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
+        House selectedHouse = (House) model.getValueAt(selectedRowIndex, 0);
+
+        viewComNameTxt.setText(String.valueOf(selectedHouse.getCommunity().getName()));
+        viewComCityTxt.setText(String.valueOf(selectedHouse.getCity().getName()));
+        txtComment.setText(String.valueOf(selectedHouse.getAddress()));
+        viewComZipTxt.setText(String.valueOf(selectedHouse.getCity().getZipcode()));
+        if (selectedHouse.getCommunity().getHospital() != null) {
+            viewHospitalTxt.setText(String.valueOf(selectedHouse.getCommunity().getHospital().getName()));
+        } else if (selectedHouse.getCommunity().getHospital() == null) {
+            viewHospitalTxt.setText("N/A");
+        }
+    }//GEN-LAST:event_viewComBtnActionPerformed
+
+    private void clearComSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearComSearchBtnActionPerformed
+        String s = ("");
+        newCommunityFilter(s);
+        comSearchBarTxt.setText("");
+    }//GEN-LAST:event_clearComSearchBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNGO;
-    private javax.swing.JButton btnSC;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> cbIT;
+    private javax.swing.JComboBox<String> cbITA;
+    private javax.swing.JComboBox<String> cbPL;
+    private javax.swing.JComboBox<String> cbPLA;
+    private javax.swing.JButton clearComSearchBtn;
+    private javax.swing.JButton comSaveBtn1;
+    private javax.swing.JTextField comSearchBarTxt;
+    private javax.swing.JButton comSearchBtn;
+    private javax.swing.JTable communityTbl;
+    private javax.swing.JButton deleteComBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblComment;
+    private javax.swing.JLabel lblCommentA;
+    private javax.swing.JLabel lblIT;
+    private javax.swing.JLabel lblITA;
+    private javax.swing.JLabel lblPL;
+    private javax.swing.JLabel lblPLA;
+    private javax.swing.JTextField txtComment;
+    private javax.swing.JTextField txtCommentA;
+    private javax.swing.JButton updateComBtn;
+    private javax.swing.JButton viewComBtn;
     // End of variables declaration//GEN-END:variables
 }
