@@ -5,20 +5,44 @@
  */
 package ui.Enterprise;
 
+
+import Business.Organizations.MulticulturalOrganization;
+import Business.Organizations.Organization;
+import Business.Organizations.UniversityOrganization;
+import Business.SendEmail.SendEmail;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AdvisingRequest;
+import Business.WorkQueue.CommunityRequest;
+import Business.WorkQueue.WorkRequest;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author arfinansari
  */
 public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
-
+    private UserAccount userAccount;
+    private JPanel userProcessContainer;
+    private Organization organization;
+    private SendEmail sendEmail;
     /**
      * Creates new form CommunityJPanel
      */
     public CommunityWorkAreaJPanel() {
         initComponents();
+        
+    }
+
+    public CommunityWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization) {
+        this.userAccount = userAccount;
+        this.userProcessContainer = userProcessContainer;
+        this.organization = organization;
+        uniEmpWelcomeTxt.setText("Welcome " + userAccount.getEmployee().getName() + " !");
+        populateCommunityTable();
     }
 
     /**
@@ -49,14 +73,7 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
         lblIT = new javax.swing.JLabel();
         cbPL = new javax.swing.JComboBox<>();
         cbIT = new javax.swing.JComboBox<>();
-        jPanel11 = new javax.swing.JPanel();
-        lblPLA = new javax.swing.JLabel();
-        lblCommentA = new javax.swing.JLabel();
-        txtCommentA = new javax.swing.JTextField();
-        comSaveBtn1 = new javax.swing.JButton();
-        lblITA = new javax.swing.JLabel();
-        cbPLA = new javax.swing.JComboBox<>();
-        cbITA = new javax.swing.JComboBox<>();
+        uniEmpWelcomeTxt = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
 
@@ -71,7 +88,7 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Priority Level", "Involvement Type:", "Comments:"
+                "Priority Level", "Request Date", "Status", "Student Name", "Involvement Type:", "Comments:", "Assisgned Employee", "Completed Date"
             }
         ));
         jScrollPane7.setViewportView(communityTbl);
@@ -87,14 +104,14 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        viewComBtn.setText("View Community Request");
+        viewComBtn.setText("Accept Request");
         viewComBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewComBtnActionPerformed(evt);
             }
         });
 
-        deleteComBtn.setText("Delete");
+        deleteComBtn.setText("Decline Request");
         deleteComBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteComBtnActionPerformed(evt);
@@ -131,6 +148,10 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
 
         cbIT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Spiritual/Cultural/Religious", "NGO", " " }));
 
+        uniEmpWelcomeTxt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        uniEmpWelcomeTxt.setForeground(new java.awt.Color(255, 255, 255));
+        uniEmpWelcomeTxt.setText("WELCOME");
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -146,11 +167,9 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(comSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(clearComSearchBtn))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(viewComBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(deleteComBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,13 +186,24 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGap(135, 135, 135))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                                 .addComponent(updateComBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(239, 239, 239)))))
+                                .addGap(239, 239, 239))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addComponent(viewComBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(deleteComBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(101, 101, 101))
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(7, 7, 7)
+                .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel52)
                     .addComponent(comSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,71 +233,6 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("View Community Request", jPanel10);
-
-        jPanel11.setBackground(new java.awt.Color(224, 237, 242));
-
-        lblPLA.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblPLA.setText("Priority Level:");
-
-        lblCommentA.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblCommentA.setText(" Comments:");
-
-        comSaveBtn1.setText("Save");
-        comSaveBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comSaveBtn1ActionPerformed(evt);
-            }
-        });
-
-        lblITA.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblITA.setText("Involvement Type:");
-
-        cbPLA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Critical", "High", "Medium", "Low" }));
-
-        cbITA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Spiritual/Cultural/Religious", "NGO" }));
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPLA)
-                    .addComponent(lblCommentA)
-                    .addComponent(lblITA))
-                .addGap(79, 79, 79)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbPLA, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbITA, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCommentA, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(320, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(comSaveBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(392, 392, 392))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblPLA)
-                    .addComponent(cbPLA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblITA)
-                    .addComponent(cbITA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCommentA)
-                    .addComponent(txtCommentA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(comSaveBtn1)
-                .addContainerGap(388, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Add Community Request", jPanel11);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -310,66 +275,6 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comSaveBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comSaveBtn1ActionPerformed
-        if (comHospitalTxt.getText().equals("")) {
-
-            String name = comNameTxt.getText();
-            String city = comCityTxt.getText();
-            String address = txtCommentA.getText();
-            String zipCode = comZipTxt.getText();
-
-            City c2 = cities.addNewCity();
-            c2.setName(city);
-            c2.setZipcode(zipCode);
-
-            Community cm = c2.addNewCommunity();
-            cm.setName(name);
-
-            House hs = communities.addNewHouse();
-            hs.setAddress(address);
-            hs.addCity(c2);
-            hs.addToCommunity(cm);
-
-            JOptionPane.showMessageDialog(this, "Added to community.");
-
-            comNameTxt.setText("");
-            comCityTxt.setText("");
-            txtCommentA.setText("");
-            comZipTxt.setText("");
-
-            populateCommunityTbl();
-
-        } else if (comHospitalTxt.getText().chars().count() > 0) {
-            String name = comNameTxt.getText();
-            String hospitalName = comHospitalTxt.getText();
-
-            Hospital h = hospitals.getHospitalByName(hospitalName);
-            City c1 = cities.getCityByName(h.getCity().getName());
-            Community cm = c1.addNewCommunity();
-            cm.setName(name);
-
-            h.assignToCommunity(cm);
-
-            House hs = h.getHouse();
-            hs.addToCommunity(cm);
-            hs.setCity(c1);
-
-            cm.addHospitalToCommunity(h);
-            cm.addHouseToCommunity(hs);
-
-            JOptionPane.showMessageDialog(this, "Added to community.");
-
-            comNameTxt.setText("");
-            comHospitalTxt.setText("");
-            comCityTxt.setText("");
-            txtCommentA.setText("");
-            comZipTxt.setText("");
-
-            populateCommunityTbl();
-
-        }
-    }//GEN-LAST:event_comSaveBtn1ActionPerformed
-
     private void updateComBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateComBtnActionPerformed
         int selectedRowIndex = communityTbl.getSelectedRow();
 
@@ -379,22 +284,21 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
-        House selectedHouse = (House) model.getValueAt(selectedRowIndex, 0);
-
-        selectedHouse.getCommunity().setName(viewComNameTxt.getText());
-        selectedHouse.getCity().setName(viewComCityTxt.getText());
-        selectedHouse.getCity().setZipcode(viewComZipTxt.getText());
-        selectedHouse.setAddress(txtComment.getText());
-
+        
+            cbPL.setSelectedItem(null);
+            cbIT.setSelectedItem(null);
+          DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("Priority Level");
+        tableModel.addColumn("Involvement Type");
+        tableModel.addColumn("Comment");
+        
         JOptionPane.showMessageDialog(this, "Community has been updated.");
 
-        viewComNameTxt.setText("");
-        viewHospitalTxt.setText("");
-        viewComCityTxt.setText("");
-        txtComment.setText("");
-        viewComZipTxt.setText("");
+        cbPL.setName("");
+        cbIT.setName("");
+        txtCommentA.setText("");
 
-        populateCommunityTbl();
+        populateCommunityTable();
     }//GEN-LAST:event_updateComBtnActionPerformed
 
     private void txtCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommentActionPerformed
@@ -403,7 +307,7 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
 
     private void comSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comSearchBtnActionPerformed
         String s = comSearchBarTxt.getText();
-        newCommunityFilter(s);
+        newCommunityEmpFilter(s);
     }//GEN-LAST:event_comSearchBtnActionPerformed
 
     private void deleteComBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteComBtnActionPerformed
@@ -413,53 +317,69 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a row to delete.");
             return;
         }
+        
+       // DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
+        else if (communityTbl.getValueAt(selectedRowIndex, 0) != null) {
 
-        DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
-        House selectedHouse = (House) model.getValueAt(selectedRowIndex, 0);
-
-        communities.deleteHouse(selectedHouse);
-
-        JOptionPane.showMessageDialog(this, "Selection has been deleted.");
-
-        populateCommunityTbl();
+        JOptionPane.showMessageDialog(this, "Selection has been Declined.");
+        }
+        populateCommunityTable();
     }//GEN-LAST:event_deleteComBtnActionPerformed
 
     private void viewComBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewComBtnActionPerformed
-        int selectedRowIndex = communityTbl.getSelectedRow();
+        int selectedRow = communityTbl.getSelectedRow();
+        CommunityRequest communityRequest = (CommunityRequest) userAccount.getWorkQueue().getWorkQueueList().get(selectedRow);
 
-        if (selectedRowIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to view.");
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row");
             return;
         }
 
-        DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
-        House selectedHouse = (House) model.getValueAt(selectedRowIndex, 0);
+        else if (communityTbl.getValueAt(selectedRow, 6) != null) {
 
-        viewComNameTxt.setText(String.valueOf(selectedHouse.getCommunity().getName()));
-        viewComCityTxt.setText(String.valueOf(selectedHouse.getCity().getName()));
-        txtComment.setText(String.valueOf(selectedHouse.getAddress()));
-        viewComZipTxt.setText(String.valueOf(selectedHouse.getCity().getZipcode()));
-        if (selectedHouse.getCommunity().getHospital() != null) {
-            viewHospitalTxt.setText(String.valueOf(selectedHouse.getCommunity().getHospital().getName()));
-        } else if (selectedHouse.getCommunity().getHospital() == null) {
-            viewHospitalTxt.setText("N/A");
+            JOptionPane.showMessageDialog(this, "Request has already been completed.");
         }
+
+        else if (communityTbl.getValueAt(selectedRow, 2).equals("Assigned")) {
+            JOptionPane.showMessageDialog(this, "Request has already been assigned.");
+        }
+
+        else if (communityTbl.getValueAt(selectedRow, 2).equals("Canceled")) {
+            JOptionPane.showMessageDialog(this, "Request was canceled, please make a new selection.");
+        }
+
+        else if (communityTbl.getValueAt(selectedRow, 2).equals("In Progress")) {
+            communityRequest.setStatus("Assigned");
+        }
+
+        populateCommunityTable();
     }//GEN-LAST:event_viewComBtnActionPerformed
 
     private void clearComSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearComSearchBtnActionPerformed
         String s = ("");
-        newCommunityFilter(s);
+        newCommunityEmpFilter(s);
         comSearchBarTxt.setText("");
     }//GEN-LAST:event_clearComSearchBtnActionPerformed
 
+       public void newCommunityEmpFilter(String s) {
+        DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
+        TableRowSorter<DefaultTableModel> t = new TableRowSorter<DefaultTableModel>(model);
+        communityTbl.setRowSorter(t);
+        t.setRowFilter(RowFilter.regexFilter(s));
 
+    }
+
+    public SendEmail getSendEmail() {
+        return sendEmail;
+    }
+
+    public void setSendEmail(SendEmail sendEmail) {
+        this.sendEmail = sendEmail;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbIT;
-    private javax.swing.JComboBox<String> cbITA;
     private javax.swing.JComboBox<String> cbPL;
-    private javax.swing.JComboBox<String> cbPLA;
     private javax.swing.JButton clearComSearchBtn;
-    private javax.swing.JButton comSaveBtn1;
     private javax.swing.JTextField comSearchBarTxt;
     private javax.swing.JButton comSearchBtn;
     private javax.swing.JTable communityTbl;
@@ -467,21 +387,42 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblComment;
-    private javax.swing.JLabel lblCommentA;
     private javax.swing.JLabel lblIT;
-    private javax.swing.JLabel lblITA;
     private javax.swing.JLabel lblPL;
-    private javax.swing.JLabel lblPLA;
     private javax.swing.JTextField txtComment;
-    private javax.swing.JTextField txtCommentA;
+    private javax.swing.JLabel uniEmpWelcomeTxt;
     private javax.swing.JButton updateComBtn;
     private javax.swing.JButton viewComBtn;
     // End of variables declaration//GEN-END:variables
+
+    private void populateCommunityTable() {
+   DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
+        model.setRowCount(0);
+        
+        MulticulturalOrganization communityOrg = (MulticulturalOrganization) organization;
+        
+        for (WorkRequest request : communityOrg.getWorkQueue().getWorkQueueList()) {
+            Object[] row = new Object[7];
+            row[0] = ((CommunityRequest) request);
+            row[1] = ((CommunityRequest) request).getDateOfRequest();
+            row[2] = ((CommunityRequest) request).getStatus();
+            row[3] = ((CommunityRequest) request).getSender().getStudent().getName();
+            row[4] = ((CommunityRequest) request).getInvolvementType();
+            row[5] = ((CommunityRequest) request).getComments();
+            if(request.getStatus().equals("Completed")){
+            row[6] = ((CommunityRequest) request).getDateResolved();
+            }
+            else{
+            row[6] = ""; 
+            }
+            
+            model.addRow(row);
+    }
+    }
 }
