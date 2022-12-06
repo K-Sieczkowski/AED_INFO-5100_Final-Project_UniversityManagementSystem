@@ -5,18 +5,51 @@
  */
 package ui.Enterprise;
 
+import Business.Organizations.Organization;
+import Business.Organizations.RealtorOrganization;
+import Business.SendEmail.SendEmail;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.CommunityRequest;
+import Business.WorkQueue.HousingRequest;
+import Business.WorkQueue.WorkRequest;
+import com.teamdev.jxbrowser.browser.Browser;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import java.awt.datatransfer.StringSelection;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
+import java.awt.Desktop;
 /**
  *
  * @author arfinansari
  */
 public class HousingWorkAreaJPanel extends javax.swing.JPanel {
-
+     private UserAccount userAccount;
+    private JPanel userProcessContainer;
+    private Organization organization;
+    private SendEmail sendEmail;
     /**
      * Creates new form HospitalJPanel
      */
     public HousingWorkAreaJPanel() {
         initComponents();
+        
     }
+
+   public HousingWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization) {
+        this.userAccount = userAccount;
+        this.userProcessContainer = userProcessContainer;
+        this.organization = organization;
+        uniEmpWelcomeTxt.setText("Welcome " + userAccount.getEmployee().getName() + " !");
+        populateTable(); }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,32 +63,31 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
-        encSearchTxt = new javax.swing.JTextField();
+        comSearchBarTxt = new javax.swing.JTextField();
         jLabel75 = new javax.swing.JLabel();
         encSearchBtn1 = new javax.swing.JButton();
         encClearBtn = new javax.swing.JButton();
-        viewEncBtn = new javax.swing.JButton();
+        AcceptRequestHM = new javax.swing.JButton();
         deleteEncBtn = new javax.swing.JButton();
-        jLabel76 = new javax.swing.JLabel();
-        jLabel77 = new javax.swing.JLabel();
-        jLabel78 = new javax.swing.JLabel();
-        jLabel80 = new javax.swing.JLabel();
-        heartTxt = new javax.swing.JTextField();
+        lblPL = new javax.swing.JLabel();
+        lblMP = new javax.swing.JLabel();
+        lblDL = new javax.swing.JLabel();
+        lblComments = new javax.swing.JLabel();
+        txtMP = new javax.swing.JTextField();
         updateEncBtn = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
-        encounterTbl = new javax.swing.JTable();
-        heartTxt1 = new javax.swing.JTextField();
-        jComboBox13 = new javax.swing.JComboBox<>();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel99 = new javax.swing.JLabel();
-        jLabel100 = new javax.swing.JLabel();
-        encDateTxt = new javax.swing.JTextField();
-        encPatientNameTxt = new javax.swing.JTextField();
-        encSaveBtn = new javax.swing.JButton();
-        jLabel108 = new javax.swing.JLabel();
-        encIDTxt = new javax.swing.JTextField();
-        jLabel109 = new javax.swing.JLabel();
-        docNameTxt1 = new javax.swing.JTextField();
+        housingEmployeeTbl = new javax.swing.JTable();
+        txtComments = new javax.swing.JTextField();
+        cbPL = new javax.swing.JComboBox<>();
+        updateBtn = new javax.swing.JButton();
+        uniEmpWelcomeTxt = new javax.swing.JLabel();
+        comSearchBtn = new javax.swing.JButton();
+        clearComSearchBtn = new javax.swing.JButton();
+        btnMap = new javax.swing.JButton();
+        txtDL1 = new javax.swing.JTextField();
+        btnAssign = new javax.swing.JButton();
+        lblAssignEmployee = new javax.swing.JLabel();
+        cbAssignEmployee = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
 
@@ -82,31 +114,31 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        viewEncBtn.setText("View Housing Request");
-        viewEncBtn.addActionListener(new java.awt.event.ActionListener() {
+        AcceptRequestHM.setText("Accept Request");
+        AcceptRequestHM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewEncBtnActionPerformed(evt);
+                AcceptRequestHMActionPerformed(evt);
             }
         });
 
-        deleteEncBtn.setText("Delete");
+        deleteEncBtn.setText("Decline Request");
         deleteEncBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteEncBtnActionPerformed(evt);
             }
         });
 
-        jLabel76.setText("Priority Level:");
+        lblPL.setText("Priority Level:");
 
-        jLabel77.setText("Max Price:");
+        lblMP.setText("Max Price:");
 
-        jLabel78.setText("Desired Location:");
+        lblDL.setText("Desired Location:");
 
-        jLabel80.setText("Comments:");
+        lblComments.setText("Comments:");
 
-        heartTxt.addActionListener(new java.awt.event.ActionListener() {
+        txtMP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                heartTxtActionPerformed(evt);
+                txtMPActionPerformed(evt);
             }
         });
 
@@ -117,187 +149,183 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        encounterTbl.setModel(new javax.swing.table.DefaultTableModel(
+        housingEmployeeTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Priority Level", "Max Price", "Desired Location", "Comments"
+                "Priority Level", "Request Date", "Status", "Student Name", "Max Price", "Desired Location", "Comments", "Assigned Employee", "Completed Date"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
+        ));
+        jScrollPane9.setViewportView(housingEmployeeTbl);
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane9.setViewportView(encounterTbl);
-
-        heartTxt1.addActionListener(new java.awt.event.ActionListener() {
+        txtComments.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                heartTxt1ActionPerformed(evt);
+                txtCommentsActionPerformed(evt);
             }
         });
 
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Critical", "High", "Medium", "Low" }));
+        cbPL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Critical", "High", "Medium", "Low" }));
+
+        updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+
+        uniEmpWelcomeTxt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        uniEmpWelcomeTxt.setForeground(new java.awt.Color(255, 255, 255));
+        uniEmpWelcomeTxt.setText("WELCOME");
+
+        comSearchBtn.setText("Search");
+        comSearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comSearchBtnActionPerformed(evt);
+            }
+        });
+
+        clearComSearchBtn.setText("Clear Search");
+        clearComSearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearComSearchBtnActionPerformed(evt);
+            }
+        });
+
+        btnMap.setText("Lookup MAP");
+        btnMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMapActionPerformed(evt);
+            }
+        });
+
+        txtDL1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDL1ActionPerformed(evt);
+            }
+        });
+
+        btnAssign.setText("Assign");
+
+        lblAssignEmployee.setText("Assign Employee");
+
+        cbAssignEmployee.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                    .addGap(1483, 1483, 1483)
+                    .addComponent(updateEncBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(112, 112, 112))
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDL)
+                            .addComponent(lblMP)
+                            .addComponent(lblPL)
+                            .addComponent(lblComments))
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtComments, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                            .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMP, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDL1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMap)
+                        .addGap(822, 822, 822))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(encSearchBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(encClearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()))
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGap(105, 105, 105)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel8Layout.createSequentialGroup()
                             .addComponent(jLabel75)
                             .addGap(18, 18, 18)
-                            .addComponent(encSearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(255, 255, 255))
+                            .addComponent(comSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(comSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(clearComSearchBtn))
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(updateEncBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel76)
-                                        .addComponent(jLabel77)
-                                        .addComponent(jLabel78)
-                                        .addComponent(jLabel80))
-                                    .addGap(781, 781, 781)))
-                            .addGap(106, 106, 106)))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(viewEncBtn)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(deleteEncBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(heartTxt)
-                                    .addComponent(heartTxt1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                                    .addComponent(jComboBox13, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel8Layout.createSequentialGroup()
-                                    .addComponent(encSearchBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(encClearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                            .addComponent(lblAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(88, 88, 88)
+                            .addComponent(cbAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(44, 44, 44)
+                            .addComponent(btnAssign)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(AcceptRequestHM)
+                            .addGap(26, 26, 26)
+                            .addComponent(deleteEncBtn)))
+                    .addGap(714, 714, 714)))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(413, 413, 413)
+                .addComponent(updateBtn))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(10, 10, 10)
+                .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel75)
-                    .addComponent(encSearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(encSearchBtn1)
-                    .addComponent(encClearBtn))
-                .addGap(21, 21, 21)
+                    .addComponent(encClearBtn)
+                    .addComponent(comSearchBtn)
+                    .addComponent(clearComSearchBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AcceptRequestHM)
+                            .addComponent(deleteEncBtn))
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblAssignEmployee)
+                            .addComponent(cbAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAssign))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPL))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewEncBtn)
-                    .addComponent(deleteEncBtn))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel76)
-                    .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMP))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel77)
-                    .addComponent(heartTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel78)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDL1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblDL)
+                        .addComponent(btnMap)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel80)
-                    .addComponent(heartTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(106, 106, 106)
+                    .addComponent(lblComments)
+                    .addComponent(txtComments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(updateBtn)
+                .addGap(59, 59, 59)
                 .addComponent(updateEncBtn)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("View Housing Request", jPanel8);
-
-        jPanel13.setBackground(new java.awt.Color(224, 237, 242));
-        jPanel13.setPreferredSize(new java.awt.Dimension(1070, 870));
-
-        jLabel99.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel99.setText("Priority Level:");
-
-        jLabel100.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel100.setText("Comments:");
-
-        encSaveBtn.setText("Save");
-        encSaveBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                encSaveBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel108.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel108.setText("Max Price:");
-
-        encIDTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                encIDTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel109.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel109.setText("Desired Location:");
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addGap(221, 221, 221)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel108)
-                    .addComponent(jLabel109)
-                    .addComponent(jLabel100)
-                    .addComponent(jLabel99, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(encPatientNameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
-                    .addComponent(encDateTxt)
-                    .addComponent(encIDTxt)
-                    .addComponent(docNameTxt1))
-                .addGap(221, 221, 221))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(encSaveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(281, 281, 281))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(encDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel99))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel108)
-                    .addComponent(encIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel109)
-                    .addComponent(docNameTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(encPatientNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel100))
-                .addGap(62, 62, 62)
-                .addComponent(encSaveBtn)
-                .addContainerGap(366, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Add Housing Request", jPanel13);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -338,276 +366,201 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void encSearchBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encSearchBtn1ActionPerformed
-        String s = encSearchTxt.getText();
-        newEncFilter(s);
+        String s = comSearchBarTxt.getText();
+        newHousingEmpFilter(s);
     }//GEN-LAST:event_encSearchBtn1ActionPerformed
 
     private void encClearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encClearBtnActionPerformed
         String s = ("");
-        newEncFilter(s);
-        encSearchTxt.setText("");
+        newHousingEmpFilter(s);
+        comSearchBarTxt.setText("");
     }//GEN-LAST:event_encClearBtnActionPerformed
 
-    private void viewEncBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEncBtnActionPerformed
-        int selectedRowIndex = encounterTbl.getSelectedRow();
+    private void AcceptRequestHMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptRequestHMActionPerformed
+   int selectedRow = housingEmployeeTbl.getSelectedRow();
+        HousingRequest housingRequest = (HousingRequest) userAccount.getWorkQueue().getWorkQueueList().get(selectedRow);
 
-        if (selectedRowIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to view.");
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row");
             return;
         }
 
-        DefaultTableModel model = (DefaultTableModel) encounterTbl.getModel();
-        Patient p = patients.getPatientByName(String.valueOf(model.getValueAt(selectedRowIndex, 2)));
-        Doctor d = doctors.getDoctorByName(String.valueOf(model.getValueAt(selectedRowIndex, 3)));
-        Encounter selectedEncounter = (Encounter) model.getValueAt(selectedRowIndex, 0);
+        else if (housingEmployeeTbl.getValueAt(selectedRow, 6) != null) {
 
-        dateTxt.setText(String.valueOf(selectedEncounter.getDate()));
-        eIDTxt.setText(String.valueOf(selectedEncounter.getID()));
-        nameTxt.setText(String.valueOf(p.getPerson().getName()));
-        encDocNameTxt.setText(String.valueOf(d.getPerson().getName()));
-        complaintTxt.setText(String.valueOf(selectedEncounter.getChiefComplaint().getComplaintDescription()));
-        respiratoryTxt.setText(String.valueOf(selectedEncounter.getVitalSigns().getRespiratoryRate()));
-        heartTxt.setText(String.valueOf(selectedEncounter.getVitalSigns().getHeartRate()));
-        tempTxt.setText(String.valueOf(selectedEncounter.getVitalSigns().getTemperature()));
-        bpTxt.setText(String.valueOf(selectedEncounter.getVitalSigns().getBloodPressure()));
-        weightTxt.setText(String.valueOf(selectedEncounter.getVitalSigns().getWeightInPounds()));
-        normalTxt.setText(String.valueOf(selectedEncounter.getVitalSigns().normalToString()));
-        diagnosisTxt.setText(String.valueOf(selectedEncounter.getDiagnosis().getDiagnosis()));
-    }//GEN-LAST:event_viewEncBtnActionPerformed
+            JOptionPane.showMessageDialog(this, "Request has already been completed.");
+        }
+
+        else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("Assigned")) {
+            JOptionPane.showMessageDialog(this, "Request has already been assigned.");
+        }
+
+        else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("Canceled")) {
+            JOptionPane.showMessageDialog(this, "Request was canceled, please make a new selection.");
+        }
+
+        else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("In Progress")) {
+            housingRequest.setStatus("Assigned");
+        }
+        populateTable();
+    }//GEN-LAST:event_AcceptRequestHMActionPerformed
 
     private void deleteEncBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteEncBtnActionPerformed
-        int selectedRowIndex = encounterTbl.getSelectedRow();
+   int selectedRowIndex = housingEmployeeTbl.getSelectedRow();
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to delete.");
             return;
         }
+        
+       // DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
+        else if (housingEmployeeTbl.getValueAt(selectedRowIndex, 0) != null) {
 
-        DefaultTableModel model = (DefaultTableModel) encounterTbl.getModel();
-        Patient p = patients.getPatientByName(String.valueOf(model.getValueAt(selectedRowIndex, 2)));
-        Encounter selectedEncounter = (Encounter) model.getValueAt(selectedRowIndex, 0);
-        encounters.deleteEncounter(selectedEncounter);
-        p.getEncounterHistory().deleteEncounter(selectedEncounter);
-
-        JOptionPane.showMessageDialog(this, "Encounter deleted from system.");
-
-        populateEncounterTbl();
+        JOptionPane.showMessageDialog(this, "Selection has been Declined.");
+        }
+        populateTable();      
     }//GEN-LAST:event_deleteEncBtnActionPerformed
 
-    private void heartTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heartTxtActionPerformed
+    private void txtMPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_heartTxtActionPerformed
+    }//GEN-LAST:event_txtMPActionPerformed
 
     private void updateEncBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateEncBtnActionPerformed
-        int selectedRowIndex = encounterTbl.getSelectedRow();
+        
+    }//GEN-LAST:event_updateEncBtnActionPerformed
+
+    private void txtCommentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommentsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCommentsActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+    int selectedRowIndex = housingEmployeeTbl.getSelectedRow();
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to update.");
             return;
-
-        } else if (patientYesBtn1.isSelected()) {
-
-            DefaultTableModel model = (DefaultTableModel) encounterTbl.getModel();
-            Patient p = patients.getPatientByName(String.valueOf(model.getValueAt(selectedRowIndex, 2)));
-            Doctor d = doctors.getDoctorByName(String.valueOf(model.getValueAt(selectedRowIndex, 3)));
-            Encounter selectedEncounter = (Encounter) model.getValueAt(selectedRowIndex, 0);
-
-            selectedEncounter.setDate(dateTxt.getText());
-            selectedEncounter.setID(Integer.parseInt(eIDTxt.getText()));
-            p.getPerson().setName(nameTxt.getText());
-            d.getPerson().setName(encDocNameTxt.getText());
-            selectedEncounter.getChiefComplaint().setComplaintDescription(complaintTxt.getText());
-            selectedEncounter.getVitalSigns().setRespiratoryRate(Integer.parseInt(respiratoryTxt.getText()));
-            selectedEncounter.getVitalSigns().setHeartRate(Integer.parseInt(heartTxt.getText()));
-            selectedEncounter.getVitalSigns().setTemperature(Double.parseDouble(tempTxt.getText()));
-            selectedEncounter.getVitalSigns().setBloodPressure(Double.parseDouble(bpTxt.getText()));
-            selectedEncounter.getVitalSigns().setWeightInPounds(Integer.parseInt(weightTxt.getText()));
-            selectedEncounter.getDiagnosis().setDiagnosis(diagnosisTxt.getText());
-            selectedEncounter.getVitalSigns().setPatientIsNormal(true);
-
-            JOptionPane.showMessageDialog(this, "Encounter has been updated.");
-
-            dateTxt.setText("");
-            eIDTxt.setText("");
-            nameTxt.setText("");
-            encDocNameTxt.setText("");
-            complaintTxt.setText("");
-            respiratoryTxt.setText("");
-            heartTxt.setText("");
-            tempTxt.setText("");
-            bpTxt.setText("");
-            weightTxt.setText("");
-            normalTxt.setText("");
-            diagnosisTxt.setText("");
-
-            populateEncounterTbl();
-
-        } else if (patientNoBtn1.isSelected()) {
-            DefaultTableModel model = (DefaultTableModel) encounterTbl.getModel();
-            Patient p = patients.getPatientByName(String.valueOf(model.getValueAt(selectedRowIndex, 2)));
-            Doctor d = doctors.getDoctorByName(String.valueOf(model.getValueAt(selectedRowIndex, 3)));
-            Encounter selectedEncounter = (Encounter) model.getValueAt(selectedRowIndex, 0);
-
-            selectedEncounter.setDate(dateTxt.getText());
-            selectedEncounter.setID(Integer.parseInt(eIDTxt.getText()));
-            p.getPerson().setName(nameTxt.getText());
-            d.getPerson().setName(encDocNameTxt.getText());
-            selectedEncounter.getChiefComplaint().setComplaintDescription(complaintTxt.getText());
-            selectedEncounter.getVitalSigns().setRespiratoryRate(Integer.parseInt(respiratoryTxt.getText()));
-            selectedEncounter.getVitalSigns().setHeartRate(Integer.parseInt(heartTxt.getText()));
-            selectedEncounter.getVitalSigns().setTemperature(Double.parseDouble(tempTxt.getText()));
-            selectedEncounter.getVitalSigns().setBloodPressure(Double.parseDouble(bpTxt.getText()));
-            selectedEncounter.getVitalSigns().setWeightInPounds(Integer.parseInt(weightTxt.getText()));
-            selectedEncounter.getDiagnosis().setDiagnosis(diagnosisTxt.getText());
-            selectedEncounter.getVitalSigns().setPatientIsNormal(false);
-
-            JOptionPane.showMessageDialog(this, "Encounter has been updated.");
-
-            dateTxt.setText("");
-            eIDTxt.setText("");
-            nameTxt.setText("");
-            encDocNameTxt.setText("");
-            complaintTxt.setText("");
-            respiratoryTxt.setText("");
-            heartTxt.setText("");
-            tempTxt.setText("");
-            bpTxt.setText("");
-            weightTxt.setText("");
-            normalTxt.setText("");
-            diagnosisTxt.setText("");
-
-            populateEncounterTbl();
-
-        } else {
-
-            DefaultTableModel model = (DefaultTableModel) encounterTbl.getModel();
-            Patient p = patients.getPatientByName(String.valueOf(model.getValueAt(selectedRowIndex, 2)));
-            Doctor d = doctors.getDoctorByName(String.valueOf(model.getValueAt(selectedRowIndex, 3)));
-            Encounter selectedEncounter = (Encounter) model.getValueAt(selectedRowIndex, 0);
-
-            selectedEncounter.setDate(dateTxt.getText());
-            selectedEncounter.setID(Integer.parseInt(eIDTxt.getText()));
-            p.getPerson().setName(nameTxt.getText());
-            d.getPerson().setName(encDocNameTxt.getText());
-            selectedEncounter.getChiefComplaint().setComplaintDescription(complaintTxt.getText());
-            selectedEncounter.getVitalSigns().setRespiratoryRate(Integer.parseInt(respiratoryTxt.getText()));
-            selectedEncounter.getVitalSigns().setHeartRate(Integer.parseInt(heartTxt.getText()));
-            selectedEncounter.getVitalSigns().setTemperature(Double.parseDouble(tempTxt.getText()));
-            selectedEncounter.getVitalSigns().setBloodPressure(Double.parseDouble(bpTxt.getText()));
-            selectedEncounter.getVitalSigns().setWeightInPounds(Integer.parseInt(weightTxt.getText()));
-            selectedEncounter.getDiagnosis().setDiagnosis(diagnosisTxt.getText());
-
-            JOptionPane.showMessageDialog(this, "Encounter has been updated.");
-
-            dateTxt.setText("");
-            eIDTxt.setText("");
-            nameTxt.setText("");
-            encDocNameTxt.setText("");
-            complaintTxt.setText("");
-            respiratoryTxt.setText("");
-            heartTxt.setText("");
-            tempTxt.setText("");
-            bpTxt.setText("");
-            weightTxt.setText("");
-            normalTxt.setText("");
-            diagnosisTxt.setText("");
-
-            populateEncounterTbl();
         }
-    }//GEN-LAST:event_updateEncBtnActionPerformed
 
-    private void heartTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heartTxt1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) housingEmployeeTbl.getModel();
+        
+          cbPL.setSelectedItem(null);
+            
+          DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("Priority Level");
+        tableModel.addColumn("Max Price");
+        tableModel.addColumn("Desired Location");
+        tableModel.addColumn("Comment");
+        
+        JOptionPane.showMessageDialog(this, "Community has been updated.");
+
+        cbPL.setName("");
+        txtMP.setName("");
+        txtComments.setText("");
+
+        populateTable();        
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void comSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comSearchBtnActionPerformed
+        String s = comSearchBarTxt.getText();
+        newHousingEmpFilter(s);
+    }//GEN-LAST:event_comSearchBtnActionPerformed
+
+    private void clearComSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearComSearchBtnActionPerformed
+        String s = ("");
+        newHousingEmpFilter(s);
+        comSearchBarTxt.setText("");
+    }//GEN-LAST:event_clearComSearchBtnActionPerformed
+
+    private void btnMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_heartTxt1ActionPerformed
-
-    private void encSaveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encSaveBtnActionPerformed
-
-        try{
-            String date = encDateTxt.getText();
-            int id = Integer.parseInt(encIDTxt.getText());
-            String name = encPatientNameTxt.getText();
-            String docName = docNameTxt1.getText();
-            String complaint = encChiefTxt.getText();
-            int respiratory = Integer.parseInt(encRespiratoryTxt.getText());
-            int heart = Integer.parseInt(encHeartRateTxt.getText());
-            double temp = Double.parseDouble(encTempTxt.getText());
-            double bp = Double.parseDouble(encBPTxt.getText());
-            int weight = Integer.parseInt(encWeightTxt.getText());
-            String diagnosis = encDiagnosisTxt.getText();
-
-            Patient p = patients.getPatientByName(name);
-            Doctor d = doctors.getDoctorByName(docName);
-
-            Encounter e = encounters.newEncounter();
-            e.setDate(date);
-            e.setID(id);
-            e.newChiefComplaint(complaint);
-            e.newVitalSigns(respiratory, heart, temp, bp, weight, true);
-            e.newDiagnosis(diagnosis);
-
-            p.setEncounterHistory(encounters);
-
-            p.assignToDoctor(d);
-            d.assignPatient(p);
-
-            JOptionPane.showMessageDialog(this, "Encounter and vitals added.");
-
-            encDateTxt.setText("");
-            encIDTxt.setText("");
-            encPatientNameTxt.setText("");
-            docNameTxt1.setText("");
-            encChiefTxt.setText("");
-            encRespiratoryTxt.setText("");
-            encHeartRateTxt.setText("");
-            encTempTxt.setText("");
-            encBPTxt.setText("");
-            encWeightTxt.setText("");
-            encDiagnosisTxt.setText("");
-
-            populateEncounterTbl();
-
+        if(txtDL1.getText().equals("")){
+           JOptionPane.showMessageDialog(this, "Please select a row to view first.");
         }
-        catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(this, "Please check data types and try again.");
-        }
-    }//GEN-LAST:event_encSaveBtnActionPerformed
+        else try{
+            Desktop.getDesktop().browse(new URL("http://maps.google.com").toURI());
+        } catch (Exception e){}
+        
+      String locationTxt = txtDL1.getText();
+      StringSelection stringSelection = new StringSelection(locationTxt);
+      Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+      clipboard.setContents(stringSelection, null);
+    
+    }//GEN-LAST:event_btnMapActionPerformed
 
-    private void encIDTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encIDTxtActionPerformed
+    private void txtDL1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDL1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_encIDTxtActionPerformed
+    }//GEN-LAST:event_txtDL1ActionPerformed
 
+        public void newHousingEmpFilter(String s) {
+        DefaultTableModel model = (DefaultTableModel) housingEmployeeTbl.getModel();
+        TableRowSorter<DefaultTableModel> t = new TableRowSorter<DefaultTableModel>(model);
+        housingEmployeeTbl.setRowSorter(t);
+        t.setRowFilter(RowFilter.regexFilter(s));
 
+    }
+
+    public SendEmail getSendEmail() {
+        return sendEmail;
+    }
+
+    public void setSendEmail(SendEmail sendEmail) {
+        this.sendEmail = sendEmail;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AcceptRequestHM;
+    private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnMap;
+    private javax.swing.JComboBox<String> cbAssignEmployee;
+    private javax.swing.JComboBox<String> cbPL;
+    private javax.swing.JButton clearComSearchBtn;
+    private javax.swing.JTextField comSearchBarTxt;
+    private javax.swing.JButton comSearchBtn;
     private javax.swing.JButton deleteEncBtn;
-    private javax.swing.JTextField docNameTxt1;
     private javax.swing.JButton encClearBtn;
-    private javax.swing.JTextField encDateTxt;
-    private javax.swing.JTextField encIDTxt;
-    private javax.swing.JTextField encPatientNameTxt;
-    private javax.swing.JButton encSaveBtn;
     private javax.swing.JButton encSearchBtn1;
-    private javax.swing.JTextField encSearchTxt;
-    private javax.swing.JTable encounterTbl;
-    private javax.swing.JTextField heartTxt;
-    private javax.swing.JTextField heartTxt1;
-    private javax.swing.JComboBox<String> jComboBox13;
+    private javax.swing.JTable housingEmployeeTbl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel100;
-    private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
-    private javax.swing.JLabel jLabel77;
-    private javax.swing.JLabel jLabel78;
-    private javax.swing.JLabel jLabel80;
-    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblAssignEmployee;
+    private javax.swing.JLabel lblComments;
+    private javax.swing.JLabel lblDL;
+    private javax.swing.JLabel lblMP;
+    private javax.swing.JLabel lblPL;
+    private javax.swing.JTextField txtComments;
+    private javax.swing.JTextField txtDL1;
+    private javax.swing.JTextField txtMP;
+    private javax.swing.JLabel uniEmpWelcomeTxt;
+    private javax.swing.JButton updateBtn;
     private javax.swing.JButton updateEncBtn;
-    private javax.swing.JButton viewEncBtn;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+   DefaultTableModel model = (DefaultTableModel) housingEmployeeTbl.getModel();
+        model.setRowCount(0);
+        
+        RealtorOrganization housingOrg = (RealtorOrganization) organization;
+        
+        for (WorkRequest request : housingOrg.getWorkQueue().getWorkQueueList()) {
+            Object[] row = new Object[7];
+            row[0] = ((HousingRequest) request);
+            row[1] = ((HousingRequest) request).getDateOfRequest();
+            row[2] = ((HousingRequest) request).getStatus();
+            row[3] = ((HousingRequest) request).getSender().getStudent().getName();
+            row[4] = ((HousingRequest) request).getMaxPrice();
+            row[5] = ((HousingRequest) request).getComments();
+            if(request.getStatus().equals("Completed")){
+            row[6] = ((HousingRequest) request).getDateResolved();
+            }
+            else{
+            row[6] = ""; 
+            }
+            
+            model.addRow(row);
+    }
+    }
 }

@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Organizations.Organization;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +25,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import ui.Role.StudentWorkAreaJPanel;
 
 /**
  *
@@ -227,7 +230,7 @@ public class MainJFrame extends javax.swing.JFrame {
         else if(name.equals("cri") && pwd.equals("cri123"))
         {
             JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            CrisisWorkAreaJPanel crisisJPanel = new CrisisWorkAreaJPanel();
+            CrisisPoliceWorkAreaJPanel crisisJPanel = new CrisisPoliceWorkAreaJPanel();
              jPanel2.add("crisisJPanel", crisisJPanel);
 
              CardLayout layout=(CardLayout)jPanel2.getLayout();
@@ -254,7 +257,7 @@ public class MainJFrame extends javax.swing.JFrame {
         else if(name.equals("wel") && pwd.equals("wel123"))
         {
             JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            WellbeingWorkAreaJPanel wellbeingJPanel = new WellbeingWorkAreaJPanel();
+            TherapistWorkAreaJPanel wellbeingJPanel = new TherapistWorkAreaJPanel();
              jPanel2.add("wellbeingJPanel", wellbeingJPanel);
 
              CardLayout layout=(CardLayout)jPanel2.getLayout();
@@ -263,13 +266,21 @@ public class MainJFrame extends javax.swing.JFrame {
         else if(name.equals("sys") && pwd.equals("sys123"))
         {
             JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            SystemAdminWorkAreaJPanel systemadminJPanel = new SystemAdminWorkAreaJPanel();
+            AdminWorkAreaJPanel systemadminJPanel = new AdminWorkAreaJPanel();
              jPanel2.add("systemadminJPanel", systemadminJPanel);
 
              CardLayout layout=(CardLayout)jPanel2.getLayout();
              layout.next(jPanel2);
+        }else if(name.equals("stu") && pwd.equals("stu123"))
+        {
+            JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
+            StudentWorkAreaJPanel studentWorkAreaJPanel = new StudentWorkAreaJPanel();
+             jPanel2.add("studentWorkAreaJPanel", studentWorkAreaJPanel);
+
+             CardLayout layout=(CardLayout)jPanel2.getLayout();
+             layout.next(jPanel2);
         }
-        else
+             else
             JOptionPane.showMessageDialog(null,"Invalid User Name/Password ", "Unsuccessful Login" , JOptionPane.PLAIN_MESSAGE);
     
     }//GEN-LAST:event_btnLoginActionPerformed
