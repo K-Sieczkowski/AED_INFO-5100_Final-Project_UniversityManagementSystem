@@ -12,55 +12,33 @@ import Business.Organizations.OrganizationDirectory;
  * @author ksiec
  */
 public abstract class Enterprise extends Organization {
-   
-    public OrganizationDirectory orgDirectory;
-    public EnterpriseType enterpriseType;
     
-    public Enterprise(String orgName, EnterpriseType enterpriseType){
-        super(orgName);
-        this.enterpriseType = enterpriseType;
-        orgDirectory = new OrganizationDirectory();
-        
+    public EnterpriseType enterpriseType;
+    public OrganizationDirectory organizationDirectory;
+
+    public OrganizationDirectory getOrganizationDirectory() {
+        return organizationDirectory;
     }
     
     public enum EnterpriseType{
         
-        Students("Student"),
-        StudentAdvising("Student Advising"),
-        CommunityInvolvementManagement("Community Involvement Management"),
-        CrisisManagement("Crisis Management"),
-        HousingManagement("Housing Management"),
-        WellbeingSupport("Well-being Support");
-        
+        Residents("Resident"),
+        GrievanceManagement("GrievanceManagement"),
+        EmergencyResponse("EmergencyResponse"),
+        CovidHelp("CovidHelp");
         
         private String value;
         
         private EnterpriseType(String value){
             this.value = value;
         }
-        
-        public String getValue(){
+        public String getValue() {
             return value;
         }
-        
         @Override
         public String toString(){
             return value;
-        }
-        
     }
-    
-    @Override
-    public String toString(){
-        return orgName;
-    }
-
-    public OrganizationDirectory getOrgDirectory() {
-        return orgDirectory;
-    }
-
-    public void setOrgDirectory(OrganizationDirectory orgDirectory) {
-        this.orgDirectory = orgDirectory;
     }
 
     public EnterpriseType getEnterpriseType() {
@@ -69,6 +47,17 @@ public abstract class Enterprise extends Organization {
 
     public void setEnterpriseType(EnterpriseType enterpriseType) {
         this.enterpriseType = enterpriseType;
+    }
+    
+    public Enterprise(String name,EnterpriseType type){
+        super(name);
+        this.enterpriseType=type;
+        organizationDirectory = new OrganizationDirectory();
+    }
+    
+    @Override
+    public String toString(){
+        return name;
     }
     
     

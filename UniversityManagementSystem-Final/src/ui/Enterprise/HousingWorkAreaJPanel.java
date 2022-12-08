@@ -85,9 +85,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
         clearComSearchBtn = new javax.swing.JButton();
         btnMap = new javax.swing.JButton();
         txtDL1 = new javax.swing.JTextField();
-        btnAssign = new javax.swing.JButton();
-        lblAssignEmployee = new javax.swing.JLabel();
-        cbAssignEmployee = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
 
@@ -205,11 +203,12 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnAssign.setText("Assign");
-
-        lblAssignEmployee.setText("Assign Employee");
-
-        cbAssignEmployee.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jButton1.setText("View");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -220,51 +219,54 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
                     .addGap(1483, 1483, 1483)
                     .addComponent(updateEncBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(112, 112, 112))
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDL)
-                            .addComponent(lblMP)
-                            .addComponent(lblPL)
-                            .addComponent(lblComments))
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtComments, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
-                            .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMP, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDL1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnMap)
-                        .addGap(822, 822, 822))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(encSearchBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(encClearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap()))
                 .addGroup(jPanel8Layout.createSequentialGroup()
-                    .addGap(105, 105, 105)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGap(96, 96, 96)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(AcceptRequestHM)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblDL)
+                                            .addComponent(lblMP)
+                                            .addComponent(lblPL)
+                                            .addComponent(lblComments))
+                                        .addGap(41, 41, 41)))
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(deleteEncBtn)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(jButton1))
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtComments, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                                            .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtMP, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtDL1, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnMap)))
+                                .addGap(822, 822, 822))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                                .addComponent(encSearchBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(encClearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap()))
                         .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addComponent(jLabel75)
-                            .addGap(18, 18, 18)
-                            .addComponent(comSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(comSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(clearComSearchBtn))
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel8Layout.createSequentialGroup()
-                            .addComponent(lblAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(88, 88, 88)
-                            .addComponent(cbAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(44, 44, 44)
-                            .addComponent(btnAssign)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(AcceptRequestHM)
-                            .addGap(26, 26, 26)
-                            .addComponent(deleteEncBtn)))
-                    .addGap(714, 714, 714)))
+                            .addGap(15, 15, 15)
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel8Layout.createSequentialGroup()
+                                    .addComponent(jLabel75)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(comSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(comSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(clearComSearchBtn))
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(714, 714, 714)))))
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -277,7 +279,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel75)
                     .addComponent(comSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,20 +289,12 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(clearComSearchBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AcceptRequestHM)
-                            .addComponent(deleteEncBtn))
-                        .addGap(39, 39, 39))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAssignEmployee)
-                            .addComponent(cbAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAssign))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AcceptRequestHM)
+                    .addComponent(deleteEncBtn)
+                    .addComponent(jButton1))
+                .addGap(39, 39, 39)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPL))
@@ -309,11 +303,10 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(txtMP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMP))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDL1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblDL)
-                        .addComponent(btnMap)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDL)
+                    .addComponent(btnMap)
+                    .addComponent(txtDL1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblComments)
@@ -322,7 +315,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(updateBtn)
                 .addGap(59, 59, 59)
                 .addComponent(updateEncBtn)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("View Housing Request", jPanel8);
@@ -496,6 +489,12 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
         housingEmployeeTbl.setRowSorter(t);
         t.setRowFilter(RowFilter.regexFilter(s));
 
+        public void newHousingEmpFilter(String s) {
+        DefaultTableModel model = (DefaultTableModel) housingEmployeeTbl.getModel();
+        TableRowSorter<DefaultTableModel> t = new TableRowSorter<DefaultTableModel>(model);
+        housingEmployeeTbl.setRowSorter(t);
+        t.setRowFilter(RowFilter.regexFilter(s));
+
     }
 
     public SendEmail getSendEmail() {
@@ -508,9 +507,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptRequestHM;
-    private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnMap;
-    private javax.swing.JComboBox<String> cbAssignEmployee;
     private javax.swing.JComboBox<String> cbPL;
     private javax.swing.JButton clearComSearchBtn;
     private javax.swing.JTextField comSearchBarTxt;
@@ -519,6 +516,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton encClearBtn;
     private javax.swing.JButton encSearchBtn1;
     private javax.swing.JTable housingEmployeeTbl;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JPanel jPanel1;
@@ -526,7 +524,6 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel lblAssignEmployee;
     private javax.swing.JLabel lblComments;
     private javax.swing.JLabel lblDL;
     private javax.swing.JLabel lblMP;

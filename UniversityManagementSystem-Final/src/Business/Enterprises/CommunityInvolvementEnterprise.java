@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class CommunityInvolvementEnterprise extends Enterprise {
   
     public CommunityInvolvementEnterprise(String name){
-        super(name, EnterpriseType.CommunityInvolvementManagement);
+        super(name, EnterpriseType.CommunityInvolvementEnterprise);
     }
     
     @Override

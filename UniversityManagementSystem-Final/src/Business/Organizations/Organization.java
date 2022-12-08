@@ -16,114 +16,108 @@ import java.util.ArrayList;
  * @author ksiec
  */
 public abstract class Organization {
-    public String orgName;
-    //private PersonDirectory personDirectory;
+    public String name;
+    private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
-    private WorkQueue workQueue;
-    private int orgID;
+    private int organizationID;
     private static int counter=0;
+    private int availableFunds;
+    private int ngoAvailableFunds;
 
-    
-    public Organization(String orgName){
-        this.orgName = orgName;
-        workQueue = new WorkQueue();
-        employeeDirectory = new EmployeeDirectory();
-        userAccountDirectory = new UserAccountDirectory();
-        orgID = counter;
-        ++counter;
+    public int getNgoAvailableFunds() {
+        return ngoAvailableFunds;
+    }
+
+    public void setNgoAvailableFunds(int ngoAvailableFunds) {
+        this.ngoAvailableFunds = ngoAvailableFunds;
     }
     
-    public enum orgType{
-        UniversityOrg("University Organization"),
-        GovernmentOrg("Government Organization"),
-        NonGovernmentalOrg("Non-governmental Organization"),
-        PoliceOrg("Police Organization"),
-        HospitalOrg("Hospital Organization"),
-        TherapistOrg("Therapist Organization"),
-        FireDepartmentOrg("Fire Department Organization"),
-        MulticulturalOrg("Multicultural Organization"),
-        RelatorOrg("Relator Organization");
+    public enum Type
+    {
+       
+        Admin("Admin Organization"),
+        WaterSupply("WaterSupply Organization"),
+        StreetLighting("StreetLighting Organization"),
+        GarbageRemoval("GarbageRemoval Organization"),
+        Police("Police Organization"),
+        FireControl("FireControl Organization"),
+        Hospital("Hospital Organization"),
+        Government("Government Organization"),
+        NonGovernment("NonGovernment Organization");
         
         private String value;
         
-        private orgType(String value){
+        private Type(String value){
+                
             this.value = value;
+            
         }
-        
-        public String getValue(){
+
+        public String getValue() {
+            
             return value;
         }
         
     }
+
+    public Organization(String name) {
+        this.name = name;
+        this.availableFunds = 500000;
+        this.ngoAvailableFunds = 100000;
+        workQueue = new WorkQueue();
+        employeeDirectory = new EmployeeDirectory();
+        userAccountDirectory = new UserAccountDirectory();
+        organizationID = counter;
+        ++counter;
+    }
     
-    public abstract ArrayList<Role> getSupportedRole();
-    
-    /**
-     * @return the orgName
-     */
-    public String getOrgName() {
-        return orgName;
+    public Organization(){
+        
     }
 
-    /**
-     * @param orgName the orgName to set
-     */
-    public void setOrgName(String orgName) {
-        this.orgName = orgName;
+
+    public abstract ArrayList<Role> getSupportedRole();
+    
+    public UserAccountDirectory getUserAccountDirectory() {
+        return userAccountDirectory;
+    }
+
+    public int getOrganizationID() {
+        return organizationID;
     }
 
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
     }
-
-    public void setEmployeeDirectory(EmployeeDirectory employeeDirectory) {
-        this.employeeDirectory = employeeDirectory;
-    }
-
-    public UserAccountDirectory getUserAccountDirectory() {
-        return userAccountDirectory;
-    }
-
-    public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
-        this.userAccountDirectory = userAccountDirectory;
+    
+    public String getName() {
+        return name;
     }
 
     public WorkQueue getWorkQueue() {
         return workQueue;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
     }
-    
 
-    /**
-     * @return the orgID
-     */
-    public int getOrgID() {
-        return orgID;
+    public int getAvailableFunds() {
+        return availableFunds;
     }
 
-    /**
-     * @param orgID the orgID to set
-     */
-    public void setOrgID(int orgID) {
-        this.orgID = orgID;
+    public void setAvailableFunds(int availableFunds) {
+        this.availableFunds = availableFunds;
     }
-
-//    public PersonDirectory getPersonDirectory() {
-//        return personDirectory;
-//    }
-//
-//    public void setPersonDirectory(PersonDirectory personDirectory) {
-//        this.personDirectory = personDirectory;
-//    }
-    
     
     @Override
-    public String toString(){
-        return orgName;
+    public String toString() {
+        return name;
     }
 }
 

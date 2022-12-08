@@ -321,6 +321,8 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
         cbIT.setName("");
         txtComment.setText("");
 
+        txtCommentA.setText("");
+
         populateCommunityTable();
     }//GEN-LAST:event_updateComBtnActionPerformed
 

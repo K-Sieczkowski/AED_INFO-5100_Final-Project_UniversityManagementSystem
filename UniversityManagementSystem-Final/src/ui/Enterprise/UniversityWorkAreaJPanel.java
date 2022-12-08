@@ -156,6 +156,44 @@ public class UniversityWorkAreaJPanel extends javax.swing.JPanel {
         uniEmpWelcomeTxt.setForeground(new java.awt.Color(255, 255, 255));
         uniEmpWelcomeTxt.setText("WELCOME");
 
+        javax.swing.GroupLayout jPViewUniversityLayout = new javax.swing.GroupLayout(jPViewUniversity);
+        jPViewUniversity.setLayout(jPViewUniversityLayout);
+        jPViewUniversityLayout.setHorizontalGroup(
+            jPViewUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPViewUniversityLayout.createSequentialGroup()
+                .addGroup(jPViewUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPViewUniversityLayout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addGroup(jPViewUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPViewUniversityLayout.createSequentialGroup()
+                                .addComponent(viewButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPViewUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPViewUniversityLayout.createSequentialGroup()
+                                    .addComponent(jLabel39)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(comSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(hospitalSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(clearHospitalSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPViewUniversityLayout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addGroup(jPViewUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPViewUniversityLayout.createSequentialGroup()
+                                        .addComponent(lblComments, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(35, 35, 35))
+                                    .addGroup(jPViewUniversityLayout.createSequentialGroup()
+                                        .addGroup(jPViewUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblAT, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblPL, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(58, 58, 58)))
+                                .addGroup(jPViewUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cbAT, javax.swing.GroupLayout.Alignment.LEADING, 0, 409, Short.MAX_VALUE)
+                                    .addComponent(txtComments, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbPL, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
         btnAssign.setText("Assign");
 
         lblAssignEmployee.setText("Assign Employee");
@@ -227,16 +265,11 @@ public class UniversityWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(clearHospitalSearchBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(jPViewUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteButton)
-                    .addComponent(viewButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPViewUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAssignEmployee)
-                    .addComponent(cbAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAssign))
                 .addGap(18, 18, 18)
+                .addGroup(jPViewUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewButton)
+                    .addComponent(deleteButton))
+                .addGap(47, 47, 47)
                 .addGroup(jPViewUniversityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblPL, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -250,7 +283,7 @@ public class UniversityWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(lblComments, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(updateBtn)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("View University Cases", jPViewUniversity);
@@ -376,9 +409,7 @@ public class UniversityWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAssign;
     private javax.swing.JComboBox<String> cbAT;
-    private javax.swing.JComboBox<String> cbAssignEmployee;
     private javax.swing.JComboBox<String> cbPL;
     private javax.swing.JButton clearHospitalSearchBtn;
     private javax.swing.JTextField comSearchBarTxt;
@@ -392,7 +423,6 @@ public class UniversityWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblAT;
-    private javax.swing.JLabel lblAssignEmployee;
     private javax.swing.JLabel lblComments;
     private javax.swing.JLabel lblPL;
     private javax.swing.JTextField txtComments;
