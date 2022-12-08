@@ -11,7 +11,7 @@ import Business.Organizations.HospitalOrganization;
 import Business.Organizations.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import ui.Enterprise.WellbeingWorkAreaJPanel;
+import ui.Enterprise.TherapistWorkAreaJPanel;
 
 /**
  *
@@ -22,6 +22,6 @@ public class TherapistOrgManagerRole extends Role {
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new WellbeingWorkAreaJPanel(userProcessContainer, account,(HospitalOrganization)organization);
+        return new TherapistWorkAreaJPanel(userProcessContainer, account,(HospitalOrganization)organization);
     }
 }

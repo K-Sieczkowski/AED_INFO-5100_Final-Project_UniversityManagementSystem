@@ -2,15 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.SystemAdmin;
+package ui.SystemAdminTesting;
 
 import Business.EcoSystem;
-import Business.Employee.Employee;
-import Business.Enterprise.Enterprise;
+import Business.Employees.Employee;
+import Business.Enterprises.Enterprise;
 import Business.Network.Network;
-import Business.Role.AdminRole;
+import Business.Roles.AdminRole;
 import Business.UserAccount.UserAccount;
-import static UserInterface.ResidentRegisterJPanel.validUsername;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -23,6 +22,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import ui.SystemAdmin.SystemAdminJPanel;
 
 /**
  *
@@ -75,8 +75,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         lblValidUser = new javax.swing.JLabel();
         lblValidPassword = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 204));
 
         lblNetwork.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblNetwork.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -160,6 +161,13 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,25 +205,27 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(545, 545, 545)
+                        .addGap(1066, 1066, 1066)
                         .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(354, 354, 354)
-                        .addComponent(btnAdd)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                        .addComponent(btnAdd)
+                        .addGap(54, 54, 54)
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 1060, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack))
+                .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(btnBack)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -242,8 +252,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                                 .addComponent(lblValidUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(txtAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addComponent(btnAdd)
-                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdd)
+                    .addComponent(jButton1))
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(134, Short.MAX_VALUE))
         );
@@ -288,8 +300,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
-        sysAdminwjp.populateTree();
+        SystemAdminJPanel sysAdminwjp = (SystemAdminJPanel) component;
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
@@ -328,19 +339,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Provided Username already exists. Please try with other Username" ,"User Exists", 1);
             return;
         }
-//        if (!ecosystem.checkIfUsernameIsUnique(txtUserName.getText())) {
-//            JOptionPane.showMessageDialog(null, "User Already Exists");
-//            return;
-//        }
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(adminName, 1);
-        
-        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(userName, password, employee, new AdminRole());
-        displayTable(network);
-        txtAdminName.setText("");
-        txtUserName.setText("");
-        txtPassword.setText("");
-        //cbNetwork.setSelectedIndex(0);
-        //cbEnterprise.setSelectedIndex(0);
         
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -402,6 +400,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtPasswordKeyTyped
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public static boolean validUsername(String name) {
         Pattern pattern;
         Matcher matcher;
@@ -427,6 +429,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JComboBox cbEnterprise;
     private javax.swing.JComboBox cbNetwork;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdminName;
     private javax.swing.JLabel lblHeading;

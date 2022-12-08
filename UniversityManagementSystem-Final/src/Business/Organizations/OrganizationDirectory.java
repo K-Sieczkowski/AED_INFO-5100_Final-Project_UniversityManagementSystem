@@ -11,19 +11,27 @@ import java.util.ArrayList;
  * @author ksiec
  */
 public class OrganizationDirectory {
-    private ArrayList<Organization> orgList;
+    private ArrayList<Organization> organizationList;
+
+    public ArrayList<Organization> getOrganizationList() {
+        return organizationList;
+    }
+
+    public void setOrganizationList(ArrayList<Organization> organizationList) {
+        this.organizationList = organizationList;
+    }
     
     
     public OrganizationDirectory(){
-        orgList = new ArrayList();
+        organizationList = new ArrayList();
     }
 
-    public ArrayList<Organization> getOrgList() {
-        return orgList;
+    public ArrayList<Organization> getorganizationList() {
+        return organizationList;
     }
 
-    public void setOrgList(ArrayList<Organization> orgList) {
-        this.orgList = orgList;
+    public void setOrgList(ArrayList<Organization> organizationList) {
+        this.organizationList = organizationList;
     }
     
     

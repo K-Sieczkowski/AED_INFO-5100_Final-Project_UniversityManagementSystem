@@ -25,6 +25,33 @@ public class EnterpriseDirectory {
     public void setEnterpriseList(ArrayList<Enterprise> enterpriseList) {
         this.enterpriseList = enterpriseList;
     }
-    
+    public Enterprise createEnterprise(String name, Enterprise.EnterpriseType type){
+        
+        Enterprise enterprise = null;
+        if(type == Enterprise.EnterpriseType.Students){
+            
+            enterprise = new StudentAdvisingEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+         else if (type == Enterprise.EnterpriseType.HousingManagement){
+            
+            enterprise = new HousingManagementEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        
+        else if (type == Enterprise.EnterpriseType.CrisisManagement){
+            
+            enterprise = new CrisisManagementEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        
+        else if (type == Enterprise.EnterpriseType.WellbeingSupport){
+                
+            enterprise=new WellbeingSupportEnterprise(name);
+            enterpriseList.add(enterprise);
+           
+        }
+        return enterprise;
+    }
     
 }

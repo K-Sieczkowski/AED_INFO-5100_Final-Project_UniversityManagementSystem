@@ -32,9 +32,13 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form StudentWorkAreaJPanel
      */
-    public StudentWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network, Organization organization) {
+    public StudentWorkAreaJPanel() {
         initComponents();
-      this.userProcessContainer = userProcessContainer;
+      
+    }
+
+    public StudentWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network, Organization organization) {
+   this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.network = network;
         this.organization = organization;
