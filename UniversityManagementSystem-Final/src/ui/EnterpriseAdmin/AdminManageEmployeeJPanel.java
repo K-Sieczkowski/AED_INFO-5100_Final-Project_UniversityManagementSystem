@@ -26,11 +26,39 @@ import Business.Roles.TherapistRole;
 import Business.Roles.UniversityDirectorRole;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import com.teamdev.jxmaps.i;
+import static com.teamdev.jxmaps.internal.internal.e.j;
+import com.teamdev.jxmaps.internal.internal.ipc.j;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Desktop;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+//import org.apache.poi.ss.usermodel.Cell;
+//import org.apache.poi.ss.usermodel.Row;
+//import org.apache.poi.ss.usermodel.Sheet;
+//import org.apache.poi.ss.usermodel.Workbook;
+//import org.apache.poi.ss.usermodel.XSSWorkbook;
+
 
 /**
  *
@@ -53,8 +81,33 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
      //   populateOrganizationEmployeeComboBox();
      //   populateEmployeeRoleComboBox();
      //   populateTable();
+     fillDataJTable(tblManageEmployee);
     }
 
+        public void fillDataJTable(JTable jt){
+            String[] columns = new String[]{
+                "Organization","Employee Type","Employee Name","User Name","Password"
+            };
+            Object[][] data = new Object[][]{
+                
+                    {1,"Fire Department","Employee","Peter","Pet","Pet123"},
+                    {},
+                    {},
+                    {4,"University","Manager","JAck","Pac","123"},
+                };
+            DefaultTableModel model = new DefaultTableModel(data,columns);
+            jt.setModel(model);
+            
+        }
+        
+        public void openFile(String file){
+            try{
+                File path = new File(file);
+                Desktop.getDesktop().open(path);
+            } catch(IOException ioe){
+                System.out.println(ioe);
+            }
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,6 +133,7 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
         txtPassword = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setMinimumSize(new java.awt.Dimension(1050, 1050));
@@ -135,6 +189,13 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton3.setText("View Report");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -167,12 +228,14 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(146, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(75, 75, 75))))
+                    .addComponent(jButton3)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(58, 58, 58))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jButton2)
+                            .addGap(75, 75, 75)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +268,9 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 410, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(jButton3)
+                .addGap(0, 333, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -376,12 +441,91 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    //Choose Location for saving excel sheet
+ 
+        JFileChooser excelFileChooser = new JFileChooser("/Users/arfinansari");
+        excelFileChooser.setDialogTitle("Save As");
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("Organization","Employee Type","Employee Name","User Name","Password");
+        excelFileChooser.setFileFilter(fnef);
+        int excelChooser = excelFileChooser.showSaveDialog(null);
+        
+        //Check if save button is clicked
+        if(excelChooser == JFileChooser.APPROVE_OPTION){
+         
+            //Import excel poi lib to netbeans
+            XSSFWorkbook excelJTableExporter = new XSSFWorkbook();
+            XSSFSheet excelSheet = excelJTableExporter.createSheet("Jtable Sheet");
+            
+            for (int i = 0; i < tblManageEmployee.getRowCount(); i++){
+                XSSFRow excelRow = excelSheet.createRow(i);
+            for (int j = 0); j < tblManageEmployee.getColumnCount(); j++){
+                XSSFCell excelCell = excelRow.createCell(j);
+           
+            excelCell.setCellValue(tblManageEmployee.getValueAt(i, j).toString());}
+        }
+        }
+        
+        FileOutputStream excelFOU = new FileOutputStream(excelFileChooser.getSelectedFile() + ".xlsx");
+        BufferedOutputStream excelBOU = new BufferedOutputStream(excelFOU);
+        excelJTableExporter.write(excelBOU);
+    } catch (FileNotFoundException ex){
+    Logger.getLogger(AddDataToJTable.class.getName()).log(Level.SEVERE, null, ex);
+} finally {
+   try {
+        excelFOU.close();
+        
+    }catch (IOExceotion ex){
+        Logger.getLogger(AddDataToJTable.class.getName()).log(Level.SEVERE, null, ex);
+        
+    }
+   /*     try{
+            JFileChooser jFileChooser = new JFileChooser();
+            jFileChooser.showSaveDialog(this);
+            File saveFile = jFileChooser.getSelectedFile();
+            
+            File (saveFile !=null){
+                saveFile = new File(saveFile.toString()+".xlsx");
+                Workbook wb = new XSSFWorkbook();
+                Sheet sheet = wb.createSheet("Organization");
+                
+                Row rowCol = sheet.createRow(0);
+                for(int 1=0;i<tblManageEmployee.getColumnCount();i++){
+                Cell cell = rowCol.createCell(i);
+                cell.setCellValue(tblManageEmployee.getColumnName(i));
+                
+            }
+                for(int j=0;j<tblManageEmployee.getRowCount();j++){
+                    Row row = sheet.createRow(j);
+                    for(int k=0;k<tblManageEmployee.getColumnCount();k++){
+                        Cell cell = row.createCell(k);
+                    
+                        if(tblManageEmployee.getValueAt(j,k) !=null))
+                        cell.setCellValue(tblManageEmployee.getValueAt(j, k).toString());
+                    }
+                }
+        }
+            FileOutputStream out = new FileOutputStream(new File(saveFile.toString()));
+            wb.write(out);
+            wb.close();
+            out.close();
+            openFile(saveFile.toString());
+        } else{
+                JOptionPane.showMessageDialog(null, "Error");
+                }
+    }catch(FileNotFoundException e){
+    System.out.println(e);
+}catch(IOException io){
+    System.out.println(io);*/
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbEmployeeType;
     private javax.swing.JComboBox<String> cbOrganization;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
