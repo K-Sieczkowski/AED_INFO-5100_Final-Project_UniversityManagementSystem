@@ -42,5 +42,10 @@ public class Employee {
         return name;
     }
     
-    
+    public boolean isMatch(String name) {
+        if (getName().equals(name)) {
+            return true;
+        }
+        return false;
+    }
 }
