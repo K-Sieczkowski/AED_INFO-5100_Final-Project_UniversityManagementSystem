@@ -5,13 +5,11 @@
  */
 package ui.Enterprise;
 
-import Business.University;
-import Organization.Police;
-import java.awt.CardLayout;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import Business.ConfigureASystem;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprises.Enterprise;
+import Business.Network.Network;
 import Business.Organizations.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -37,25 +35,23 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     //University system;
-    JPanel JPanel2;
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    
     public MainJFrame() {
         initComponents();
-        this.system = system;
-        this.JPanel2 = JPanel2;
-         system = dB4OUtil.retrieveSystem();
-        this.setSize(680, 450);
-        addWindowListener(new WindowAdapter()
-	{
-	@Override
-		public void windowClosing(WindowEvent e)
-			{
-			 dB4OUtil.storeSystem(system);
-					System.exit(0);
-			}
-	});   
-    }
+        system = dB4OUtil.retrieveSystem();
+        //this.setSize(680, 450);
+        //addWindowListener(new WindowAdapter()
+//	{
+//	@Override
+//		public void windowClosing(WindowEvent e)
+//			{
+//			 dB4OUtil.storeSystem(system);
+//					System.exit(0);
+//			}
+//	});   
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,7 +78,6 @@ public class MainJFrame extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(10, 23, 850, 850));
         setMinimumSize(new java.awt.Dimension(1350, 850));
         setPreferredSize(new java.awt.Dimension(1350, 850));
-        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setMinimumSize(new java.awt.Dimension(200, 850));
@@ -160,8 +155,8 @@ public class MainJFrame extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 204));
-        jPanel2.setMinimumSize(new java.awt.Dimension(1050, 0));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1050, 0));
+        jPanel2.setMinimumSize(new java.awt.Dimension(1050, 850));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1050, 850));
         jPanel2.setLayout(new java.awt.CardLayout());
 
         lblTitle.setBackground(new java.awt.Color(255, 204, 204));
@@ -188,7 +183,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        btnLogout.setEnabled(false);
+        btnLogout.setEnabled(true);
         txtUserName.setEnabled(true);
         txtPassword.setEnabled(true);
         btnLogin.setEnabled(true);
@@ -197,92 +192,82 @@ public class MainJFrame extends javax.swing.JFrame {
         txtPassword.setText("");
 
         jPanel2.removeAll();
-        JPanel blankJP = new JPanel();
-        jPanel2.add("blank", blankJP);
-        CardLayout crdLyt = (CardLayout) jPanel2.getLayout();
-        crdLyt.next(jPanel2);
-        dB4OUtil.storeSystem(system);
+        jPanel2.add(lblTitle);
+       //layout.first(this);
+       this.setVisible(true);
+        //dB4OUtil.storeSystem(system);
 
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        String name = txtUserName.getText();
-        String pwd = new String(txtPassword.getText());
-        if(name.equals("admin") && pwd.equals("admin123"))
-        {
-            JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-             AdminWorkAreaJPanel adminJPanel = new AdminWorkAreaJPanel();
-             jPanel2.add("adminJPanel", adminJPanel);
+        String userName = txtUserName.getText();
+        char[] passwordCharArray = txtPassword.getPassword();
+        String password = String.valueOf(passwordCharArray);
+        
+        UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+        
+        Enterprise inEnterprise = null;
+        Organization inOrganization = null;
+        Network inNetwork = null;
+        
+        if(userAccount == null){
+          for(Network network : system.getNetworkList()){
+              inNetwork = network;
+              userAccount = network.getUserAccountDirectory().authenticateUser(userName, password);
+              if(userAccount != null){
+                  break;
+              }
+             
+              for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                  inEnterprise = enterprise;
+                  userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                  if (userAccount == null) {
 
-             CardLayout layout=(CardLayout)jPanel2.getLayout();
-             layout.next(jPanel2);
-        }   
-        else if(name.equals("com") && pwd.equals("com123"))
-        {
-            JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            CommunityWorkAreaJPanel communityJPanel = new CommunityWorkAreaJPanel();
-             jPanel2.add("communityJPanel", communityJPanel);
+                      for (Organization organization : enterprise.getOrgDirectory().getOrgList()) {
+                          userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
+                          if (userAccount != null) {
+                              inOrganization = organization;
 
-             CardLayout layout=(CardLayout)jPanel2.getLayout();
-             layout.next(jPanel2);
+                              break;
+                          }
+                      }
+                  }
+                        
+                    else{
+                       inEnterprise = enterprise;
+                       break;
+                    }
+                    if (inOrganization != null) {
+                        break;
+                    }
+                }
+                if (inEnterprise != null) {
+                    break;
+                }
+          }
         }
-        else if(name.equals("cri") && pwd.equals("cri123"))
-        {
-            JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            CrisisPoliceWorkAreaJPanel1 crisisJPanel = new CrisisPoliceWorkAreaJPanel1();
-             jPanel2.add("crisisJPanel", crisisJPanel);
-
-             CardLayout layout=(CardLayout)jPanel2.getLayout();
-             layout.next(jPanel2);
+        
+        if(userAccount==null){
+            //System
+            JOptionPane.showMessageDialog(null, "Invalid credentials");
+            return;
         }
-        else if(name.equals("hou") && pwd.equals("hou123"))
-        {
-            JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            HousingWorkAreaJPanel housingJPanel = new HousingWorkAreaJPanel();
-             jPanel2.add("housingJPanel", housingJPanel);
-
-             CardLayout layout=(CardLayout)jPanel2.getLayout();
-             layout.next(jPanel2);
-        }
-        else if(name.equals("uni") && pwd.equals("uni123"))
-        {
-            JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            UniversityWorkAreaJPanel1 universityJPanel = new UniversityWorkAreaJPanel1();
-             jPanel2.add("universityJPanel", universityJPanel);
-
-             CardLayout layout=(CardLayout)jPanel2.getLayout();
-             layout.next(jPanel2);
-        }
-        else if(name.equals("wel") && pwd.equals("wel123"))
-        {
-            JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            TherapistWorkAreaJPanel1 wellbeingJPanel = new TherapistWorkAreaJPanel1();
-             jPanel2.add("wellbeingJPanel", wellbeingJPanel);
-
-             CardLayout layout=(CardLayout)jPanel2.getLayout();
-             layout.next(jPanel2);
-        }
-        else if(name.equals("sys") && pwd.equals("sys123"))
-        {
-            JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            AdminWorkAreaJPanel systemadminJPanel = new AdminWorkAreaJPanel();
-             jPanel2.add("systemadminJPanel", systemadminJPanel);
-
-             CardLayout layout=(CardLayout)jPanel2.getLayout();
-             layout.next(jPanel2);
-        }else if(name.equals("stu") && pwd.equals("stu123"))
-        {
-            JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            StudentWorkAreaJPanel studentWorkAreaJPanel = new StudentWorkAreaJPanel();
-             jPanel2.add("studentWorkAreaJPanel", studentWorkAreaJPanel);
-
-             CardLayout layout=(CardLayout)jPanel2.getLayout();
-             layout.next(jPanel2);
-        }
-             else
-            JOptionPane.showMessageDialog(null,"Invalid User Name/Password ", "Unsuccessful Login" , JOptionPane.PLAIN_MESSAGE);
+        else{
+            CardLayout layout =(CardLayout) jPanel2.getLayout();
+            jPanel2.add("workArea",userAccount.getRole().createWorkArea(jPanel2, userAccount, inOrganization, inEnterprise, system, inNetwork));
+            layout.next(jPanel2);
+}
     
+        btnLogout.setEnabled(true);
+        txtUserName.setEnabled(true);
+        txtPassword.setEnabled(true);
+        btnLogin.setEnabled(true);
+
+        txtUserName.setText("");
+        txtPassword.setText("");
+                
+                
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
@@ -316,13 +301,16 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+               
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainJFrame().setVisible(true);
-            }
-        });
+                
     }
+        });
+                }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

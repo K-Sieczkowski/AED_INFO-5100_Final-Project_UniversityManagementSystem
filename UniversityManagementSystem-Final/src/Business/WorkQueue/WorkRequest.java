@@ -14,8 +14,7 @@ import java.util.Date;
 public abstract class WorkRequest {
     
    private UserAccount sender;
-   private UserAccount receiver;
-   private String message; 
+   private UserAccount receiver; 
    private String status;
    private String requestType;
    private Date dateOfRequest;
@@ -36,14 +35,6 @@ public abstract class WorkRequest {
 
     public void setReceiver(UserAccount receiver) {
         this.receiver = receiver;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public String getStatus() {
@@ -87,7 +78,10 @@ public abstract class WorkRequest {
     }
    
    
-   
+   @Override
+    public String toString() {
+        return requestType;
+    }
     
     
     

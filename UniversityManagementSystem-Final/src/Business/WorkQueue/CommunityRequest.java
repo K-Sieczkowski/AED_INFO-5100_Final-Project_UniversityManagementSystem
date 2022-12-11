@@ -9,9 +9,9 @@ package Business.WorkQueue;
  * @author ksiec
  */
 public class CommunityRequest extends WorkRequest {
-     String priorityLevel;
-     String involvementType;
-     String comments;
+    private String priorityLevel;
+    private String involvementType;
+    private String comments;
 
     public String getPriorityLevel() {
         return priorityLevel;
@@ -37,5 +37,9 @@ public class CommunityRequest extends WorkRequest {
         this.comments = comments;
     }
     
-  
+    @Override
+    public String toString() {
+        return priorityLevel;
+    }
+    
 }

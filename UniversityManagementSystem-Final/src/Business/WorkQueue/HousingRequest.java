@@ -10,7 +10,7 @@ package Business.WorkQueue;
  */
 public class HousingRequest extends WorkRequest {
     private String priorityLevel;
-    private Double maxPrice;
+    private double maxPrice;
     private String desiredLocation;
     private String comments;
 
@@ -22,11 +22,11 @@ public class HousingRequest extends WorkRequest {
         this.priorityLevel = priorityLevel;
     }
 
-    public Double getMaxPrice() {
+    public double getMaxPrice() {
         return maxPrice;
     }
 
-    public void setMaxPrice(Double maxPrice) {
+    public void setMaxPrice(double maxPrice) {
         this.maxPrice = maxPrice;
     }
 

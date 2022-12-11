@@ -10,6 +10,7 @@ import Business.Network.Network;
 import Business.Organizations.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import ui.Role.StudentWorkAreaJPanel;
 
 /**
  *
@@ -18,7 +19,7 @@ import javax.swing.JPanel;
 public class StudentRole extends Role {
     
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, Network network) {
         return new StudentWorkAreaJPanel(userProcessContainer, account, network);
     }
     

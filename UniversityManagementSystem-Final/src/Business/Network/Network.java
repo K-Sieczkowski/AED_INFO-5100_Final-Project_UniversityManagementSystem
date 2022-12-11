@@ -7,21 +7,17 @@ package Business.Network;
 import Business.Enterprises.EnterpriseDirectory;
 import Business.Student.StudentDirectory;
 import Business.UserAccount.UserAccountDirectory;
-import java.util.Set;
 
 /**
  *
  * @author ksiec
  */
 public class Network {
-private Set<Network> networks;
-    private String networkName;
-    String enterpriseType;
-    String enterpriseName;
+
+    private String name;
     private UserAccountDirectory userAccountDirectory;
     private StudentDirectory studentDirectory;
     private EnterpriseDirectory enterpriseDirectory;
-    
 
     public Network() {
         userAccountDirectory = new UserAccountDirectory();
@@ -29,50 +25,13 @@ private Set<Network> networks;
         enterpriseDirectory = new EnterpriseDirectory();
 
     }
-    public Network addNewNetwork() {
-    Network newNetwork = new Network();
-        networks.add(newNetwork);
-        return newNetwork;
-    }
-
-    public Set<Network> getNetworks() {
-        return networks;
-    }
-
-    public void setNetworks(Set<Network> networks) {
-        this.networks = networks;
-    }
-
-    public String getNetworkName() {
-        return networkName;
-    }
-
-    public void setNetworkName(String networkName) {
-        this.networkName = networkName;
-    }
-
-    public String getEnterpriseType() {
-        return enterpriseType;
-    }
-
-    public void setEnterpriseType(String enterpriseType) {
-        this.enterpriseType = enterpriseType;
-    }
-
-    public String getEnterpriseName() {
-        return enterpriseName;
-    }
-
-    public void setEnterpriseName(String enterpriseName) {
-        this.enterpriseName = enterpriseName;
-    }
 
     public String getName() {
-        return networkName;
+        return name;
     }
 
     public void setName(String name) {
-        this.networkName = networkName;
+        this.name = name;
     }
 
     public UserAccountDirectory getUserAccountDirectory() {
@@ -101,7 +60,7 @@ private Set<Network> networks;
 
     @Override
     public String toString() {
-        return networkName;
+        return name;
     }
 
 }

@@ -5,14 +5,13 @@
 package ui.Role;
 
 import Business.Organizations.Organization;
-import Business.Organizations.UniversityOrganization;
 import Business.SendEmail.SendEmail;
+import Business.Student.Student;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AdvisingRequest;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkRequest;
 import javax.swing.JPanel;
-import java.awt.CardLayout;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -38,7 +37,7 @@ public class UniversityEmployeeJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
-        uniEmpWelcomeTxt.setText("Welcome " + userAccount.getEmployee().getName() + " !");
+        uniEmpWelcomeTxt.setText("Welcome " + userAccount.getEmployee().getName() + "!");
         populateTable();
     }
 
@@ -51,14 +50,13 @@ public class UniversityEmployeeJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        backBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         advisingEmployeeTbl = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        housingEmpSearchBtn1 = new javax.swing.JButton();
-        housingEmpClearBtn = new javax.swing.JButton();
+        advisingEmpSearchBtn1 = new javax.swing.JButton();
+        advisingEmpClearBtn = new javax.swing.JButton();
         uniEmpSearchTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         acceptBtn = new javax.swing.JButton();
@@ -66,14 +64,7 @@ public class UniversityEmployeeJPanel extends javax.swing.JPanel {
         uniEmpWelcomeTxt = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(186, 234, 186));
-        setPreferredSize(new java.awt.Dimension(1050, 1050));
-
-        backBtn.setText("Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
+        setPreferredSize(new java.awt.Dimension(1050, 850));
 
         advisingEmployeeTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,17 +86,17 @@ public class UniversityEmployeeJPanel extends javax.swing.JPanel {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/CollegeImage2.png"))); // NOI18N
 
-        housingEmpSearchBtn1.setText("Search");
-        housingEmpSearchBtn1.addActionListener(new java.awt.event.ActionListener() {
+        advisingEmpSearchBtn1.setText("Search");
+        advisingEmpSearchBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                housingEmpSearchBtn1ActionPerformed(evt);
+                advisingEmpSearchBtn1ActionPerformed(evt);
             }
         });
 
-        housingEmpClearBtn.setText("Clear Search");
-        housingEmpClearBtn.addActionListener(new java.awt.event.ActionListener() {
+        advisingEmpClearBtn.setText("Clear Search");
+        advisingEmpClearBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                housingEmpClearBtnActionPerformed(evt);
+                advisingEmpClearBtnActionPerformed(evt);
             }
         });
 
@@ -131,7 +122,7 @@ public class UniversityEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
-        uniEmpWelcomeTxt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        uniEmpWelcomeTxt.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         uniEmpWelcomeTxt.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -139,86 +130,72 @@ public class UniversityEmployeeJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addComponent(uniEmpSearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(housingEmpSearchBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(advisingEmpSearchBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(housingEmpClearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(advisingEmpClearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(processBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(backBtn)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 967, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                                .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(processBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 967, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(26, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(109, 109, 109))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(backBtn)
+                .addGap(93, 93, 93)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel1)
+                        .addGap(18, 138, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(advisingEmpSearchBtn1)
+                            .addComponent(advisingEmpClearBtn)
+                            .addComponent(jLabel4)
+                            .addComponent(uniEmpSearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)))
-                .addGap(18, 44, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(housingEmpSearchBtn1)
-                    .addComponent(housingEmpClearBtn)
-                    .addComponent(jLabel4)
-                    .addComponent(uniEmpSearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(acceptBtn)
-                    .addComponent(processBtn))
-                .addContainerGap(441, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(acceptBtn)
+                            .addComponent(processBtn))
+                        .addContainerGap(182, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-
-    }//GEN-LAST:event_backBtnActionPerformed
-
-    private void housingEmpSearchBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_housingEmpSearchBtn1ActionPerformed
+    private void advisingEmpSearchBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advisingEmpSearchBtn1ActionPerformed
         String s = uniEmpSearchTxt.getText();
         newUniversityEmpFilter(s);
         
-    }//GEN-LAST:event_housingEmpSearchBtn1ActionPerformed
+    }//GEN-LAST:event_advisingEmpSearchBtn1ActionPerformed
 
-    private void housingEmpClearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_housingEmpClearBtnActionPerformed
+    private void advisingEmpClearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_advisingEmpClearBtnActionPerformed
         String s = ("");
         newUniversityEmpFilter(s);
         uniEmpSearchTxt.setText("");
         
-    }//GEN-LAST:event_housingEmpClearBtnActionPerformed
+    }//GEN-LAST:event_advisingEmpClearBtnActionPerformed
 
     private void uniEmpSearchTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uniEmpSearchTxtActionPerformed
         // TODO add your handling code here:
@@ -227,28 +204,28 @@ public class UniversityEmployeeJPanel extends javax.swing.JPanel {
     private void acceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBtnActionPerformed
 
         int selectedRow = advisingEmployeeTbl.getSelectedRow();
-        AdvisingRequest advisingRequest = (AdvisingRequest) userAccount.getWorkQueue().getWorkQueueList().get(selectedRow);
-
+        
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row");
             return;
         }
 
-        else if (advisingEmployeeTbl.getValueAt(selectedRow, 6) != null) {
+        else if (advisingEmployeeTbl.getValueAt(selectedRow, 2).equals("Completed")) {
 
             JOptionPane.showMessageDialog(this, "Request has already been completed.");
         }
 
-        else if (advisingEmployeeTbl.getValueAt(selectedRow, 2).equals("Assigned")) {
-            JOptionPane.showMessageDialog(this, "Request has already been assigned.");
+        else if (advisingEmployeeTbl.getValueAt(selectedRow, 2).equals("In Progress")) {
+            JOptionPane.showMessageDialog(this, "Request is already in progress.");
         }
 
         else if (advisingEmployeeTbl.getValueAt(selectedRow, 2).equals("Canceled")) {
             JOptionPane.showMessageDialog(this, "Request was canceled, please make a new selection.");
         }
 
-        else if (advisingEmployeeTbl.getValueAt(selectedRow, 2).equals("In Progress")) {
-            advisingRequest.setStatus("Assigned");
+        else if (advisingEmployeeTbl.getValueAt(selectedRow, 2).equals("Assigned")) {
+            AdvisingRequest advisingRequest = (AdvisingRequest) userAccount.getWorkQueue().getWorkQueueList().get(selectedRow);
+            advisingRequest.setStatus("In Progress");
         }
 
         populateTable();
@@ -268,19 +245,24 @@ public class UniversityEmployeeJPanel extends javax.swing.JPanel {
 
         } else if (advisingEmployeeTbl.getValueAt(selectedRow, 2).equals("Completed")) {
             JOptionPane.showMessageDialog(this, "Request has already been completed.");
+            
+        } else if (advisingEmployeeTbl.getValueAt(selectedRow, 2).equals("Assigned")){
+            JOptionPane.showMessageDialog(this, "Please accept request before processing.");
 
-        } else if (advisingEmployeeTbl.getValueAt(selectedRow, 2).equals("Assigned")) {
+        } else if (advisingEmployeeTbl.getValueAt(selectedRow, 2).equals("In Progress")) {
             int dialogInput = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "Request complete? ", "Complete Request", dialogInput);
             if (dialogResult == 0) {
 
                 WorkQueue workQueue = userAccount.getWorkQueue();
                 AdvisingRequest advisingRequest = (AdvisingRequest) workQueue.getWorkQueueList().get(selectedRow);
-                advisingRequest.setStatus("Complete");
+                advisingRequest.setStatus("Completed");
                 advisingRequest.setDateResolved(new Date());
 
-                SendEmail.sendEmail(userAccount.getStudent().getEmail());
+                Student student1 = advisingRequest.getSender().getStudent();
 
+                SendEmail.sendEmail(advisingRequest.getSender().getStudent().getEmail(), student1);
+               
                 JOptionPane.showMessageDialog(this, "Request completed. Confirmation sent to Student.");
 
                 populateTable();
@@ -292,9 +274,9 @@ public class UniversityEmployeeJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) advisingEmployeeTbl.getModel();
         model.setRowCount(0);
         
-        UniversityOrganization universityOrg = (UniversityOrganization) organization;
+        advisingEmployeeTbl.setAutoCreateRowSorter(true);
         
-        for (WorkRequest request : universityOrg.getWorkQueue().getWorkQueueList()) {
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkQueueList()) {
             Object[] row = new Object[7];
             row[0] = ((AdvisingRequest) request);
             row[1] = ((AdvisingRequest) request).getDateOfRequest();
@@ -336,10 +318,9 @@ public class UniversityEmployeeJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptBtn;
+    private javax.swing.JButton advisingEmpClearBtn;
+    private javax.swing.JButton advisingEmpSearchBtn1;
     private javax.swing.JTable advisingEmployeeTbl;
-    private javax.swing.JButton backBtn;
-    private javax.swing.JButton housingEmpClearBtn;
-    private javax.swing.JButton housingEmpSearchBtn1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

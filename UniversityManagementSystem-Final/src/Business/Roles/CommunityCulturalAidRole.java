@@ -11,7 +11,6 @@ import Business.Organizations.MulticulturalOrganization;
 import Business.Organizations.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import ui.Enterprise.CommunityWorkAreaJPanel;
 import ui.Role.CommunityEmployeeJPanel;
 
 /**
@@ -22,7 +21,7 @@ public class CommunityCulturalAidRole extends Role {
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new CommunityWorkAreaJPanel(userProcessContainer, account,(MulticulturalOrganization)organization);
+        return new CommunityEmployeeJPanel(userProcessContainer, account, (MulticulturalOrganization) organization);
     }
     
 }

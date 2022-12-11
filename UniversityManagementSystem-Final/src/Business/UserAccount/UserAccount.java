@@ -25,6 +25,11 @@ public class UserAccount {
     public UserAccount(){
         workQueue = new WorkQueue();
     }
+    
+    @Override
+    public String toString() {
+        return username;
+    }
 
     public String getUsername() {
         return username;
@@ -73,14 +78,10 @@ public class UserAccount {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-    public boolean isMatch(String employee){
+    
+        public boolean isMatch(String employee){
         if(getEmployee().getName().equals(employee)) return true;
         return false;
-    }
- 
-    @Override
-    public String toString() {
-        return username;
     }
     
     

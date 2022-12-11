@@ -1,26 +1,40 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Business.Student;
 
+import Business.Network.Network;
+import javax.swing.ImageIcon;
+
 /**
  *
- * @author arfinansari
+ * @author ksiec
  */
 public class Student {
     private String name;
-    private String phone;
-    private String email;
+    private String id;
+    private int age;
+    private String sex;
     private String address;
-    private int id;
-    private static int count = 0;
-     private boolean flag =true;
-
-    public Student() {
-        id = count;
-        ++count;
+    private String email;
+    private String phoneNumber;
+    private ImageIcon profilePic;
+    private String username;
+    private String password;
+    private Network network;
+    
+    public Student(String name, String id, int age, String sex, String address, String email, String phoneNumber, String username, String password, Network network){
+        this.name = name;
+        this.id = id;
+        this.age = age;
+        this.sex = sex;
+        this.address = address;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.password = password;
+        this.network = network;
     }
 
     public String getName() {
@@ -31,20 +45,28 @@ public class Student {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getId() {
+        return id;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public int getAge() {
+        return age;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getAddress() {
@@ -55,31 +77,55 @@ public class Student {
         this.address = address;
     }
 
-    public int getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public static int getCount() {
-        return count;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public static void setCount(int count) {
-        Student.count = count;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public boolean isFlag() {
-        return flag;
+    public ImageIcon getProfilePic() {
+        return profilePic;
     }
 
-    public void setFlag(boolean flag) {
-        this.flag = flag;
+    public void setProfilePic(ImageIcon profilePic) {
+        this.profilePic = profilePic;
     }
-    @Override
-    public String toString() {
-        return name;
+
+    public String getUsername() {
+        return username;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Network getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(Network network) {
+        this.network = network;
+    }
+   
+    
+
+   
 }

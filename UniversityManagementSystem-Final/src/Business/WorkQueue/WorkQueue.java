@@ -28,8 +28,6 @@ public class WorkQueue {
     public void setWorkQueueList(ArrayList<WorkRequest> workQueueList) {
         this.workQueueList = workQueueList;
     }
-    public void deleteRequest(WorkRequest r) {
-        getWorkQueueList().remove(r);
-    }
+    
     
 }

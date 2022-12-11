@@ -7,7 +7,6 @@ package Business.Roles;
 import Business.EcoSystem;
 import Business.Enterprises.Enterprise;
 import Business.Network.Network;
-import Business.Organizations.RealtorOrganization;
 import Business.Organizations.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
@@ -22,6 +21,6 @@ public class RealEstateCompanyManagerRole extends Role {
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new HousingWorkAreaJPanel(userProcessContainer, account,(RealtorOrganization)organization);
+        return new HousingWorkAreaJPanel(userProcessContainer, account, organization);
     }
 }

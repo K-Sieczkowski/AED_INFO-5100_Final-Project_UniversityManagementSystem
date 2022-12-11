@@ -6,6 +6,7 @@ package Business.UserAccount;
 
 import Business.Employees.Employee;
 import Business.Roles.Role;
+import Business.Roles.StudentRole;
 import Business.Student.Student;
 import java.util.ArrayList;
 
@@ -21,11 +22,12 @@ public class UserAccountDirectory {
         userAccountList = new ArrayList();
     }
     
-     public UserAccount createStudentUserAccount(String username, String password, Student student, Role role){
+     public UserAccount createStudentUserAccount(String username, String password, Student student){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
         userAccount.setStudent(student);
+        StudentRole role = new StudentRole();
         userAccount.setRole(role);
         userAccountList.add(userAccount);
         return userAccount;
@@ -65,19 +67,15 @@ public class UserAccountDirectory {
     public void setUserAccountList(ArrayList<UserAccount> userAccountList) {
         this.userAccountList = userAccountList;
     }
+    
     public UserAccount findUserAccount(String employee) {
 
+        for (UserAccount ua : userAccountList) {
 
-
-       for (UserAccount ua : userAccountList) {
-
-
-
-           if (ua.isMatch(employee)) {
+            if (ua.isMatch(employee)) {
                 return ua;
             }
         }
             return null; //not found after going through the whole list
          }
-    
 }

@@ -4,19 +4,34 @@
  */
 package ui.Role;
 
+import Business.Enterprises.CommunityInvolvementEnterprise;
+import Business.Enterprises.CrisisManagementEnterprise;
+import Business.Enterprises.Enterprise;
+import Business.Enterprises.HousingManagementEnterprise;
+import Business.Enterprises.StudentAdvisingEnterprise;
+import Business.Enterprises.WellbeingSupportEnterprise;
 import Business.Network.Network;
 import Business.Organizations.FireDepartmentOrganization;
+import Business.Organizations.HospitalOrganization;
 import Business.Organizations.MulticulturalOrganization;
 import Business.Organizations.Organization;
 import Business.Organizations.PoliceOrganization;
+import Business.Organizations.RealtorOrganization;
+import Business.Organizations.TherapistOrganization;
 import Business.Organizations.UniversityOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AdvisingRequest;
 import Business.WorkQueue.CommunityRequest;
 import Business.WorkQueue.EmergencyRequest;
+import Business.WorkQueue.HealthRequest;
+import Business.WorkQueue.HousingRequest;
+import Business.WorkQueue.WorkRequest;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -32,16 +47,13 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form StudentWorkAreaJPanel
      */
-    public StudentWorkAreaJPanel() {
+    public StudentWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network) {
         initComponents();
-      
-    }
-
-    public StudentWorkAreaJPanel(JPanel userProcessContainer,UserAccount userAccount, Network network, Organization organization) {
-   this.userProcessContainer = userProcessContainer;
+        this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.network = network;
-        this.organization = organization;
+        welcomeStudentTxt.setText("Welcome " + userAccount.getStudent().getName() + "!");
+        populateTable();
     }
 
     /**
@@ -79,8 +91,30 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         emergencyLocationTxt = new javax.swing.JTextField();
         HealthjPanel4 = new javax.swing.JPanel();
+        healthCommentsTxt = new javax.swing.JTextField();
+        submitHealthBtn = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        healthJComboBox = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
         HousingjPanel5 = new javax.swing.JPanel();
+        housingLocationTxt = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        submitHouseBtn = new javax.swing.JButton();
+        housingCommentsTxt = new javax.swing.JTextField();
+        maxPriceTxt = new javax.swing.JTextField();
         StatusjPanel6 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        studentSearchTxt = new javax.swing.JTextField();
+        studentClearBtn = new javax.swing.JButton();
+        studentSearchBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        studentRequestTbl = new javax.swing.JTable();
+        welcomeStudentTxt = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(174, 209, 245));
         setMinimumSize(new java.awt.Dimension(1050, 850));
@@ -153,7 +187,7 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(advisingCommentsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(submitAdvisingBtn)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Advising Request", AdvisingjPanel);
@@ -186,16 +220,16 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(259, 259, 259)
                 .addGroup(CommunityjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(CommunityjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(CommunityjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CommunityjPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comCommentsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(submitComBtn)
                         .addGroup(CommunityjPanel2Layout.createSequentialGroup()
-                            .addGroup(CommunityjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel8))
+                            .addComponent(jLabel6)
                             .addGap(185, 185, 185)
-                            .addGroup(CommunityjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(comCommentsTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                                .addComponent(comJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(comJComboBox, 0, 240, Short.MAX_VALUE))))
                 .addContainerGap(262, Short.MAX_VALUE))
         );
         CommunityjPanel2Layout.setVerticalGroup(
@@ -207,13 +241,13 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(CommunityjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(comJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102)
+                .addGap(72, 72, 72)
                 .addGroup(CommunityjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(comCommentsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(submitComBtn)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Community Request", CommunityjPanel2);
@@ -233,7 +267,7 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("Please complete the fields below to submit an emergency request.");
 
-        emergencyJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Fire", "Other" }));
+        emergencyJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Fire", "Police" }));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setText("Comments:");
@@ -272,77 +306,246 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(EmergencyjPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(emergencyJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(91, 91, 91)
-                .addGroup(EmergencyjPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(74, 74, 74)
+                .addGroup(EmergencyjPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(emergencyLocationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(EmergencyjPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(emergencyCommentsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(submitEmergencyBtn)
-                .addGap(34, 34, 34))
+                .addGap(115, 115, 115))
         );
 
         jTabbedPane1.addTab("Emergency Request", EmergencyjPanel3);
 
         HealthjPanel4.setBackground(new java.awt.Color(174, 209, 245));
 
+        submitHealthBtn.setText("Submit");
+        submitHealthBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitHealthBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setText("Health Type:");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setText("Please complete the fields below to submit a health request.");
+
+        healthJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Hospital Visit", "Therapy Session" }));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel14.setText("Comments:");
+
         javax.swing.GroupLayout HealthjPanel4Layout = new javax.swing.GroupLayout(HealthjPanel4);
         HealthjPanel4.setLayout(HealthjPanel4Layout);
         HealthjPanel4Layout.setHorizontalGroup(
             HealthjPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
+            .addGroup(HealthjPanel4Layout.createSequentialGroup()
+                .addGap(259, 259, 259)
+                .addGroup(HealthjPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(HealthjPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, HealthjPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel14)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(healthCommentsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(submitHealthBtn)
+                        .addGroup(HealthjPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel12)
+                            .addGap(185, 185, 185)
+                            .addComponent(healthJComboBox, 0, 240, Short.MAX_VALUE))))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
         HealthjPanel4Layout.setVerticalGroup(
             HealthjPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 621, Short.MAX_VALUE)
+            .addGroup(HealthjPanel4Layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addGroup(HealthjPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(healthJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(78, 78, 78)
+                .addGroup(HealthjPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addComponent(healthCommentsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(submitHealthBtn)
+                .addContainerGap(225, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Health Request", HealthjPanel4);
 
         HousingjPanel5.setBackground(new java.awt.Color(174, 209, 245));
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel15.setText("Desired Location:");
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel16.setText("Comments:");
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setText("Please complete the fields below to submit an housing request.");
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel18.setText("Max Price:");
+
+        submitHouseBtn.setText("Submit");
+        submitHouseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitHouseBtnActionPerformed(evt);
+            }
+        });
+
+        maxPriceTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maxPriceTxtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout HousingjPanel5Layout = new javax.swing.GroupLayout(HousingjPanel5);
         HousingjPanel5.setLayout(HousingjPanel5Layout);
         HousingjPanel5Layout.setHorizontalGroup(
             HousingjPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
+            .addGroup(HousingjPanel5Layout.createSequentialGroup()
+                .addGap(259, 259, 259)
+                .addGroup(HousingjPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(HousingjPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(submitHouseBtn)
+                        .addGroup(HousingjPanel5Layout.createSequentialGroup()
+                            .addGroup(HousingjPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel18)
+                                .addComponent(jLabel16)
+                                .addComponent(jLabel15))
+                            .addGap(185, 185, 185)
+                            .addGroup(HousingjPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(housingCommentsTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                .addComponent(housingLocationTxt)
+                                .addComponent(maxPriceTxt))))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
         HousingjPanel5Layout.setVerticalGroup(
             HousingjPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 621, Short.MAX_VALUE)
+            .addGroup(HousingjPanel5Layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addGroup(HousingjPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(maxPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91)
+                .addGroup(HousingjPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(housingLocationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addGroup(HousingjPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addComponent(housingCommentsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(submitHouseBtn)
+                .addGap(90, 90, 90))
         );
 
         jTabbedPane1.addTab("Housing Request", HousingjPanel5);
 
         StatusjPanel6.setBackground(new java.awt.Color(174, 209, 245));
 
+        jLabel19.setText("Search Bar:");
+
+        studentSearchTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentSearchTxtActionPerformed(evt);
+            }
+        });
+
+        studentClearBtn.setText("Clear Search");
+        studentClearBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentClearBtnActionPerformed(evt);
+            }
+        });
+
+        studentSearchBtn.setText("Search");
+        studentSearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentSearchBtnActionPerformed(evt);
+            }
+        });
+
+        studentRequestTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Request Type", "Request Date", "Status", "Comments", "Completed Date"
+            }
+        ));
+        jScrollPane2.setViewportView(studentRequestTbl);
+
+        jScrollPane1.setViewportView(jScrollPane2);
+
         javax.swing.GroupLayout StatusjPanel6Layout = new javax.swing.GroupLayout(StatusjPanel6);
         StatusjPanel6.setLayout(StatusjPanel6Layout);
         StatusjPanel6Layout.setHorizontalGroup(
             StatusjPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
+            .addGroup(StatusjPanel6Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(StatusjPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 967, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(StatusjPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(18, 18, 18)
+                        .addComponent(studentSearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                        .addComponent(studentSearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(studentClearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         StatusjPanel6Layout.setVerticalGroup(
             StatusjPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 621, Short.MAX_VALUE)
+            .addGroup(StatusjPanel6Layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addGroup(StatusjPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(studentSearchBtn)
+                    .addComponent(studentClearBtn)
+                    .addComponent(jLabel19)
+                    .addComponent(studentSearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(291, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("View All Requests", StatusjPanel6);
+
+        welcomeStudentTxt.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(welcomeStudentTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 198, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 58, Short.MAX_VALUE)
+                .addComponent(welcomeStudentTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -366,20 +569,28 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
         advisingRequest.setDateOfRequest(new Date());
         advisingRequest.setOrgType("University Organization");
         advisingRequest.setSender(userAccount);
-        advisingRequest.setPriorityLevel("P4");
+        advisingRequest.setPriorityLevel("P3");
         advisingRequest.setStatus("Submitted");
         advisingRequest.setRequestType("Advising Request");
         
+        for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof StudentAdvisingEnterprise){
+                    for(Organization org : enterprise.getOrgDirectory().getOrgList()){
+                        if(org instanceof UniversityOrganization){
+                            ((UniversityOrganization) org).getWorkQueue().addRequestToQueue(advisingRequest);
+                        }
+                    }
+                    
+                }
+            }
+        
         userAccount.getWorkQueue().addRequestToQueue(advisingRequest);
-        
-        UniversityOrganization universityOrg = (UniversityOrganization) organization;
-        
-        universityOrg.getWorkQueue().addRequestToQueue(advisingRequest);
         
         JOptionPane.showMessageDialog(this, "Request has been submitted successfully.");
         
         advisingTypeTxt.setText("");
         advisingCommentsTxt.setText("");
+        populateTable();
         
         
     }//GEN-LAST:event_submitAdvisingBtnActionPerformed
@@ -402,18 +613,28 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
         communityRequest.setOrgType("Multicultural Organization");
         communityRequest.setSender(userAccount);
         communityRequest.setStatus("Submitted");
+        communityRequest.setPriorityLevel("P4");
         communityRequest.setRequestType("Community Request");
         
+        for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof CommunityInvolvementEnterprise){
+                    for(Organization org : enterprise.getOrgDirectory().getOrgList()){
+                        if(org instanceof MulticulturalOrganization){
+                            ((MulticulturalOrganization) org).getWorkQueue().addRequestToQueue(communityRequest);
+                        }
+                    }
+                    
+                }
+            }
+        
         userAccount.getWorkQueue().addRequestToQueue(communityRequest);
-        
-        MulticulturalOrganization multiculturalOrg = (MulticulturalOrganization) organization;
-        
-        multiculturalOrg.getWorkQueue().addRequestToQueue(communityRequest);
+       
         
         JOptionPane.showMessageDialog(this, "Request has been submitted successfully.");
         
         comJComboBox.setSelectedIndex(0);
         comCommentsTxt.setText("");
+        populateTable();
         
         
     }//GEN-LAST:event_submitComBtnActionPerformed
@@ -423,7 +644,6 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
         if(emergencyLocationTxt.getText().equals("") || emergencyCommentsTxt.getText().equals("") || emergencyJComboBox.getSelectedItem().equals("")){
             JOptionPane.showMessageDialog(this, "Please fill in all fields.");
         }
-        
         
         
         String emergencyType = emergencyJComboBox.getSelectedItem().toString();
@@ -436,19 +656,35 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
         emergencyRequest.setComments(emergencyComments);
         emergencyRequest.setDateOfRequest(new Date());
         emergencyRequest.setStatus("Submitted");
+        emergencyRequest.setPriorityLevel("P1");
         emergencyRequest.setSender(userAccount);
         emergencyRequest.setRequestType("Emergency Request");
         
         if (emergencyJComboBox.getSelectedItem().toString().equals("Fire")) {
             emergencyRequest.setOrgType("Fire Department Organization");
-            FireDepartmentOrganization fireDeptOrg = (FireDepartmentOrganization) organization;
-            fireDeptOrg.getWorkQueue().addRequestToQueue(emergencyRequest);
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof CrisisManagementEnterprise){
+                    for(Organization org : enterprise.getOrgDirectory().getOrgList()){
+                        if(org instanceof FireDepartmentOrganization){
+                            ((FireDepartmentOrganization) org).getWorkQueue().addRequestToQueue(emergencyRequest);
+                        }
+                    }
+                    
+                }
+            }
             
-            
-        } else if (emergencyJComboBox.getSelectedItem().toString().equals("Other")) {
+        } else if (emergencyJComboBox.getSelectedItem().toString().equals("Police")) {
             emergencyRequest.setOrgType("Police Organization");
-            PoliceOrganization policeOrg = (PoliceOrganization) organization;
-            policeOrg.getWorkQueue().addRequestToQueue(emergencyRequest);
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof CrisisManagementEnterprise){
+                    for(Organization org : enterprise.getOrgDirectory().getOrgList()){
+                        if(org instanceof PoliceOrganization){
+                            ((PoliceOrganization) org).getWorkQueue().addRequestToQueue(emergencyRequest);
+                        }
+                    }
+                    
+                }
+            }
         }
 
         userAccount.getWorkQueue().addRequestToQueue(emergencyRequest);
@@ -458,12 +694,242 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
         emergencyJComboBox.setSelectedIndex(0);
         emergencyLocationTxt.setText("");
         emergencyCommentsTxt.setText("");
+        populateTable();
         
         
         
     }//GEN-LAST:event_submitEmergencyBtnActionPerformed
 
+    private void submitHealthBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitHealthBtnActionPerformed
+        
+        if(healthCommentsTxt.getText().equals("") || healthJComboBox.getSelectedItem().equals("")){
+            JOptionPane.showMessageDialog(this, "Please fill in all fields.");
+        }
+        
+        String healthType = healthJComboBox.getSelectedItem().toString();
+        String healthComments = healthCommentsTxt.getText();
+        
+        HealthRequest healthRequest = new HealthRequest();
+        healthRequest.setType(healthType);
+        healthRequest.setComments(healthComments);
+        healthRequest.setDateOfRequest(new Date());
+        healthRequest.setStatus("Submitted");
+        healthRequest.setSender(userAccount);
+        healthRequest.setPriorityLevel("P2");
+        healthRequest.setRequestType("Health Request");
+        
+        if(healthJComboBox.getSelectedItem().toString().equals("Hospital Visit")){
+             healthRequest.setOrgType("Hospital Organization");
+             for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof WellbeingSupportEnterprise){
+                    for(Organization org : enterprise.getOrgDirectory().getOrgList()){
+                        if(org instanceof HospitalOrganization){
+                            ((HospitalOrganization) org).getWorkQueue().addRequestToQueue(healthRequest);
+                        }
+                    }
+                    
+                }
+            }
+        }
+        
+        else if(healthJComboBox.getSelectedItem().toString().equals("Therapy Session")){
+            healthRequest.setOrgType("Therapist Organization");
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof WellbeingSupportEnterprise){
+                    for(Organization org : enterprise.getOrgDirectory().getOrgList()){
+                        if(org instanceof TherapistOrganization){
+                            ((TherapistOrganization) org).getWorkQueue().addRequestToQueue(healthRequest);
+                        }
+                    }
+                    
+                }
+            }
+        }
+        
+        
+        userAccount.getWorkQueue().addRequestToQueue(healthRequest);
+        
+        JOptionPane.showMessageDialog(this, "Request has been submitted successfully.");
+        
+        healthJComboBox.setSelectedIndex(0);
+        healthCommentsTxt.setText("");
+        populateTable();
+        
+    }//GEN-LAST:event_submitHealthBtnActionPerformed
 
+    private void submitHouseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitHouseBtnActionPerformed
+        if(maxPriceTxt.getText().equals("") || housingLocationTxt.getText().equals("") || housingCommentsTxt.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please fill in all fields.");
+        }
+        
+        try{
+        
+            int maxPrice = Integer.parseInt(maxPriceTxt.getText());
+            String desiredLocation = housingLocationTxt.getText();
+            String housingComments = housingCommentsTxt.getText();
+            
+            HousingRequest housingRequest = new HousingRequest();
+            housingRequest.setMaxPrice(maxPrice);
+            housingRequest.setDesiredLocation(desiredLocation);
+            housingRequest.setComments(housingComments);
+            housingRequest.setDateOfRequest(new Date());
+            housingRequest.setStatus("Submitted");
+            housingRequest.setSender(userAccount);
+            housingRequest.setPriorityLevel("P4");
+            housingRequest.setRequestType("Housing Request");
+            
+          
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof HousingManagementEnterprise){
+                    for(Organization org : enterprise.getOrgDirectory().getOrgList()){
+                        if(org instanceof RealtorOrganization){
+                            ((RealtorOrganization) org).getWorkQueue().addRequestToQueue(housingRequest);
+                        }
+                    }
+                    
+                }
+            }
+          
+            
+            userAccount.getWorkQueue().addRequestToQueue(housingRequest);
+            JOptionPane.showMessageDialog(this, "Request has been submitted successfully.");
+            //System.out.println(userAccount.getWorkQueue().getWorkQueueList()));
+            
+            maxPriceTxt.setText("");
+            housingLocationTxt.setText("");
+            housingCommentsTxt.setText("");
+            populateTable();
+        
+        }catch (NumberFormatException e){
+         JOptionPane.showMessageDialog(this, "Please enter a valid number format (i.e., 1000) in the max price field.");
+        }
+        
+        
+        
+    }//GEN-LAST:event_submitHouseBtnActionPerformed
+
+    private void maxPriceTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maxPriceTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_maxPriceTxtActionPerformed
+
+    private void studentSearchTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentSearchTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_studentSearchTxtActionPerformed
+
+    private void studentClearBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentClearBtnActionPerformed
+        String s = ("");
+        newStudentRequestFilter(s);
+        studentSearchTxt.setText("");
+    }//GEN-LAST:event_studentClearBtnActionPerformed
+
+    private void studentSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentSearchBtnActionPerformed
+        String s = studentSearchTxt.getText();
+        newStudentRequestFilter(s);
+    }//GEN-LAST:event_studentSearchBtnActionPerformed
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) studentRequestTbl.getModel();
+        model.setRowCount(0);
+
+        
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkQueueList()) {
+            
+            
+            studentRequestTbl.setAutoCreateRowSorter(true);
+            Object[] row = new Object[5];
+            
+            if (request.getRequestType().equals("Advising Request")) {
+
+                AdvisingRequest advisingRequest = (AdvisingRequest) request;
+                row[0] = advisingRequest.getRequestType();
+                row[1] = advisingRequest.getDateOfRequest();
+                row[2] = advisingRequest.getStatus();
+                row[3] = advisingRequest.getComments();
+                if (request.getStatus().equals("Completed")) {
+                row[4] = advisingRequest.getDateResolved();
+                } else {
+                row[4] = "";
+                }
+                model.addRow(row);
+
+            }
+            
+                if (request.getRequestType().equals("Community Request")) {
+                CommunityRequest communityRequest = (CommunityRequest) request;
+   
+                row[0] = communityRequest.getRequestType();
+                row[1] = communityRequest.getDateOfRequest();
+                row[2] = communityRequest.getStatus();
+                row[3] = communityRequest.getComments();
+                if (request.getStatus().equals("Completed")) {
+                row[4] = communityRequest.getDateResolved();
+                } else {
+                row[4] = "";
+                }
+                model.addRow(row);
+               
+            }
+                
+            if (request.getRequestType().equals("Emergency Request")) {
+                EmergencyRequest emergencyRequest = (EmergencyRequest) request;
+   
+                row[0] = emergencyRequest.getRequestType();
+                row[1] = emergencyRequest.getDateOfRequest();
+                row[2] = emergencyRequest.getStatus();
+                row[3] = emergencyRequest.getComments();
+                if (request.getStatus().equals("Completed")) {
+                row[4] = emergencyRequest.getDateResolved();
+                } else {
+                row[4] = "";
+                }
+                model.addRow(row); 
+            }
+            
+            if (request.getRequestType().equals("Health Request")) {
+                HealthRequest healthRequest = (HealthRequest) request;
+   
+                row[0] = healthRequest.getRequestType();
+                row[1] = healthRequest.getDateOfRequest();
+                row[2] = healthRequest.getStatus();
+                row[3] = healthRequest.getComments();
+                if (request.getStatus().equals("Completed")) {
+                row[4] = healthRequest.getDateResolved();
+                } else {
+                row[4] = "";
+                }
+                model.addRow(row);  
+             
+            }
+            
+            if (request.getRequestType().equals("Housing Request")) {
+                
+                HousingRequest housingRequest = (HousingRequest) request;
+   
+                row[0] = housingRequest.getRequestType();
+                row[1] = housingRequest.getDateOfRequest();
+                row[2] = housingRequest.getStatus();
+                row[3] = housingRequest.getComments();
+                if (request.getStatus().equals("Completed")) {
+                row[4] = housingRequest.getDateResolved();
+                } else {
+                row[4] = "";
+                }
+                model.addRow(row);
+
+                
+                }
+
+        }
+    }
+    
+    public void newStudentRequestFilter(String s) {
+        DefaultTableModel model = (DefaultTableModel) studentRequestTbl.getModel();
+        TableRowSorter<DefaultTableModel> t = new TableRowSorter<DefaultTableModel>(model);
+        studentRequestTbl.setRowSorter(t);
+        t.setRowFilter(RowFilter.regexFilter(s));
+
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AdvisingjPanel;
     private javax.swing.JPanel CommunityjPanel2;
@@ -478,9 +944,21 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField emergencyCommentsTxt;
     private javax.swing.JComboBox<String> emergencyJComboBox;
     private javax.swing.JTextField emergencyLocationTxt;
+    private javax.swing.JTextField healthCommentsTxt;
+    private javax.swing.JComboBox<String> healthJComboBox;
+    private javax.swing.JTextField housingCommentsTxt;
+    private javax.swing.JTextField housingLocationTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -489,9 +967,19 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField maxPriceTxt;
+    private javax.swing.JButton studentClearBtn;
+    private javax.swing.JTable studentRequestTbl;
+    private javax.swing.JButton studentSearchBtn;
+    private javax.swing.JTextField studentSearchTxt;
     private javax.swing.JButton submitAdvisingBtn;
     private javax.swing.JButton submitComBtn;
     private javax.swing.JButton submitEmergencyBtn;
+    private javax.swing.JButton submitHealthBtn;
+    private javax.swing.JButton submitHouseBtn;
+    private javax.swing.JLabel welcomeStudentTxt;
     // End of variables declaration//GEN-END:variables
 }

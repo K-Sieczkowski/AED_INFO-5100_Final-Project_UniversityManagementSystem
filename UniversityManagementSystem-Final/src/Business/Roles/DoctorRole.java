@@ -9,10 +9,9 @@ import Business.Enterprises.Enterprise;
 import Business.Network.Network;
 import Business.Organizations.HospitalOrganization;
 import Business.Organizations.Organization;
-import Business.Organizations.UniversityOrganization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import ui.Role.WellbeingEmployeeJPanel;
+import ui.Role.DoctorEmployeeJPanel;
 
 /**
  *
@@ -22,7 +21,7 @@ public class DoctorRole extends Role {
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new WellbeingEmployeeJPanel(userProcessContainer, account,(HospitalOrganization)organization);
+        return new DoctorEmployeeJPanel(userProcessContainer, account, (HospitalOrganization) organization);
     }
     
 }

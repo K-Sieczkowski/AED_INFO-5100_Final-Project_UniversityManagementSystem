@@ -5,13 +5,17 @@
 package ui.Role;
 
 import Business.Organizations.Organization;
-import Business.Organizations.RealtorOrganization;
 import Business.SendEmail.SendEmail;
+import Business.Student.Student;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.HousingRequest;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkRequest;
-import java.awt.CardLayout;
+import java.awt.Desktop;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.net.URL;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -32,6 +36,7 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form HousingEmployeePanel
+     *
      * @param userProcessContainer
      * @param userAccount
      * @param organization
@@ -41,7 +46,7 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
-        housingEmpWelcomeTxt.setText("Welcome " + userAccount.getEmployee().getName() + " !");
+        housingEmpWelcomeTxt.setText("Welcome " + userAccount.getEmployee().getName() + "!");
         populateTable();
     }
 
@@ -65,12 +70,12 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         housingEmpSearchBtn1 = new javax.swing.JButton();
         housingEmpClearBtn = new javax.swing.JButton();
-        backBtn = new javax.swing.JButton();
         housingEmpWelcomeTxt = new javax.swing.JLabel();
+        viewMapBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 196, 196));
-        setMinimumSize(new java.awt.Dimension(1050, 1050));
-        setPreferredSize(new java.awt.Dimension(1050, 1050));
+        setMinimumSize(new java.awt.Dimension(1050, 850));
+        setPreferredSize(new java.awt.Dimension(1050, 850));
 
         housingEmployeeTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,15 +135,14 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
-        backBtn.setText("Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
+        housingEmpWelcomeTxt.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+
+        viewMapBtn.setText("View Location on Map");
+        viewMapBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
+                viewMapBtnActionPerformed(evt);
             }
         });
-
-        housingEmpWelcomeTxt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        housingEmpWelcomeTxt.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -148,19 +152,20 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(processBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(processBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewMapBtn))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addGap(18, 18, 18)
                                     .addComponent(housingEmpSearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel1)
-                                .addComponent(housingEmpWelcomeTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(housingEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -170,19 +175,18 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(63, 63, 63))))
-                        .addComponent(backBtn, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(backBtn)
-                .addGap(18, 18, 18)
-                .addComponent(housingEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                .addGap(88, 88, 88)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(housingEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel1))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -191,43 +195,42 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(housingEmpSearchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(acceptBtn)
-                    .addComponent(processBtn))
-                .addContainerGap(320, Short.MAX_VALUE))
+                    .addComponent(processBtn)
+                    .addComponent(viewMapBtn))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void acceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBtnActionPerformed
 
         int selectedRow = housingEmployeeTbl.getSelectedRow();
-        HousingRequest housingRequest = (HousingRequest) userAccount.getWorkQueue().getWorkQueueList().get(selectedRow);
+        
 
         if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row");
+            JOptionPane.showMessageDialog(this, "Please select a row.");
             return;
-        }
-
-        else if (housingEmployeeTbl.getValueAt(selectedRow, 7) != null) {
-
+        } else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("Completed")){
             JOptionPane.showMessageDialog(this, "Request has already been completed.");
-        }
-
-        else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("Assigned")) {
-            JOptionPane.showMessageDialog(this, "Request has already been assigned.");
-        }
-
-        else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("Canceled")) {
+            
+        } else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("In Progress")) {
+            JOptionPane.showMessageDialog(this, "Request is already in progress.");
+            
+        } else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("Canceled")) {
             JOptionPane.showMessageDialog(this, "Request was canceled, please make a new selection.");
-        }
-
-        else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("In Progress")) {
-            housingRequest.setStatus("Assigned");
+            
+        } else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("Assigned")) {
+            HousingRequest housingRequest = (HousingRequest) userAccount.getWorkQueue().getWorkQueueList().get(selectedRow);
+            housingRequest.setStatus("In Progress");
+            JOptionPane.showMessageDialog(this, "Request is now in progress.");
+            
         }
 
         populateTable();
+        
 
     }//GEN-LAST:event_acceptBtnActionPerformed
 
@@ -241,24 +244,29 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
 
         if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("Canceled")) {
             JOptionPane.showMessageDialog(this, "Request was canceled, please make a new selection.");
-            
+
         } else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("Completed")) {
             JOptionPane.showMessageDialog(this, "Request has already been completed.");
-            
+
         } else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("Assigned")) {
+            JOptionPane.showMessageDialog(this, "Please accept request before processing.");
+
+        } else if (housingEmployeeTbl.getValueAt(selectedRow, 2).equals("In Progress")) {
             int dialogInput = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "Request complete? ", "Complete Request", dialogInput);
             if (dialogResult == 0) {
 
                 WorkQueue workQueue = userAccount.getWorkQueue();
                 HousingRequest housingRequest = (HousingRequest) workQueue.getWorkQueueList().get(selectedRow);
-                housingRequest.setStatus("Complete");
+                housingRequest.setStatus("Completed");
                 housingRequest.setDateResolved(new Date());
                 
-                SendEmail.sendEmail(userAccount.getStudent().getEmail());
-                
+                Student student1 = housingRequest.getSender().getStudent();
+
+                SendEmail.sendEmail(housingRequest.getSender().getStudent().getEmail(), student1);
+
                 JOptionPane.showMessageDialog(this, "Request completed. Confirmation sent to Student.");
-                
+
                 populateTable();
             }
         }
@@ -280,20 +288,34 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
         housingEmpSearchTxt.setText("");
     }//GEN-LAST:event_housingEmpClearBtnActionPerformed
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+    private void viewMapBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMapBtnActionPerformed
+        int selectedRowIndex = housingEmployeeTbl.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view location.");
+            return;
+        }
         
-    }//GEN-LAST:event_backBtnActionPerformed
+        else try{
+            Desktop.getDesktop().browse(new URL("http://maps.google.com").toURI());
+        } catch (Exception e){}
+      
+      DefaultTableModel model = (DefaultTableModel) housingEmployeeTbl.getModel();
+      HousingRequest housingRequest = (HousingRequest) model.getValueAt(selectedRowIndex, 0);
+      String locationTxt = housingRequest.getDesiredLocation();
+      StringSelection stringSelection = new StringSelection(locationTxt);
+      Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+      clipboard.setContents(stringSelection, null);
+      
+    }//GEN-LAST:event_viewMapBtnActionPerformed
 
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) housingEmployeeTbl.getModel();
         model.setRowCount(0);
-        
-        RealtorOrganization realtorOrg = (RealtorOrganization) organization;
-        
-        for (WorkRequest request : realtorOrg.getWorkQueue().getWorkQueueList()) {
+
+        housingEmployeeTbl.setAutoCreateRowSorter(true);
+
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkQueueList()) {
             Object[] row = new Object[8];
             row[0] = ((HousingRequest) request);
             row[1] = ((HousingRequest) request).getDateOfRequest();
@@ -302,17 +324,16 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
             row[4] = ((HousingRequest) request).getComments();
             row[5] = ((HousingRequest) request).getMaxPrice();
             row[6] = ((HousingRequest) request).getDesiredLocation();
-            if(request.getStatus().equals("Completed")){
-            row[7] = ((HousingRequest) request).getDateResolved();
+            if (request.getStatus().equals("Completed")) {
+                row[7] = ((HousingRequest) request).getDateResolved();
+            } else {
+                row[7] = "";
             }
-            else{
-            row[7] = ""; 
-            }
-            
+
             model.addRow(row);
+        }
     }
-    }
-    
+
     public void newHousingEmpFilter(String s) {
         DefaultTableModel model = (DefaultTableModel) housingEmployeeTbl.getModel();
         TableRowSorter<DefaultTableModel> t = new TableRowSorter<DefaultTableModel>(model);
@@ -328,14 +349,10 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
     public void setSendEmail(SendEmail sendEmail) {
         this.sendEmail = sendEmail;
     }
-    
-    
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptBtn;
-    private javax.swing.JButton backBtn;
     private javax.swing.JButton housingEmpClearBtn;
     private javax.swing.JButton housingEmpSearchBtn1;
     private javax.swing.JTextField housingEmpSearchTxt;
@@ -347,5 +364,6 @@ public class HousingEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton processBtn;
+    private javax.swing.JButton viewMapBtn;
     // End of variables declaration//GEN-END:variables
 }
