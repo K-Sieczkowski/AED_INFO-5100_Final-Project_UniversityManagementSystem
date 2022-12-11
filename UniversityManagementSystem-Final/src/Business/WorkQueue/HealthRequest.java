@@ -4,7 +4,6 @@
  */
 package Business.WorkQueue;
 
-import java.util.Date;
 
 /**
  *
@@ -12,7 +11,6 @@ import java.util.Date;
  */
 public class HealthRequest extends WorkRequest {
     private String priorityLevel;
-    private Date requestDate;
     private String type;
     private String comments;
 
@@ -40,5 +38,9 @@ public class HealthRequest extends WorkRequest {
         this.comments = comments;
     }
     
+    @Override
+    public String toString() {
+        return priorityLevel;
+    }
     
 }
