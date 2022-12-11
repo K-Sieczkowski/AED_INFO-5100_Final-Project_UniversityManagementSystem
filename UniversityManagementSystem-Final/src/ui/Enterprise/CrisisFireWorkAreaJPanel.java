@@ -41,7 +41,7 @@ public class CrisisFireWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CommunityWorkAreaJPanel
      */
-    public CrisisFireWorkAreaJPanel() {
+    public CrisisFireWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization) {
         initComponents();
         this.userAccount = userAccount;
         this.userProcessContainer = userProcessContainer;

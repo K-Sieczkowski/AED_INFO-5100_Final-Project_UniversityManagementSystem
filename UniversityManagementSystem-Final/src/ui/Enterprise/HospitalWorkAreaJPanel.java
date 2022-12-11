@@ -37,7 +37,7 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CommunityWorkAreaJPanel
      */
-    public HospitalWorkAreaJPanel() {
+    public HospitalWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization) {
         initComponents();
         this.userAccount = userAccount;
         this.userProcessContainer = userProcessContainer;

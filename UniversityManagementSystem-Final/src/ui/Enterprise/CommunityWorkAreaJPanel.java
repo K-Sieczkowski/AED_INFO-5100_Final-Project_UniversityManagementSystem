@@ -33,7 +33,7 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CommunityWorkAreaJPanel
      */
-    public CommunityWorkAreaJPanel() {
+    public CommunityWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization) {
         initComponents();
         this.userAccount = userAccount;
         this.userProcessContainer = userProcessContainer;

@@ -7,46 +7,6 @@ package ui.EnterpriseAdmin;
 
 import Business.Employees.Employee;
 import Business.Enterprises.Enterprise;
-import Business.Organizations.Organization;
-import Business.Organizations.OrganizationDirectory;
-import Business.Roles.AcademicCounselorRole;
-import Business.Roles.CommunityCulturalAidRole;
-import Business.Roles.CommunityManagerRole;
-import Business.Roles.DoctorRole;
-import Business.Roles.FireDepartmentChiefRole;
-import Business.Roles.FiremanRole;
-import Business.Roles.HospitalManagerRole;
-import Business.Roles.PoliceDepartmentChiefRole;
-import Business.Roles.PoliceOfficerRole;
-import Business.Roles.RealEstateAgentRole;
-import Business.Roles.RealEstateCompanyManagerRole;
-import Business.Roles.Role;
-import Business.Roles.StudentRole;
-import Business.Roles.TherapistRole;
-import Business.Roles.UniversityDirectorRole;
-import Business.UserAccount.UserAccount;
-import Business.UserAccount.UserAccountDirectory;
-import com.teamdev.jxmaps.i;
-import static com.teamdev.jxmaps.internal.internal.e.j;
-import com.teamdev.jxmaps.internal.internal.ipc.j;
-import java.awt.CardLayout;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
-import java.awt.Desktop;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableModel;
-import Business.Employees.Employee;
-import Business.Enterprises.Enterprise;
 import Business.Organizations.FireDepartmentOrganization;
 import Business.Organizations.HospitalOrganization;
 import Business.Organizations.MulticulturalOrganization;
@@ -64,7 +24,6 @@ import Business.Roles.RealEstateAgentRole;
 import Business.Roles.TherapistRole;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
-import Business.WorkQueue.CommunityRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -253,9 +212,9 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelete)
-                    .addComponent(btnUpdate))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete))
                 .addGap(0, 338, Short.MAX_VALUE))
         );
 
