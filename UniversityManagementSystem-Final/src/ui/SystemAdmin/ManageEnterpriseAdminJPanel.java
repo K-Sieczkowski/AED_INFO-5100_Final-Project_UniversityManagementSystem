@@ -79,18 +79,16 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(204, 255, 204));
 
-        lblNetwork.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblNetwork.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
         lblNetwork.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNetwork.setText("Choose Network");
 
-        cbNetwork.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Null" }));
         cbNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbNetworkActionPerformed(evt);
             }
         });
 
-        cbEnterprise.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Null" }));
         cbEnterprise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbEnterpriseActionPerformed(evt);
@@ -112,19 +110,19 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         lblHeading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeading.setText("Create Enterprise Admins");
 
-        blbEnterpriseType.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        blbEnterpriseType.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
         blbEnterpriseType.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         blbEnterpriseType.setText("Enterprise");
 
-        lblAdminName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblAdminName.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
         lblAdminName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblAdminName.setText("Admin Name");
 
-        lblUserName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblUserName.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
         lblUserName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUserName.setText("Username");
 
-        lblPassword.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        lblPassword.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPassword.setText("Password");
 
@@ -158,6 +156,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-go-back-48.png"))); // NOI18N
         jButton2.setText("Back");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -172,49 +171,46 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                             .addComponent(blbEnterpriseType, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(61, 61, 61))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)))
+                            .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(232, 232, 232)
+                        .addComponent(lblNetwork)))
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtUserName)
-                                .addGap(6, 6, 6)))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                            .addComponent(txtUserName))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblValidUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblValidPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(lblValidUser, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblValidPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtAdminName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbNetwork, javax.swing.GroupLayout.Alignment.LEADING, 0, 186, Short.MAX_VALUE)
-                            .addComponent(cbEnterprise, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbNetwork, 0, 286, Short.MAX_VALUE)
+                            .addComponent(cbEnterprise, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtAdminName))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(354, 354, 354)
                         .addComponent(btnAdd)
                         .addGap(89, 89, 89)
-                        .addComponent(jButton1)))
-                .addContainerGap(285, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 1060, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(83, 83, 83))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 1060, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +220,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 .addComponent(jButton2)
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNetwork)
                     .addComponent(cbNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -251,9 +247,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAdd)
                     .addComponent(jButton1))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -337,11 +333,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         if (!validUsername(txtUserName.getText())) {
             txtUserName.setBorder(BorderFactory.createLineBorder(Color.RED));
             txtUserName.setForeground(Color.RED);
-            lblValidUser.setText("Invalid UserName..Only letters allowed");
+            lblValidUser.setText("Invalid username. Only letters are allowed");
         } else {
             txtUserName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             txtUserName.setForeground(Color.BLACK);
-            lblValidUser.setText("Valid UserName");
+            lblValidUser.setText("Valid Username");
             int delay = 3000; //milliseconds
             ActionListener taskPerformer = new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
@@ -359,7 +355,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         if (!validPassword(txtPassword.getText())) {
             txtPassword.setBorder(BorderFactory.createLineBorder(Color.RED));
             txtPassword.setForeground(Color.RED);
-            lblValidPassword.setText("8 characters, atleast 1 capital letter, one number, one special character");
+            lblValidPassword.setText("Reguirements: 8 characters, atleast 1 capital letter, one number, and one special character");
             
         } else {
             txtPassword.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -406,7 +402,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         }
         if(userNameChck.contains(userName))
         {
-            JOptionPane.showMessageDialog(this, "Username already exists, please enter a new name.");
+            JOptionPane.showMessageDialog(this, "Username already exists, please enter a new Username.");
             return;
         }
         Employee employee = enterprise.getEmployeeDirectory().createEmployee(adminName);

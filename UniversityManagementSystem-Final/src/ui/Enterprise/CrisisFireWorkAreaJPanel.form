@@ -139,17 +139,19 @@
                                               <Component id="lblEmergencyType" max="32767" attributes="0"/>
                                               <Component id="lblLocation" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="commentTxt" alignment="0" max="32767" attributes="0"/>
+                                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="commentTxt" min="-2" pref="492" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                   <Component id="emergencyTxt" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="cbPL" alignment="1" min="-2" pref="492" max="-2" attributes="0"/>
+                                                  <Component id="cbPL" alignment="0" pref="491" max="32767" attributes="0"/>
                                               </Group>
-                                              <Component id="txtDL1" min="-2" pref="491" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="txtDL1" min="-2" pref="491" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="btnMap" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btnMap" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
@@ -373,6 +375,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAssign">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/ui/images/icons8-add-user-male-24.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Assign"/>
                   </Properties>
                   <Events>

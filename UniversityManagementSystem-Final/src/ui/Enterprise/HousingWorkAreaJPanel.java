@@ -64,7 +64,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
         houSearchBarTxt = new javax.swing.JTextField();
-        jLabel75 = new javax.swing.JLabel();
+        lblSearch = new javax.swing.JLabel();
         AcceptRequestHM = new javax.swing.JButton();
         declineRequestHM = new javax.swing.JButton();
         lblPL = new javax.swing.JLabel();
@@ -89,6 +89,9 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
 
+        setMinimumSize(new java.awt.Dimension(1050, 1050));
+        setPreferredSize(new java.awt.Dimension(1050, 850));
+
         jTabbedPane1.setBackground(new java.awt.Color(224, 237, 242));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(1070, 850));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(1070, 850));
@@ -96,7 +99,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
         jPanel8.setBackground(new java.awt.Color(224, 237, 242));
         jPanel8.setPreferredSize(new java.awt.Dimension(1070, 870));
 
-        jLabel75.setText("Search Bar:");
+        lblSearch.setText("Search Bar:");
 
         AcceptRequestHM.setText("Accept Request");
         AcceptRequestHM.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +183,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnAssign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-add-user-male-24.png"))); // NOI18N
         btnAssign.setText("Assign");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +205,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
+                .addContainerGap(118, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
@@ -221,7 +225,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
                                     .addGap(18, 18, 18)
                                     .addComponent(btnViewHM, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                                    .addComponent(jLabel75)
+                                    .addComponent(lblSearch)
                                     .addGap(18, 18, 18)
                                     .addComponent(houSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
@@ -256,7 +260,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(houEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel75)
+                    .addComponent(lblSearch)
                     .addComponent(houSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(houSearchBtn)
                     .addComponent(clearHouSearchBtn))
@@ -292,7 +296,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(txtComments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(updateBtn)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("View Housing Request", jPanel8);
@@ -305,21 +309,24 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1096, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(731, 731, 731))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -585,7 +592,6 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton houSearchBtn;
     private javax.swing.JTable housingEmployeeTbl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel75;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane9;
@@ -596,6 +602,7 @@ public class HousingWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblDL;
     private javax.swing.JLabel lblMP;
     private javax.swing.JLabel lblPL;
+    private javax.swing.JLabel lblSearch;
     private javax.swing.JTextField txtComments;
     private javax.swing.JTextField txtDL1;
     private javax.swing.JTextField txtMP;

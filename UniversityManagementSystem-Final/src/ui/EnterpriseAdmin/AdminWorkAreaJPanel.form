@@ -43,19 +43,19 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                   <Component id="uniEmpWelcomeTxt" min="-2" pref="409" max="-2" attributes="0"/>
-                  <EmptySpace pref="423" max="32767" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="374" max="32767" attributes="0"/>
+                  <Component id="jButton1" min="-2" pref="124" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnManageEmployee" min="-2" pref="164" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="420" max="-2" attributes="0"/>
+                  <Component id="btnManageEmployee" min="-2" pref="238" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="429" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="459" max="32767" attributes="0"/>
-                      <Component id="btnManageOrganization" min="-2" pref="164" max="-2" attributes="0"/>
+                      <EmptySpace pref="376" max="32767" attributes="0"/>
+                      <Component id="btnManageOrganization" min="-2" pref="247" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="427" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -76,9 +76,9 @@
                           <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="219" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
                   <Component id="btnManageEmployee" min="-2" pref="121" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="560" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="555" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -102,6 +102,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnManageEmployee">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui/images/employee.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Manage Employee"/>
           </Properties>
           <Events>
@@ -110,6 +113,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnManageOrganization">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui/images/organization.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Manage Organization"/>
           </Properties>
           <Events>
@@ -129,6 +135,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui/images/icons8-go-back-48.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Back"/>
           </Properties>
           <Events>
