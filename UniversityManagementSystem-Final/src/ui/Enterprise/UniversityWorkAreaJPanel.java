@@ -523,7 +523,7 @@ public class UniversityWorkAreaJPanel extends javax.swing.JPanel {
            
         universityEmployeeTbl.setAutoCreateRowSorter(true);
         
-        for (WorkRequest request : ((MulticulturalOrganization) organization).getWorkQueue().getWorkQueueList()) {
+        for (WorkRequest request : ((UniversityOrganization) organization).getWorkQueue().getWorkQueueList()) {
             Object[] row = new Object[8];
             row[0] = ((AdvisingRequest) request);
             row[1] = ((AdvisingRequest) request).getDateOfRequest();
