@@ -72,12 +72,12 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         txtPassword = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableEnterpriseAdmins = new javax.swing.JTable();
-        btnBack = new javax.swing.JButton();
         lblValidUser = new javax.swing.JLabel();
         lblValidPassword = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 204));
+        setBackground(new java.awt.Color(204, 255, 204));
 
         lblNetwork.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         lblNetwork.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -109,7 +109,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         });
 
         lblHeading.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        lblHeading.setForeground(new java.awt.Color(255, 51, 102));
         lblHeading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeading.setText("Create Enterprise Admins");
 
@@ -152,21 +151,14 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tableEnterpriseAdmins);
 
-        btnBack.setBackground(new java.awt.Color(204, 255, 255));
-        btnBack.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnBack.setBorderPainted(false);
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jButton2.setText("Back");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -189,9 +181,12 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addComponent(txtUserName))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtUserName)
+                                .addGap(6, 6, 6)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblValidUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblValidPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,28 +200,29 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1066, 1066, 1066)
-                        .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(354, 354, 354)
                         .addComponent(btnAdd)
-                        .addGap(54, 54, 54)
+                        .addGap(89, 89, 89)
                         .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(285, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 1060, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(83, 83, 83))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(btnBack)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -241,15 +237,15 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                                     .addComponent(txtPassword)
                                     .addComponent(lblValidPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblValidUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblValidUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +253,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     .addComponent(jButton1))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -268,15 +264,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             cbNetwork.addItem(network);
         }
     }
-    
-    private void displayEnterpriseComboBox(Network network){
-        cbEnterprise.removeAllItems();
-        
-        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-            cbEnterprise.addItem(enterprise);
-        
-        }
-    }
+   
     
     private void displayTable(Network network) {
         
@@ -295,16 +283,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     
     
     
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        SystemAdminJPanel sysAdminwjp = (SystemAdminJPanel) component;
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         String networkName = cbNetwork.getSelectedItem().toString();
@@ -402,6 +380,45 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String networkName = cbNetwork.getSelectedItem().toString();
+        String enterpriseType = cbEnterprise.getSelectedItem().toString();
+        String adminName = txtAdminName.getText();
+        String userName = txtUserName.getText().trim();
+        String password = txtPassword.getText();
+        
+        if (networkName.isEmpty()||enterpriseType.isEmpty()||adminName.isEmpty()|| userName.isEmpty()
+           || password.isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Please complete all mandatory fields.");
+            return;
+        }
+        
+        
+        Network network = (Network) cbNetwork.getSelectedItem();
+        
+        Enterprise enterprise = (Enterprise) cbEnterprise.getSelectedItem();
+               
+        ArrayList<String> userNameChck= new ArrayList<String>();
+        for(UserAccount u:enterprise.getUserAccountDirectory().getUserAccountList())
+        {
+            userNameChck.add(u.getUsername());
+           
+        }
+        if(userNameChck.contains(userName))
+        {
+            JOptionPane.showMessageDialog(this, "Username already exists, please enter a new name.");
+            return;
+        }
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(adminName);
+        
+        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(userName, password, employee, new AdminRole());
+        JOptionPane.showMessageDialog(this, "New enterprise admin has been created.");
+            
+        
+        txtAdminName.setText("");
+        txtUserName.setText("");
+        txtPassword.setText("");
+        populateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static boolean validUsername(String name) {
@@ -426,10 +443,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel blbEnterpriseType;
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnBack;
     private javax.swing.JComboBox cbEnterprise;
     private javax.swing.JComboBox cbNetwork;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAdminName;
     private javax.swing.JLabel lblHeading;
@@ -443,4 +460,42 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
+
+private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tableEnterpriseAdmins.getModel();
+
+
+
+       model.setRowCount(0);
+        for (Network network : ecosystem.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
+                    Object[] row = new Object[5];
+                    row[0] = enterprise.getOrgName();
+                    row[1] = network.getName();
+                    row[2] = userAccount.getEmployee().getName();
+                    row[3] = userAccount.getUsername();
+                    row[4] = userAccount.getPassword();
+
+
+
+                   model.addRow(row);
+                }
+            }
+        }
+    }
+    
+    private void populateNetworkComboBox(){
+        
+        for (Network network : ecosystem.getNetworkList()){
+            cbNetwork.addItem(network);
+        }
+    } 
+    private void displayEnterpriseComboBox(Network network){
+        
+        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+            cbEnterprise.addItem(enterprise);
+        
+        }
+    }
 }

@@ -21,7 +21,6 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem ecosystem;
     ArrayList<Network> networkList = new ArrayList<>();
-    DefaultTableModel model;
     /**
      * Creates new form ManageNetworkJPanel
      */
@@ -29,7 +28,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
-        model = (DefaultTableModel) tblNetwork.getModel();
+        populateTable();
     }
 
     /**
@@ -158,13 +157,13 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             if(ecosystem.isUnique(name)){
                 Network network = ecosystem.createAndAddNetwork();
                 network.setName(name);
-                JOptionPane.showMessageDialog(null, "Network Successfully Created");
+                JOptionPane.showMessageDialog(null, "Network successfully created.");
                 txtNetwork.setText("");
             } else{
-                JOptionPane.showMessageDialog(null, "Network Already Exits");
+                JOptionPane.showMessageDialog(null, "Network already exits.");
             }
         } else{
-            JOptionPane.showMessageDialog(null, "Enter city name");
+            JOptionPane.showMessageDialog(null, "Please enter city name for network.");
         }
         
         populateTable();
@@ -178,9 +177,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    public void populateTable() 
-    {
+    public void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblNetwork.getModel();
         model.setRowCount(0);
+        
         for(Network network : ecosystem.getNetworkList()) {
              Object obj[] = {network.getName()};
              model.addRow(obj);

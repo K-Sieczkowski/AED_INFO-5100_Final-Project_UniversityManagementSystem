@@ -4,6 +4,7 @@
  */
 package Business.Employees;
 
+import Business.WorkQueue.WorkRequest;
 import java.util.ArrayList;
 
 /**
@@ -46,4 +47,7 @@ public class EmployeeDirectory {
         }
             return null; //not found after going through the whole list
          }
+    public void deleteEmployee(Employee e) {
+       getEmployeeList().remove(e);
+    }
 }
