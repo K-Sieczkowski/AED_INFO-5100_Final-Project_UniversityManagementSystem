@@ -70,4 +70,16 @@ public class OrganizationDirectory {
     return organization;
     
     }
+    
+    
+    public Organization findOrg(String name) {
+
+        for (Organization o : orgList) {
+
+            if (o.isMatch(name)) {
+                return o;
+            }
+        }
+            return null; //not found after going through the whole list
+         }
 }
