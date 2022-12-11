@@ -56,6 +56,7 @@ public class SystemAdminJPanel extends javax.swing.JPanel {
         lblTitle.setText("System Administrator");
 
         jButton1.setBackground(new java.awt.Color(204, 255, 204));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/network.png"))); // NOI18N
         jButton1.setText("Manage Network");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +64,7 @@ public class SystemAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/enterprise.png"))); // NOI18N
         jButton2.setText("Manage Enterprise");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +72,7 @@ public class SystemAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/ent_admin.png"))); // NOI18N
         jButton3.setText("Manage Enterprise Admin");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

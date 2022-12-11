@@ -51,6 +51,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Enterprise Admin");
 
+        btnManageEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/employee.png"))); // NOI18N
         btnManageEmployee.setText("Manage Employee");
         btnManageEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +59,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnManageOrganization.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/organization.png"))); // NOI18N
         btnManageOrganization.setText("Manage Organization");
         btnManageOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +71,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         uniEmpWelcomeTxt.setForeground(new java.awt.Color(255, 255, 255));
         uniEmpWelcomeTxt.setText("WELCOME");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-go-back-48.png"))); // NOI18N
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,17 +87,17 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 423, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 374, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(420, 420, 420))
+                .addComponent(btnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(429, 429, 429))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(459, Short.MAX_VALUE)
-                    .addComponent(btnManageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(376, Short.MAX_VALUE)
+                    .addComponent(btnManageOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(427, 427, 427)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -109,9 +112,9 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(jButton1)))
-                .addGap(219, 219, 219)
+                .addGap(193, 193, 193)
                 .addComponent(btnManageEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 560, Short.MAX_VALUE))
+                .addGap(0, 555, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(164, 164, 164)
