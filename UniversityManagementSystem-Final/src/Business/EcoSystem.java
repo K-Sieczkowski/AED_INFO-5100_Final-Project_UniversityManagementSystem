@@ -4,12 +4,12 @@
  */
 package Business;
 
-import Enterprises.Enterprise;
-import Network.Network;
-import Organizations.Organization;
-import Roles.Role;
-import Roles.SystemAdminRole;
-import UserAccount.UserAccount;
+import Business.Enterprises.Enterprise;
+import Business.Network.Network;
+import Business.Organizations.Organization;
+import Business.Roles.Role;
+import Business.Roles.SystemAdminRole;
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class EcoSystem extends Organization {
 
     private static EcoSystem business;
-
     private ArrayList<Network> networkList;
 
     public static EcoSystem getInstance() {
@@ -29,17 +28,16 @@ public class EcoSystem extends Organization {
         return business;
     }
 
+    public EcoSystem() {
+        super(null);
+        networkList = new ArrayList();
+    }
+    
     public Network createAndAddNetwork() {
         Network network = new Network();
         networkList.add(network);
         return network;
     }
-
-    public EcoSystem() {
-        super(null);
-        networkList = new ArrayList();
-    }
-
 
     public static EcoSystem getBusiness() {
         return business;
@@ -52,10 +50,11 @@ public class EcoSystem extends Organization {
     public ArrayList<Network> getNetworkList() {
         return networkList;
     }
-
+    
     public void setNetworkList(ArrayList<Network> networkList) {
         this.networkList = networkList;
     }
+
 
     @Override
     public ArrayList<Role> getSupportedRole() {
