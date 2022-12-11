@@ -521,7 +521,7 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
            
         hospitalEmployeeTbl.setAutoCreateRowSorter(true);
         
-        for (WorkRequest request : ((PoliceOrganization) organization).getWorkQueue().getWorkQueueList()) {
+        for (WorkRequest request : ((HospitalOrganization) organization).getWorkQueue().getWorkQueueList()) {
             Object[] row = new Object[8];
             row[0] = ((HealthRequest) request);
             row[1] = ((HealthRequest) request).getDateOfRequest();
