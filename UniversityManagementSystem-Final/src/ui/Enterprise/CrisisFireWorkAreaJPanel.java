@@ -5,19 +5,23 @@
  */
 package ui.Enterprise;
 
-import Business.Organizations.HospitalOrganization;
+import Business.Organizations.FireDepartmentOrganization;
 import Business.Organizations.MulticulturalOrganization;
 import Business.Organizations.Organization;
-import Business.Organizations.PoliceOrganization;
 import Business.Organizations.RealtorOrganization;
 import Business.Roles.CommunityCulturalAidRole;
-import Business.Roles.DoctorRole;
+import Business.Roles.FireDepartmentChiefRole;
 import Business.SendEmail.SendEmail;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.CommunityRequest;
-import Business.WorkQueue.HealthRequest;
+import Business.WorkQueue.EmergencyRequest;
 import Business.WorkQueue.HousingRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.Desktop;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.net.URL;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.RowFilter;
@@ -28,7 +32,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author arfinansari
  */
-public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
+public class CrisisFireWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private JPanel userProcessContainer;
     private Organization organization;
@@ -37,7 +41,7 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CommunityWorkAreaJPanel
      */
-    public HospitalWorkAreaJPanel() {
+    public CrisisFireWorkAreaJPanel() {
         initComponents();
         this.userAccount = userAccount;
         this.userProcessContainer = userProcessContainer;
@@ -59,26 +63,29 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
-        hosSearchBarTxt = new javax.swing.JTextField();
+        criFireSearchBarTxt = new javax.swing.JTextField();
         lblSearch = new javax.swing.JLabel();
-        AcceptRequestHM = new javax.swing.JButton();
-        declineRequestHM = new javax.swing.JButton();
+        AcceptRequestCFM = new javax.swing.JButton();
+        declineRequestCFM = new javax.swing.JButton();
         lblPL = new javax.swing.JLabel();
         lblDL = new javax.swing.JLabel();
-        hospitalTxt = new javax.swing.JTextField();
+        emergencyTxt = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
-        hospitalEmployeeTbl = new javax.swing.JTable();
+        crisisFireEmployeeTbl = new javax.swing.JTable();
         commentTxt = new javax.swing.JTextField();
         cbPL = new javax.swing.JComboBox<>();
         updateBtn = new javax.swing.JButton();
-        hosSearchBtn = new javax.swing.JButton();
-        clearHosSearchBtn = new javax.swing.JButton();
+        criFireSearchBtn = new javax.swing.JButton();
+        clearCriSearchBtn = new javax.swing.JButton();
         btnAssign = new javax.swing.JButton();
         lblAssignEmployee = new javax.swing.JLabel();
         cbAssignEmployee = new javax.swing.JComboBox<>();
-        btnViewHM = new javax.swing.JButton();
+        btnViewCFM = new javax.swing.JButton();
         uniEmpWelcomeTxt = new javax.swing.JLabel();
-        lblDL1 = new javax.swing.JLabel();
+        lblEmergencyType = new javax.swing.JLabel();
+        lblLocation = new javax.swing.JLabel();
+        btnMap = new javax.swing.JButton();
+        txtDL1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1050, 850));
@@ -93,39 +100,39 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
 
         lblSearch.setText("Search Bar:");
 
-        AcceptRequestHM.setText("Accept Request");
-        AcceptRequestHM.addActionListener(new java.awt.event.ActionListener() {
+        AcceptRequestCFM.setText("Accept Request");
+        AcceptRequestCFM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AcceptRequestHMActionPerformed(evt);
+                AcceptRequestCFMActionPerformed(evt);
             }
         });
 
-        declineRequestHM.setText("Decline Request");
-        declineRequestHM.addActionListener(new java.awt.event.ActionListener() {
+        declineRequestCFM.setText("Decline Request");
+        declineRequestCFM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                declineRequestHMActionPerformed(evt);
+                declineRequestCFMActionPerformed(evt);
             }
         });
 
-        lblPL.setText("Priority Level");
+        lblPL.setText("Priority Level:");
 
         lblDL.setText("Comments");
 
-        hospitalTxt.addActionListener(new java.awt.event.ActionListener() {
+        emergencyTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hospitalTxtActionPerformed(evt);
+                emergencyTxtActionPerformed(evt);
             }
         });
 
-        hospitalEmployeeTbl.setModel(new javax.swing.table.DefaultTableModel(
+        crisisFireEmployeeTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Priority Level", "Request Date", "Status", "Student Name", "Type", "Comments", "Assigned Employee", "Completed Date"
+                "Priority Level", "Request Date", "Status", "Student Name", "Emergency Type", "Comments", "Assigned Employee", "Completed Date"
             }
         ));
-        jScrollPane9.setViewportView(hospitalEmployeeTbl);
+        jScrollPane9.setViewportView(crisisFireEmployeeTbl);
 
         commentTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,17 +154,17 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        hosSearchBtn.setText("Search");
-        hosSearchBtn.addActionListener(new java.awt.event.ActionListener() {
+        criFireSearchBtn.setText("Search");
+        criFireSearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hosSearchBtnActionPerformed(evt);
+                criFireSearchBtnActionPerformed(evt);
             }
         });
 
-        clearHosSearchBtn.setText("Clear Search");
-        clearHosSearchBtn.addActionListener(new java.awt.event.ActionListener() {
+        clearCriSearchBtn.setText("Clear Search");
+        clearCriSearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearHosSearchBtnActionPerformed(evt);
+                clearCriSearchBtnActionPerformed(evt);
             }
         });
 
@@ -170,16 +177,31 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
 
         lblAssignEmployee.setText("Assign Employee");
 
-        btnViewHM.setText("View");
-        btnViewHM.addActionListener(new java.awt.event.ActionListener() {
+        btnViewCFM.setText("View");
+        btnViewCFM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewHMActionPerformed(evt);
+                btnViewCFMActionPerformed(evt);
             }
         });
 
         uniEmpWelcomeTxt.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
-        lblDL1.setText("Type");
+        lblEmergencyType.setText("Emergency Type:");
+
+        lblLocation.setText("Location");
+
+        btnMap.setText("Lookup MAP");
+        btnMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMapActionPerformed(evt);
+            }
+        });
+
+        txtDL1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDL1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -192,45 +214,47 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(AcceptRequestCFM)
+                                .addGap(18, 18, 18)
+                                .addComponent(declineRequestCFM)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnViewCFM, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel8Layout.createSequentialGroup()
-                                    .addComponent(AcceptRequestHM)
+                                    .addComponent(lblSearch)
                                     .addGap(18, 18, 18)
-                                    .addComponent(declineRequestHM)
+                                    .addComponent(criFireSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(btnViewHM, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addComponent(lblSearch)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(hosSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(hosSearchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(clearHosSearchBtn))
-                                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel8Layout.createSequentialGroup()
-                                    .addComponent(lblAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(cbAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(updateBtn))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(hospitalTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel8Layout.createSequentialGroup()
-                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblDL)
-                                        .addComponent(lblPL)
-                                        .addComponent(lblDL1))
-                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel8Layout.createSequentialGroup()
-                                            .addGap(77, 77, 77)
-                                            .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(commentTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                                    .addComponent(criFireSearchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(clearCriSearchBtn))
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(lblAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblDL)
+                                    .addComponent(lblPL)
+                                    .addComponent(lblEmergencyType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(41, 41, 41)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(commentTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(emergencyTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtDL1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnMap))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(332, 332, 332)
+                                .addComponent(updateBtn)))))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -238,19 +262,19 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSearch)
-                    .addComponent(hosSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hosSearchBtn)
-                    .addComponent(clearHosSearchBtn))
+                    .addComponent(criFireSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(criFireSearchBtn)
+                    .addComponent(clearCriSearchBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AcceptRequestHM)
-                    .addComponent(declineRequestHM)
-                    .addComponent(btnViewHM))
+                    .addComponent(AcceptRequestCFM)
+                    .addComponent(declineRequestCFM)
+                    .addComponent(btnViewCFM))
                 .addGap(71, 71, 71)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAssignEmployee)
@@ -262,22 +286,27 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(lblPL))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hospitalTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDL1))
+                    .addComponent(emergencyTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmergencyType))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(commentTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDL))
+                    .addComponent(lblLocation)
+                    .addComponent(btnMap)
+                    .addComponent(txtDL1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDL)
+                    .addComponent(commentTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(93, 93, 93)
                 .addComponent(updateBtn)
-                .addGap(69, 69, 69))
+                .addContainerGap())
         );
 
-        jTabbedPane2.addTab("View Hospital Request", jPanel8);
+        jTabbedPane2.addTab("View Fire Work Request", jPanel8);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Hospital Work Area Panel");
+        jLabel1.setText("Crisis Fire Work Area Panel");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -311,57 +340,57 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AcceptRequestHMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptRequestHMActionPerformed
-        int selectedRowIndex = hospitalEmployeeTbl.getSelectedRow();
+    private void AcceptRequestCFMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptRequestCFMActionPerformed
+        int selectedRowIndex = crisisFireEmployeeTbl.getSelectedRow();
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row.");
             return;
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Canceled")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Canceled")) {
             JOptionPane.showMessageDialog(this, "Request was canceled, please make a new selection.");
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Completed")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Completed")) {
             JOptionPane.showMessageDialog(this, "Request has already been completed.");
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Accepted")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Accepted")) {
             JOptionPane.showMessageDialog(this, "Request has already been accepted, please make a new selection.");
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Assigned")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Assigned")) {
             JOptionPane.showMessageDialog(this, "Request has already been assigned.");
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("In Progress")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("In Progress")) {
             JOptionPane.showMessageDialog(this, "Request is already in progress.");
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Submitted")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Submitted")) {
 
-            HealthRequest healthRequest = (HealthRequest) ((HospitalOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
-            healthRequest.setStatus("Accepted");
+            EmergencyRequest emergencyRequest = (EmergencyRequest) ((FireDepartmentOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
+            emergencyRequest.setStatus("Accepted");
 
             JOptionPane.showMessageDialog(this, "The request has been successfully accepted.");
 
         }
         populateTable();
-    }//GEN-LAST:event_AcceptRequestHMActionPerformed
+    }//GEN-LAST:event_AcceptRequestCFMActionPerformed
 
-    private void declineRequestHMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineRequestHMActionPerformed
-        int selectedRowIndex = hospitalEmployeeTbl.getSelectedRow();
+    private void declineRequestCFMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineRequestCFMActionPerformed
+        int selectedRowIndex = crisisFireEmployeeTbl.getSelectedRow();
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row.");
             return;
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Canceled")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Canceled")) {
             JOptionPane.showMessageDialog(this, "Request was already canceled, please make a new selection.");
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Completed")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Completed")) {
             JOptionPane.showMessageDialog(this, "Request was already completed, can no longer be canceled.");
         }
 
@@ -370,8 +399,8 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
             int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you would like to decline the request?", "Decline Request", dialogInput);
             if (dialogResult == 0) {
 
-                HealthRequest healthRequest = (HealthRequest) ((HospitalOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
-                healthRequest.setStatus("Canceled");
+                EmergencyRequest emergencyRequest = (EmergencyRequest) ((FireDepartmentOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
+                emergencyRequest.setStatus("Canceled");
                 JOptionPane.showMessageDialog(this, "The request has been declined and marked as canceled.");
 
             }
@@ -380,14 +409,14 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
         populateTable();
-    }//GEN-LAST:event_declineRequestHMActionPerformed
+    }//GEN-LAST:event_declineRequestCFMActionPerformed
 
-    private void hospitalTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hospitalTxtActionPerformed
+    private void emergencyTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emergencyTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_hospitalTxtActionPerformed
+    }//GEN-LAST:event_emergencyTxtActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        int selectedRowIndex = hospitalEmployeeTbl.getSelectedRow();
+        int selectedRowIndex = crisisFireEmployeeTbl.getSelectedRow();
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to update.");
@@ -395,73 +424,73 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         else{
-            DefaultTableModel model = (DefaultTableModel) hospitalEmployeeTbl.getModel();
-            HealthRequest healthRequest = (HealthRequest) model.getValueAt(selectedRowIndex, 0);
+            DefaultTableModel model = (DefaultTableModel) crisisFireEmployeeTbl.getModel();
+            EmergencyRequest emergencyRequest = (EmergencyRequest) model.getValueAt(selectedRowIndex, 0);
 
-            healthRequest.setPriorityLevel(cbPL.getSelectedItem().toString());
-            healthRequest.setType(hospitalTxt.getText());
-            healthRequest.setComments(commentTxt.getText());
+            emergencyRequest.setPriorityLevel(cbPL.getSelectedItem().toString());
+            emergencyRequest.setEmergencyType(emergencyTxt.getText());
+            emergencyRequest.setComments(commentTxt.getText());
 
             JOptionPane.showMessageDialog(this, "Request has been updated.");
         }
 
        
         cbPL.setName("");
-        hospitalTxt.setText("");
+        emergencyTxt.setText("");
         commentTxt.setText("");
 
         populateTable();
     }//GEN-LAST:event_updateBtnActionPerformed
 
-    private void hosSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hosSearchBtnActionPerformed
-        String s = hosSearchBarTxt.getText();
+    private void criFireSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criFireSearchBtnActionPerformed
+        String s = criFireSearchBarTxt.getText();
         newComFilter(s);
-    }//GEN-LAST:event_hosSearchBtnActionPerformed
+    }//GEN-LAST:event_criFireSearchBtnActionPerformed
 
-    private void clearHosSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearHosSearchBtnActionPerformed
+    private void clearCriSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearCriSearchBtnActionPerformed
         String s = ("");
         newComFilter(s);
-        hosSearchBarTxt.setText("");
-    }//GEN-LAST:event_clearHosSearchBtnActionPerformed
+        criFireSearchBarTxt.setText("");
+    }//GEN-LAST:event_clearCriSearchBtnActionPerformed
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = hospitalEmployeeTbl.getSelectedRow();
+        int selectedRowIndex = crisisFireEmployeeTbl.getSelectedRow();
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row.");
             return;
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Canceled")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Canceled")) {
             JOptionPane.showMessageDialog(this, "Request was canceled, please make a new selection.");
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Completed")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Completed")) {
             JOptionPane.showMessageDialog(this, "Request has already been completed.");
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Submitted")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Submitted")) {
             JOptionPane.showMessageDialog(this, "Please accept the request before proceeding.");
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("In Progress")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("In Progress")) {
             JOptionPane.showMessageDialog(this, "Request is already in progress.");
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Assigned")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Assigned")) {
             JOptionPane.showMessageDialog(this, "Request has already been assigned.");
         }
 
-        else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Accepted")) {
+        else if(crisisFireEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Accepted")) {
 
-            HealthRequest healthRequest = (HealthRequest) ((PoliceOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
+            EmergencyRequest emergencyRequest = (EmergencyRequest) ((FireDepartmentOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
 
             String employeeName = cbAssignEmployee.getSelectedItem().toString();
-            UserAccount userAccount1 = ((PoliceOrganization)organization).getUserAccountDirectory().findUserAccount(employeeName);
-            healthRequest.setReceiver(userAccount1);
-            healthRequest.setStatus("Assigned");
-            userAccount1.getWorkQueue().addRequestToQueue(healthRequest);
+            UserAccount userAccount1 = ((FireDepartmentOrganization)organization).getUserAccountDirectory().findUserAccount(employeeName);
+            emergencyRequest.setReceiver(userAccount1);
+            emergencyRequest.setStatus("Assigned");
+            userAccount1.getWorkQueue().addRequestToQueue(emergencyRequest);
 
             JOptionPane.showMessageDialog(this, "The request has been successfully assigned.");
 
@@ -470,27 +499,27 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_btnAssignActionPerformed
 
-    private void btnViewHMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHMActionPerformed
+    private void btnViewCFMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCFMActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = hospitalEmployeeTbl.getSelectedRow();
+        int selectedRowIndex = crisisFireEmployeeTbl.getSelectedRow();
 
         if(selectedRowIndex<0){
             JOptionPane.showMessageDialog(this, "Please select a row to view.");
             return;
         }
-        DefaultTableModel model = (DefaultTableModel) hospitalEmployeeTbl.getModel();
-        HealthRequest healthRequest = (HealthRequest) model.getValueAt(selectedRowIndex, 0);
+        DefaultTableModel model = (DefaultTableModel) crisisFireEmployeeTbl.getModel();
+        EmergencyRequest emergencyRequest = (EmergencyRequest) model.getValueAt(selectedRowIndex, 0);
 
-        cbPL.setName(String.valueOf(healthRequest.getPriorityLevel()));
-        hospitalTxt.setText(String.valueOf(healthRequest.getType()));
-        commentTxt.setText(String.valueOf(healthRequest.getComments()));
-        if(healthRequest.getReceiver() != null){
-            cbAssignEmployee.setSelectedItem(healthRequest.getReceiver().getEmployee().getName());
+        cbPL.setName(String.valueOf(emergencyRequest.getPriorityLevel()));
+        emergencyTxt.setText(String.valueOf(emergencyRequest.getEmergencyType()));
+        commentTxt.setText(String.valueOf(emergencyRequest.getComments()));
+        if(emergencyRequest.getReceiver() != null){
+            cbAssignEmployee.setSelectedItem(emergencyRequest.getReceiver().getEmployee().getName());
         }else{
             cbAssignEmployee.setSelectedItem("");
         }
-        cbPL.setSelectedItem(healthRequest.getPriorityLevel());
-    }//GEN-LAST:event_btnViewHMActionPerformed
+        cbPL.setSelectedItem(emergencyRequest.getPriorityLevel());
+    }//GEN-LAST:event_btnViewCFMActionPerformed
 
     private void cbPLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPLActionPerformed
         // TODO add your handling code here:
@@ -500,10 +529,30 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_commentTxtActionPerformed
 
+    private void btnMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapActionPerformed
+        // TODO add your handling code here:
+        if(txtDL1.getText().equals("")){
+           JOptionPane.showMessageDialog(this, "Please select a row to view first.");
+        }
+        else try{
+            Desktop.getDesktop().browse(new URL("http://maps.google.com").toURI());
+        } catch (Exception e){}
+        
+      String locationTxt = txtDL1.getText();
+      StringSelection stringSelection = new StringSelection(locationTxt);
+      Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+      clipboard.setContents(stringSelection, null);
+
+    }//GEN-LAST:event_btnMapActionPerformed
+
+    private void txtDL1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDL1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDL1ActionPerformed
+
     public void newComFilter(String s) {
-        DefaultTableModel model = (DefaultTableModel) hospitalEmployeeTbl.getModel();
+        DefaultTableModel model = (DefaultTableModel) crisisFireEmployeeTbl.getModel();
         TableRowSorter<DefaultTableModel> t = new TableRowSorter<DefaultTableModel>(model);
-        hospitalEmployeeTbl.setRowSorter(t);
+        crisisFireEmployeeTbl.setRowSorter(t);
         t.setRowFilter(RowFilter.regexFilter(s));
 
     }
@@ -511,35 +560,35 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
     private void displayEmployeesInCombo(){
        
     for(UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()){
-         if(userAccount.getRole() instanceof DoctorRole) cbAssignEmployee.addItem(userAccount.getEmployee().getName());
+         if(userAccount.getRole() instanceof FireDepartmentChiefRole) cbAssignEmployee.addItem(userAccount.getEmployee().getName());
      }
 }
     
     
     private void populateTable() {
-     DefaultTableModel model = (DefaultTableModel) hospitalEmployeeTbl.getModel();
+     DefaultTableModel model = (DefaultTableModel) crisisFireEmployeeTbl.getModel();
         model.setRowCount(0);
            
-        hospitalEmployeeTbl.setAutoCreateRowSorter(true);
+        crisisFireEmployeeTbl.setAutoCreateRowSorter(true);
         
-        for (WorkRequest request : ((PoliceOrganization) organization).getWorkQueue().getWorkQueueList()) {
+        for (WorkRequest request : ((FireDepartmentOrganization) organization).getWorkQueue().getWorkQueueList()) {
             Object[] row = new Object[8];
-            row[0] = ((HealthRequest) request);
-            row[1] = ((HealthRequest) request).getDateOfRequest();
-            row[2] = ((HealthRequest) request).getStatus();
-            row[3] = ((HealthRequest) request).getSender().getStudent().getName();
-            row[4] = ((HealthRequest) request).getType();
-            row[5] = ((HealthRequest) request).getComments();
+            row[0] = ((EmergencyRequest) request);
+            row[1] = ((EmergencyRequest) request).getDateOfRequest();
+            row[2] = ((EmergencyRequest) request).getStatus();
+            row[3] = ((EmergencyRequest) request).getSender().getStudent().getName();
+            row[4] = ((EmergencyRequest) request).getEmergencyType();
+            row[5] = ((EmergencyRequest) request).getComments();
             if(request.getStatus().equals("Assigned")){
-                row[6] = ((HealthRequest) request).getReceiver().getEmployee().getName();
+                row[6] = ((EmergencyRequest) request).getReceiver().getEmployee().getName();
             }
             else if(request.getStatus().equals("Completed")){
-                row[6] = ((HealthRequest) request).getReceiver().getEmployee().getName();
+                row[6] = ((EmergencyRequest) request).getReceiver().getEmployee().getName();
             }else{
                 row[6] = "";
             }
             if(request.getStatus().equals("Completed")){
-            row[7] = ((HealthRequest) request).getDateResolved();
+            row[7] = ((EmergencyRequest) request).getDateResolved();
             }
             else{
             row[7] = "";
@@ -550,18 +599,19 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AcceptRequestHM;
+    private javax.swing.JButton AcceptRequestCFM;
     private javax.swing.JButton btnAssign;
-    private javax.swing.JButton btnViewHM;
+    private javax.swing.JButton btnMap;
+    private javax.swing.JButton btnViewCFM;
     private javax.swing.JComboBox<String> cbAssignEmployee;
     private javax.swing.JComboBox<String> cbPL;
-    private javax.swing.JButton clearHosSearchBtn;
+    private javax.swing.JButton clearCriSearchBtn;
     private javax.swing.JTextField commentTxt;
-    private javax.swing.JButton declineRequestHM;
-    private javax.swing.JTextField hosSearchBarTxt;
-    private javax.swing.JButton hosSearchBtn;
-    private javax.swing.JTable hospitalEmployeeTbl;
-    private javax.swing.JTextField hospitalTxt;
+    private javax.swing.JTextField criFireSearchBarTxt;
+    private javax.swing.JButton criFireSearchBtn;
+    private javax.swing.JTable crisisFireEmployeeTbl;
+    private javax.swing.JButton declineRequestCFM;
+    private javax.swing.JTextField emergencyTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;
@@ -569,9 +619,11 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel lblAssignEmployee;
     private javax.swing.JLabel lblDL;
-    private javax.swing.JLabel lblDL1;
+    private javax.swing.JLabel lblEmergencyType;
+    private javax.swing.JLabel lblLocation;
     private javax.swing.JLabel lblPL;
     private javax.swing.JLabel lblSearch;
+    private javax.swing.JTextField txtDL1;
     private javax.swing.JLabel uniEmpWelcomeTxt;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables

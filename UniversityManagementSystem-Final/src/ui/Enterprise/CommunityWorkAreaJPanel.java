@@ -5,14 +5,14 @@
  */
 package ui.Enterprise;
 
-
 import Business.Organizations.MulticulturalOrganization;
 import Business.Organizations.Organization;
-import Business.Organizations.UniversityOrganization;
+import Business.Organizations.RealtorOrganization;
+import Business.Roles.CommunityCulturalAidRole;
 import Business.SendEmail.SendEmail;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.AdvisingRequest;
 import Business.WorkQueue.CommunityRequest;
+import Business.WorkQueue.HousingRequest;
 import Business.WorkQueue.WorkRequest;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,20 +29,18 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Organization organization;
     private SendEmail sendEmail;
+
     /**
-     * Creates new form CommunityJPanel
+     * Creates new form CommunityWorkAreaJPanel
      */
     public CommunityWorkAreaJPanel() {
         initComponents();
-        
-    }
-
-    public CommunityWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization) {
         this.userAccount = userAccount;
         this.userProcessContainer = userProcessContainer;
         this.organization = organization;
-        uniEmpWelcomeTxt.setText("Welcome " + userAccount.getEmployee().getName() + " !");
-        populateCommunityTable();
+        uniEmpWelcomeTxt.setText("Welcome " + userAccount.getEmployee().getName() + "!");
+        populateTable();
+        displayEmployeesInCombo();
     }
 
     /**
@@ -54,76 +52,96 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel4 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel10 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        communityTbl = new javax.swing.JTable();
-        jLabel52 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel8 = new javax.swing.JPanel();
         comSearchBarTxt = new javax.swing.JTextField();
-        clearComSearchBtn = new javax.swing.JButton();
-        viewComBtn = new javax.swing.JButton();
-        deleteComBtn = new javax.swing.JButton();
-        comSearchBtn = new javax.swing.JButton();
+        jLabel75 = new javax.swing.JLabel();
+        AcceptRequestCM = new javax.swing.JButton();
+        declineRequestCM = new javax.swing.JButton();
         lblPL = new javax.swing.JLabel();
-        lblComment = new javax.swing.JLabel();
-        txtComment = new javax.swing.JTextField();
-        updateComBtn = new javax.swing.JButton();
-        lblIT = new javax.swing.JLabel();
+        lblDL = new javax.swing.JLabel();
+        involveTxt = new javax.swing.JTextField();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        communityEmployeeTbl = new javax.swing.JTable();
+        commentTxt = new javax.swing.JTextField();
         cbPL = new javax.swing.JComboBox<>();
-        cbIT = new javax.swing.JComboBox<>();
+        updateBtn = new javax.swing.JButton();
+        comSearchBtn = new javax.swing.JButton();
+        clearComSearchBtn = new javax.swing.JButton();
+        btnAssign = new javax.swing.JButton();
+        lblAssignEmployee = new javax.swing.JLabel();
+        cbAssignEmployee = new javax.swing.JComboBox<>();
+        btnViewCM = new javax.swing.JButton();
         uniEmpWelcomeTxt = new javax.swing.JLabel();
+        lblDL1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
 
-        jTabbedPane1.setBackground(new java.awt.Color(224, 237, 242));
-        jTabbedPane1.setMinimumSize(new java.awt.Dimension(1070, 850));
-        jTabbedPane1.setPreferredSize(new java.awt.Dimension(1070, 850));
+        setMinimumSize(new java.awt.Dimension(1050, 850));
+        setPreferredSize(new java.awt.Dimension(1050, 850));
 
-        jPanel10.setBackground(new java.awt.Color(224, 237, 242));
+        jTabbedPane2.setBackground(new java.awt.Color(224, 237, 242));
+        jTabbedPane2.setMinimumSize(new java.awt.Dimension(1070, 850));
+        jTabbedPane2.setPreferredSize(new java.awt.Dimension(1070, 850));
 
-        communityTbl.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel8.setBackground(new java.awt.Color(224, 237, 242));
+        jPanel8.setPreferredSize(new java.awt.Dimension(1070, 870));
+
+        jLabel75.setText("Search Bar:");
+
+        AcceptRequestCM.setText("Accept Request");
+        AcceptRequestCM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcceptRequestCMActionPerformed(evt);
+            }
+        });
+
+        declineRequestCM.setText("Decline Request");
+        declineRequestCM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                declineRequestCMActionPerformed(evt);
+            }
+        });
+
+        lblPL.setText("Priority Level:");
+
+        lblDL.setText("Comments");
+
+        involveTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                involveTxtActionPerformed(evt);
+            }
+        });
+
+        communityEmployeeTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Priority Level", "Request Date", "Status", "Student Name", "Involvement Type:", "Comments:", "Assisgned Employee", "Completed Date"
+                "Priority Level", "Request Date", "Status", "Student Name", "Involvement Type", "Comments", "Assigned Employee", "Completed Date"
             }
         ));
-        jScrollPane7.setViewportView(communityTbl);
+        jScrollPane9.setViewportView(communityEmployeeTbl);
 
-        jScrollPane5.setViewportView(jScrollPane7);
-
-        jPanel10.add(jScrollPane5);
-
-        jLabel52.setText("Search Bar:");
-        jPanel10.add(jLabel52);
-        jPanel10.add(comSearchBarTxt);
-
-        clearComSearchBtn.setText("Clear Search");
-        clearComSearchBtn.addActionListener(new java.awt.event.ActionListener() {
+        commentTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearComSearchBtnActionPerformed(evt);
+                commentTxtActionPerformed(evt);
             }
         });
-        jPanel10.add(clearComSearchBtn);
 
-        viewComBtn.setText("Accept Request");
-        viewComBtn.addActionListener(new java.awt.event.ActionListener() {
+        cbPL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "P1", "P2", "P3", "P4" }));
+        cbPL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewComBtnActionPerformed(evt);
+                cbPLActionPerformed(evt);
             }
         });
-        jPanel10.add(viewComBtn);
 
-        deleteComBtn.setText("Decline Request");
-        deleteComBtn.addActionListener(new java.awt.event.ActionListener() {
+        updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteComBtnActionPerformed(evt);
+                updateBtnActionPerformed(evt);
             }
         });
-        jPanel10.add(deleteComBtn);
 
         comSearchBtn.setText("Search");
         comSearchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -131,234 +149,424 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
                 comSearchBtnActionPerformed(evt);
             }
         });
-        jPanel10.add(comSearchBtn);
 
-        lblPL.setText("Priority Level:");
-        jPanel10.add(lblPL);
-
-        lblComment.setText("Comments:");
-        jPanel10.add(lblComment);
-
-        txtComment.addActionListener(new java.awt.event.ActionListener() {
+        clearComSearchBtn.setText("Clear Search");
+        clearComSearchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCommentActionPerformed(evt);
+                clearComSearchBtnActionPerformed(evt);
             }
         });
-        jPanel10.add(txtComment);
 
-        updateComBtn.setText("Update");
-        updateComBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnAssign.setText("Assign");
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateComBtnActionPerformed(evt);
+                btnAssignActionPerformed(evt);
             }
         });
-        jPanel10.add(updateComBtn);
 
-        lblIT.setText("Involvement Type:");
-        jPanel10.add(lblIT);
+        lblAssignEmployee.setText("Assign Employee");
 
-        cbPL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Critical", "High", "Medium", "Low" }));
-        jPanel10.add(cbPL);
+        btnViewCM.setText("View");
+        btnViewCM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewCMActionPerformed(evt);
+            }
+        });
 
-        cbIT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Spiritual/Cultural/Religious", "NGO", " " }));
-        jPanel10.add(cbIT);
+        uniEmpWelcomeTxt.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
-        uniEmpWelcomeTxt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        uniEmpWelcomeTxt.setForeground(new java.awt.Color(255, 255, 255));
-        uniEmpWelcomeTxt.setText("WELCOME");
-        jPanel10.add(uniEmpWelcomeTxt);
+        lblDL1.setText("Involvement Type:");
 
-        jTabbedPane1.addTab("View Community Request", jPanel10);
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Community Work Area");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1054, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(AcceptRequestCM)
+                                .addGap(18, 18, 18)
+                                .addComponent(declineRequestCM)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnViewCM, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel8Layout.createSequentialGroup()
+                                    .addComponent(jLabel75)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(comSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(comSearchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(clearComSearchBtn))
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 872, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(lblAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(updateBtn)
+                                .addGroup(jPanel8Layout.createSequentialGroup()
+                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblDL)
+                                        .addComponent(lblPL)
+                                        .addComponent(lblDL1))
+                                    .addGap(41, 41, 41)
+                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(commentTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(involveTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(uniEmpWelcomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel75)
+                    .addComponent(comSearchBarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comSearchBtn)
+                    .addComponent(clearComSearchBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AcceptRequestCM)
+                    .addComponent(declineRequestCM)
+                    .addComponent(btnViewCM))
+                .addGap(71, 71, 71)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAssignEmployee)
+                    .addComponent(cbAssignEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAssign))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbPL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPL))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(involveTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDL1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(commentTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDL))
+                .addGap(18, 18, 18)
+                .addComponent(updateBtn)
+                .addGap(69, 69, 69))
+        );
+
+        jTabbedPane2.addTab("View Community Request", jPanel8);
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Community Work Area Panel");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1047, Short.MAX_VALUE))
+                .addGap(0, 35, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 751, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1062, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 774, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updateComBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateComBtnActionPerformed
-        int selectedRowIndex = communityTbl.getSelectedRow();
+    private void AcceptRequestCMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptRequestCMActionPerformed
+        int selectedRowIndex = communityEmployeeTbl.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row.");
+            return;
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Canceled")) {
+            JOptionPane.showMessageDialog(this, "Request was canceled, please make a new selection.");
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Completed")) {
+            JOptionPane.showMessageDialog(this, "Request has already been completed.");
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Accepted")) {
+            JOptionPane.showMessageDialog(this, "Request has already been accepted, please make a new selection.");
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Assigned")) {
+            JOptionPane.showMessageDialog(this, "Request has already been assigned.");
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("In Progress")) {
+            JOptionPane.showMessageDialog(this, "Request is already in progress.");
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Submitted")) {
+
+            CommunityRequest communityRequest = (CommunityRequest) ((MulticulturalOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
+            communityRequest.setStatus("Accepted");
+
+            JOptionPane.showMessageDialog(this, "The request has been successfully accepted.");
+
+        }
+        populateTable();
+    }//GEN-LAST:event_AcceptRequestCMActionPerformed
+
+    private void declineRequestCMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineRequestCMActionPerformed
+        int selectedRowIndex = communityEmployeeTbl.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row.");
+            return;
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Canceled")) {
+            JOptionPane.showMessageDialog(this, "Request was already canceled, please make a new selection.");
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Completed")) {
+            JOptionPane.showMessageDialog(this, "Request was already completed, can no longer be canceled.");
+        }
+
+        else if(selectedRowIndex >0){
+            int dialogInput = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(this, "Are you sure you would like to decline the request?", "Decline Request", dialogInput);
+            if (dialogResult == 0) {
+
+                CommunityRequest communityRequest = (CommunityRequest) ((MulticulturalOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
+                communityRequest.setStatus("Canceled");
+                JOptionPane.showMessageDialog(this, "The request has been declined and marked as canceled.");
+
+            }
+            else{
+
+            }
+        }
+        populateTable();
+    }//GEN-LAST:event_declineRequestCMActionPerformed
+
+    private void involveTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_involveTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_involveTxtActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        int selectedRowIndex = communityEmployeeTbl.getSelectedRow();
 
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to update.");
             return;
         }
 
-        DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
-        
-            cbPL.setSelectedItem(null);
-            cbIT.setSelectedItem(null);
-          DefaultTableModel tableModel = new DefaultTableModel();
-        tableModel.addColumn("Priority Level");
-        tableModel.addColumn("Involvement Type");
-        tableModel.addColumn("Comment");
-        
-        JOptionPane.showMessageDialog(this, "Community has been updated.");
+        else{
+            DefaultTableModel model = (DefaultTableModel) communityEmployeeTbl.getModel();
+            CommunityRequest communityRequest = (CommunityRequest) model.getValueAt(selectedRowIndex, 0);
 
+            communityRequest.setPriorityLevel(cbPL.getSelectedItem().toString());
+            communityRequest.setInvolvementType(involveTxt.getText());
+            communityRequest.setComments(commentTxt.getText());
+
+            JOptionPane.showMessageDialog(this, "Request has been updated.");
+        }
+
+       
         cbPL.setName("");
-        cbIT.setName("");
-        txtComment.setText("");
+        involveTxt.setText("");
+        commentTxt.setText("");
 
-        populateCommunityTable();
-    }//GEN-LAST:event_updateComBtnActionPerformed
-
-    private void txtCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCommentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCommentActionPerformed
+        populateTable();
+    }//GEN-LAST:event_updateBtnActionPerformed
 
     private void comSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comSearchBtnActionPerformed
         String s = comSearchBarTxt.getText();
-        newCommunityEmpFilter(s);
+        newComFilter(s);
     }//GEN-LAST:event_comSearchBtnActionPerformed
-
-    private void deleteComBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteComBtnActionPerformed
-        int selectedRowIndex = communityTbl.getSelectedRow();
-
-        if (selectedRowIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to delete.");
-            return;
-        }
-        
-       // DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
-        else if (communityTbl.getValueAt(selectedRowIndex, 0) != null) {
-
-        JOptionPane.showMessageDialog(this, "Selection has been Declined.");
-        }
-        populateCommunityTable();
-    }//GEN-LAST:event_deleteComBtnActionPerformed
-
-    private void viewComBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewComBtnActionPerformed
-        int selectedRow = communityTbl.getSelectedRow();
-        CommunityRequest communityRequest = (CommunityRequest) userAccount.getWorkQueue().getWorkQueueList().get(selectedRow);
-
-        if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row");
-            return;
-        }
-
-        else if (communityTbl.getValueAt(selectedRow, 6) != null) {
-
-            JOptionPane.showMessageDialog(this, "Request has already been completed.");
-        }
-
-        else if (communityTbl.getValueAt(selectedRow, 2).equals("Assigned")) {
-            JOptionPane.showMessageDialog(this, "Request has already been assigned.");
-        }
-
-        else if (communityTbl.getValueAt(selectedRow, 2).equals("Canceled")) {
-            JOptionPane.showMessageDialog(this, "Request was canceled, please make a new selection.");
-        }
-
-        else if (communityTbl.getValueAt(selectedRow, 2).equals("In Progress")) {
-            communityRequest.setStatus("Assigned");
-        }
-
-        populateCommunityTable();
-    }//GEN-LAST:event_viewComBtnActionPerformed
 
     private void clearComSearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearComSearchBtnActionPerformed
         String s = ("");
-        newCommunityEmpFilter(s);
+        newComFilter(s);
         comSearchBarTxt.setText("");
     }//GEN-LAST:event_clearComSearchBtnActionPerformed
 
-       public void newCommunityEmpFilter(String s) {
-        DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = communityEmployeeTbl.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row.");
+            return;
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Canceled")) {
+            JOptionPane.showMessageDialog(this, "Request was canceled, please make a new selection.");
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Completed")) {
+            JOptionPane.showMessageDialog(this, "Request has already been completed.");
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Submitted")) {
+            JOptionPane.showMessageDialog(this, "Please accept the request before proceeding.");
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("In Progress")) {
+            JOptionPane.showMessageDialog(this, "Request is already in progress.");
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Assigned")) {
+            JOptionPane.showMessageDialog(this, "Request has already been assigned.");
+        }
+
+        else if(communityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Accepted")) {
+
+            CommunityRequest communityRequest = (CommunityRequest) ((MulticulturalOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
+
+            String employeeName = cbAssignEmployee.getSelectedItem().toString();
+            UserAccount userAccount1 = ((MulticulturalOrganization)organization).getUserAccountDirectory().findUserAccount(employeeName);
+            communityRequest.setReceiver(userAccount1);
+            communityRequest.setStatus("Assigned");
+            userAccount1.getWorkQueue().addRequestToQueue(communityRequest);
+
+            JOptionPane.showMessageDialog(this, "The request has been successfully assigned.");
+
+        }
+
+        populateTable();
+    }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void btnViewCMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCMActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = communityEmployeeTbl.getSelectedRow();
+
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to view.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) communityEmployeeTbl.getModel();
+        CommunityRequest communityRequest = (CommunityRequest) model.getValueAt(selectedRowIndex, 0);
+
+        cbPL.setName(String.valueOf(communityRequest.getPriorityLevel()));
+        involveTxt.setText(String.valueOf(communityRequest.getInvolvementType()));
+        commentTxt.setText(String.valueOf(communityRequest.getComments()));
+        if(communityRequest.getReceiver() != null){
+            cbAssignEmployee.setSelectedItem(communityRequest.getReceiver().getEmployee().getName());
+        }else{
+            cbAssignEmployee.setSelectedItem("");
+        }
+        cbPL.setSelectedItem(communityRequest.getPriorityLevel());
+    }//GEN-LAST:event_btnViewCMActionPerformed
+
+    private void cbPLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbPLActionPerformed
+
+    private void commentTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_commentTxtActionPerformed
+
+    public void newComFilter(String s) {
+        DefaultTableModel model = (DefaultTableModel) communityEmployeeTbl.getModel();
         TableRowSorter<DefaultTableModel> t = new TableRowSorter<DefaultTableModel>(model);
-        communityTbl.setRowSorter(t);
+        communityEmployeeTbl.setRowSorter(t);
         t.setRowFilter(RowFilter.regexFilter(s));
 
     }
-
-    public SendEmail getSendEmail() {
-        return sendEmail;
-    }
-
-    public void setSendEmail(SendEmail sendEmail) {
-        this.sendEmail = sendEmail;
-    }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbIT;
-    private javax.swing.JComboBox<String> cbPL;
-    private javax.swing.JButton clearComSearchBtn;
-    private javax.swing.JTextField comSearchBarTxt;
-    private javax.swing.JButton comSearchBtn;
-    private javax.swing.JTable communityTbl;
-    private javax.swing.JButton deleteComBtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel lblComment;
-    private javax.swing.JLabel lblIT;
-    private javax.swing.JLabel lblPL;
-    private javax.swing.JTextField txtComment;
-    private javax.swing.JLabel uniEmpWelcomeTxt;
-    private javax.swing.JButton updateComBtn;
-    private javax.swing.JButton viewComBtn;
-    // End of variables declaration//GEN-END:variables
-
-    private void populateCommunityTable() {
-   DefaultTableModel model = (DefaultTableModel) communityTbl.getModel();
+    
+    private void displayEmployeesInCombo(){
+       
+    for(UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()){
+         if(userAccount.getRole() instanceof CommunityCulturalAidRole) cbAssignEmployee.addItem(userAccount.getEmployee().getName());
+     }
+}
+    
+    
+    private void populateTable() {
+     DefaultTableModel model = (DefaultTableModel) communityEmployeeTbl.getModel();
         model.setRowCount(0);
+           
+        communityEmployeeTbl.setAutoCreateRowSorter(true);
         
-        MulticulturalOrganization communityOrg = (MulticulturalOrganization) organization;
-        
-        for (WorkRequest request : communityOrg.getWorkQueue().getWorkQueueList()) {
-            Object[] row = new Object[7];
+        for (WorkRequest request : ((MulticulturalOrganization) organization).getWorkQueue().getWorkQueueList()) {
+            Object[] row = new Object[8];
             row[0] = ((CommunityRequest) request);
             row[1] = ((CommunityRequest) request).getDateOfRequest();
             row[2] = ((CommunityRequest) request).getStatus();
             row[3] = ((CommunityRequest) request).getSender().getStudent().getName();
             row[4] = ((CommunityRequest) request).getInvolvementType();
             row[5] = ((CommunityRequest) request).getComments();
+            if(request.getStatus().equals("Assigned")){
+                row[6] = ((CommunityRequest) request).getReceiver().getEmployee().getName();
+            }
+            else if(request.getStatus().equals("Completed")){
+                row[6] = ((CommunityRequest) request).getReceiver().getEmployee().getName();
+            }else{
+                row[6] = "";
+            }
             if(request.getStatus().equals("Completed")){
-            row[6] = ((CommunityRequest) request).getDateResolved();
+            row[7] = ((CommunityRequest) request).getDateResolved();
             }
             else{
-            row[6] = ""; 
+            row[7] = "";
             }
             
             model.addRow(row);
     }
     }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AcceptRequestCM;
+    private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnViewCM;
+    private javax.swing.JComboBox<String> cbAssignEmployee;
+    private javax.swing.JComboBox<String> cbPL;
+    private javax.swing.JButton clearComSearchBtn;
+    private javax.swing.JTextField comSearchBarTxt;
+    private javax.swing.JButton comSearchBtn;
+    private javax.swing.JTextField commentTxt;
+    private javax.swing.JTable communityEmployeeTbl;
+    private javax.swing.JButton declineRequestCM;
+    private javax.swing.JTextField involveTxt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JLabel lblAssignEmployee;
+    private javax.swing.JLabel lblDL;
+    private javax.swing.JLabel lblDL1;
+    private javax.swing.JLabel lblPL;
+    private javax.swing.JLabel uniEmpWelcomeTxt;
+    private javax.swing.JButton updateBtn;
+    // End of variables declaration//GEN-END:variables
+
+    
 }

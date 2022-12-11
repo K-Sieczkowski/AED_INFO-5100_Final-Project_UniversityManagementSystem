@@ -42,19 +42,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="278" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblEmployeeType" alignment="0" pref="106" max="32767" attributes="0"/>
-                          <Component id="lblOrganization" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblEmployeeName" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUserName" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="lblOrganization" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                      <Component id="lblEmployeeName" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblUserName" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                       <Component id="lblPassword" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cbEmployeeType" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtEmployeeName" alignment="0" max="32767" attributes="0"/>
-                      <Component id="cbOrganization" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cbOrganization" alignment="0" pref="208" max="32767" attributes="0"/>
                       <Component id="txtUserName" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtPassword" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -94,17 +90,12 @@
                   <Component id="jLabel1" min="-2" pref="63" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblOrganization" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbOrganization" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="lblOrganization" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbOrganization" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblEmployeeType" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbEmployeeType" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblEmployeeName" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtEmployeeName" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -156,13 +147,36 @@
             <Component class="javax.swing.JTable" name="tblManageEmployee">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="4">
+                  <Table columnCount="4" rowCount="4">
                     <Column editable="true" title="Organization" type="java.lang.Object"/>
-                    <Column editable="true" title="Employee Type" type="java.lang.Object"/>
                     <Column editable="true" title="Employee Name" type="java.lang.Object"/>
                     <Column editable="true" title="User Name" type="java.lang.Object"/>
                     <Column editable="true" title="Password" type="java.lang.Object"/>
                   </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -171,11 +185,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="lblEmployeeType">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Employee Type"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblEmployeeName">
           <Properties>
             <Property name="text" type="java.lang.String" value="Employee Name"/>
@@ -204,31 +213,6 @@
                 <StringItem index="6" value="University"/>
                 <StringItem index="7" value=" "/>
                 <StringItem index="8" value=" "/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="cbEmployeeType">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="14">
-                <StringItem index="0" value="Hospital Manager"/>
-                <StringItem index="1" value="Therapist"/>
-                <StringItem index="2" value="Doctor"/>
-                <StringItem index="3" value="Police Department Chief"/>
-                <StringItem index="4" value="Police Officer"/>
-                <StringItem index="5" value="Real Estate Manager"/>
-                <StringItem index="6" value="Real Estate Agent"/>
-                <StringItem index="7" value="Community Cultural Aid"/>
-                <StringItem index="8" value="Community Manager"/>
-                <StringItem index="9" value="University Director"/>
-                <StringItem index="10" value="Academic Counsellor"/>
-                <StringItem index="11" value="Student"/>
-                <StringItem index="12" value="Fireman"/>
-                <StringItem index="13" value="Fire Department Chief"/>
               </StringArray>
             </Property>
           </Properties>

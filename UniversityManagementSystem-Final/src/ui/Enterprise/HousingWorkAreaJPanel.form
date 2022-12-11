@@ -47,8 +47,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                  <Component id="jTabbedPane1" min="-2" pref="708" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Component id="jTabbedPane1" min="-2" pref="722" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -89,174 +88,132 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="1483" max="-2" attributes="0"/>
-                              <Component id="updateEncBtn" min="-2" pref="102" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="AcceptRequestHM" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="lblDL" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="lblMP" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="lblPL" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="lblComments" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="deleteEncBtn" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="txtComments" alignment="0" pref="492" max="32767" attributes="0"/>
-                                                      <Component id="cbPL" alignment="1" min="-2" pref="481" max="-2" attributes="0"/>
-                                                      <Component id="txtMP" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="txtDL1" alignment="0" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="btnMap" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="822" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="encSearchBtn1" min="-2" pref="107" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="encClearBtn" min="-2" pref="107" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="92" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblAssignEmployee" min="-2" pref="146" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cbAssignEmployee" min="-2" pref="491" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnAssign" min="-2" pref="116" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="AcceptRequestHM" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="declineRequestHM" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="btnViewHM" min="-2" pref="129" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel75" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="comSearchBarTxt" min="-2" pref="509" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="comSearchBtn" min="-2" pref="93" max="-2" attributes="0"/>
+                                              <Component id="houSearchBarTxt" min="-2" pref="509" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="clearComSearchBtn" min="-2" max="-2" attributes="0"/>
+                                              <Component id="houSearchBtn" max="32767" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="clearHouSearchBtn" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jScrollPane9" min="-2" pref="872" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane9" alignment="1" min="-2" pref="872" max="-2" attributes="0"/>
+                                          <Component id="houEmpWelcomeTxt" alignment="0" min="-2" pref="490" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="714" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel75" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="comSearchBarTxt" min="-2" pref="509" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="comSearchBtn" min="-2" pref="93" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="clearComSearchBtn" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="updateBtn" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblDL" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblMP" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblPL" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblComments" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="txtComments" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtMP" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtDL1" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="cbPL" alignment="1" min="-2" pref="492" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
-                                  <Component id="jScrollPane9" min="-2" pref="872" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblAssignEmployee" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                                      <Component id="cbAssignEmployee" min="-2" pref="205" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                      <Component id="btnAssign" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="AcceptRequestHM" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Component id="deleteEncBtn" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="btnMap" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="714" max="-2" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                          <Component id="uniEmpWelcomeTxt" min="-2" pref="409" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="413" max="-2" attributes="0"/>
-                          <Component id="updateBtn" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                          <Component id="uniEmpWelcomeTxt" min="-2" pref="409" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="413" max="-2" attributes="0"/>
-                          <Component id="updateBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          <Component id="uniEmpWelcomeTxt" min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="houEmpWelcomeTxt" min="-2" pref="43" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel75" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="comSearchBarTxt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="encSearchBtn1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="encClearBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="comSearchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="clearComSearchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="houSearchBarTxt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="houSearchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clearHouSearchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane9" min="-2" pref="158" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="AcceptRequestHM" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="declineRequestHM" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnViewHM" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblAssignEmployee" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbAssignEmployee" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAssign" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="cbPL" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPL" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtMP" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblMP" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtDL1" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="lblDL" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnMap" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblComments" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtComments" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="updateBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                          <Component id="updateEncBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="62" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="comSearchBarTxt">
+                <Component class="javax.swing.JTextField" name="houSearchBarTxt">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel75">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Search Bar:"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="encSearchBtn1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Search"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="encSearchBtn1ActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="encClearBtn">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Clear Search"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="encClearBtnActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="AcceptRequestHM">
                   <Properties>
@@ -266,12 +223,12 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AcceptRequestHMActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="deleteEncBtn">
+                <Component class="javax.swing.JButton" name="declineRequestHM">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Decline Request"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteEncBtnActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="declineRequestHMActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblPL">
@@ -297,14 +254,6 @@
                 <Component class="javax.swing.JTextField" name="txtMP">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMPActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="updateEncBtn">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Update"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateEncBtnActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane9">
@@ -391,10 +340,10 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
-                        <StringItem index="0" value="Critical"/>
-                        <StringItem index="1" value="High"/>
-                        <StringItem index="2" value="Medium"/>
-                        <StringItem index="3" value="Low"/>
+                        <StringItem index="0" value="P1"/>
+                        <StringItem index="1" value="P2"/>
+                        <StringItem index="2" value="P3"/>
+                        <StringItem index="3" value="P4"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -410,42 +359,72 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JLabel" name="uniEmpWelcomeTxt">
+                <Component class="javax.swing.JLabel" name="houEmpWelcomeTxt">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="18" style="1"/>
+                      <Font name="Segoe UI" size="24" style="1"/>
                     </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="WELCOME"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="comSearchBtn">
+                <Component class="javax.swing.JButton" name="houSearchBtn">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Search"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comSearchBtnActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="houSearchBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="clearComSearchBtn">
+                <Component class="javax.swing.JButton" name="clearHouSearchBtn">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clear Search"/>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearComSearchBtnActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearHouSearchBtnActionPerformed"/>
                   </Events>
                 </Component>
-                              <Component id="AcceptRequestHM" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="deleteEncBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cbPL" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblPL" alignment="3" min="-2" max="-2" attributes="0"/>
+                <Component class="javax.swing.JButton" name="btnMap">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Lookup MAP"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMapActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtDL1">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDL1ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnAssign">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Assign"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAssignActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblAssignEmployee">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Assign Employee"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cbAssignEmployee">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnViewHM">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="View"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewHMActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -454,7 +433,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="18" style="1"/>
+              <Font name="Lucida Grande" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Housing Work Area"/>
