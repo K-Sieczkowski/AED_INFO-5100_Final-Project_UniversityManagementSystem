@@ -11,7 +11,7 @@ import Business.Organizations.Organization;
 import Business.Organizations.HospitalOrganization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import ui.Enterprise.CrisisPoliceWorkAreaJPanel;
+import ui.Enterprise.CrisisPoliceWorkAreaJPanel1;
 
 /**
  *
@@ -21,7 +21,7 @@ public class HospitalManagerRole extends Role {
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new CrisisPoliceWorkAreaJPanel(userProcessContainer, account,(HospitalOrganization)organization);
+        return new CrisisPoliceWorkAreaJPanel1(userProcessContainer, account,(HospitalOrganization)organization);
     }
     
 }

@@ -32,6 +32,18 @@ public class EmployeeDirectory {
     public void setEmployeeList(ArrayList<Employee> employeeList) {
         this.employeeList = employeeList;
     }
-    
-    
+    public Employee findEmployee(String name) {
+
+
+
+       for (Employee e : employeeList) {
+
+
+
+           if (e.isMatch(name)) {
+                return e;
+            }
+        }
+            return null; //not found after going through the whole list
+         }
 }

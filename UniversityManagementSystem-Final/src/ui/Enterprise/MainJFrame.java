@@ -230,7 +230,7 @@ public class MainJFrame extends javax.swing.JFrame {
         else if(name.equals("cri") && pwd.equals("cri123"))
         {
             JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            CrisisPoliceWorkAreaJPanel crisisJPanel = new CrisisPoliceWorkAreaJPanel();
+            CrisisPoliceWorkAreaJPanel1 crisisJPanel = new CrisisPoliceWorkAreaJPanel1();
              jPanel2.add("crisisJPanel", crisisJPanel);
 
              CardLayout layout=(CardLayout)jPanel2.getLayout();
@@ -248,7 +248,7 @@ public class MainJFrame extends javax.swing.JFrame {
         else if(name.equals("uni") && pwd.equals("uni123"))
         {
             JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            UniversityWorkAreaJPanel universityJPanel = new UniversityWorkAreaJPanel();
+            UniversityWorkAreaJPanel1 universityJPanel = new UniversityWorkAreaJPanel1();
              jPanel2.add("universityJPanel", universityJPanel);
 
              CardLayout layout=(CardLayout)jPanel2.getLayout();
@@ -257,7 +257,7 @@ public class MainJFrame extends javax.swing.JFrame {
         else if(name.equals("wel") && pwd.equals("wel123"))
         {
             JOptionPane.showMessageDialog(null,"Welcome " + name, "Successful Login" , JOptionPane.PLAIN_MESSAGE);
-            TherapistWorkAreaJPanel wellbeingJPanel = new TherapistWorkAreaJPanel();
+            TherapistWorkAreaJPanel1 wellbeingJPanel = new TherapistWorkAreaJPanel1();
              jPanel2.add("wellbeingJPanel", wellbeingJPanel);
 
              CardLayout layout=(CardLayout)jPanel2.getLayout();

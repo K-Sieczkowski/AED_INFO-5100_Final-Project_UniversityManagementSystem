@@ -122,12 +122,10 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
         lblOrganization = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblManageEmployee = new javax.swing.JTable();
-        lblEmployeeType = new javax.swing.JLabel();
         lblEmployeeName = new javax.swing.JLabel();
         lblUserName = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         cbOrganization = new javax.swing.JComboBox<>();
-        cbEmployeeType = new javax.swing.JComboBox<>();
         txtEmployeeName = new javax.swing.JTextField();
         txtUserName = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
@@ -149,18 +147,16 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
 
         tblManageEmployee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Organization", "Employee Type", "Employee Name", "User Name", "Password"
+                "Organization", "Employee Name", "User Name", "Password"
             }
         ));
         jScrollPane1.setViewportView(tblManageEmployee);
-
-        lblEmployeeType.setText("Employee Type");
 
         lblEmployeeName.setText("Employee Name");
 
@@ -169,8 +165,6 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
         lblPassword.setText("Password");
 
         cbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fire Department", "Hospital", "Multicultural", "Police", "Realtor", "Therapist", "University", " ", " " }));
-
-        cbEmployeeType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hospital Manager", "Therapist", "Doctor", "Police Department Chief", "Police Officer", "Real Estate Manager", "Real Estate Agent", "Community Cultural Aid", "Community Manager", "University Director", "Academic Counsellor", "Student", "Fireman", "Fire Department Chief" }));
 
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,17 +197,14 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(278, 278, 278)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblEmployeeType, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                        .addComponent(lblOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblEmployeeName)
-                        .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmployeeName)
+                    .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbEmployeeType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtEmployeeName)
-                    .addComponent(cbOrganization, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbOrganization, 0, 208, Short.MAX_VALUE)
                     .addComponent(txtUserName)
                     .addComponent(txtPassword))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -243,15 +234,11 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(jButton2)
-                .addGap(47, 47, 47)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(85, 85, 85)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblOrganization)
                     .addComponent(cbOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmployeeType)
-                    .addComponent(cbEmployeeType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblEmployeeName)
                     .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -521,7 +508,6 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbEmployeeType;
     private javax.swing.JComboBox<String> cbOrganization;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -530,7 +516,6 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEmployeeName;
-    private javax.swing.JLabel lblEmployeeType;
     private javax.swing.JLabel lblOrganization;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUserName;
@@ -541,22 +526,23 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-      model.setRowCount(0);
-        for (Organization organization : this.enterprise.getOrganizationDirectory().getOrganizationList()) {
-            System.out.println(organization + "org");
-            for (UserAccount useraccount : organization.getUserAccountDirectory().getUserAccountList()) {
-//                System.out.println(useraccount + "user");
-//                System.out.println(useraccount.getEmployee().getOrg() + "org");
-//                System.out.println(useraccount.getEmployee().getRole() + "role");
-//                System.out.println(useraccount.getEmployee().getName() + "name");
-//                System.out.println(useraccount.getUsername() + "username");
-//                System.out.println(useraccount.getPassword() + "password");
-//                
-                Object[] objs = {useraccount.getEmployee().getName(), useraccount.getEmployee().getName(),
-                useraccount.getEmployee().getName(),useraccount.getUsername(),useraccount.getPassword()};
+          DefaultTableModel model = (DefaultTableModel) tblManageEmployee.getModel();
+            model.setRowCount(0);
+            
+            
+            for(Organization organization : this.enterprise.getOrganizationDirectory().getOrganizationList()){
+                for(UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()){
+                 if(userAccount.getEmployee() != null) {  
+                //for(UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()){
+                Object[] row = new Object[5];
+                row[0] = organization.getName();
+                row[1] = userAccount.getEmployee().getName();
+                row[2] = userAccount.getUsername();
+                row[3] = userAccount.getPassword();
                         
-                model.addRow(objs);
+                        }    
+                        }         
             }
-        }
+        
     }
 }

@@ -11,7 +11,7 @@ import Business.Organizations.UniversityOrganization;
 import Business.Organizations.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import ui.Enterprise.UniversityWorkAreaJPanel;
+import ui.Enterprise.UniversityWorkAreaJPanel1;
 
 /**
  *
@@ -22,6 +22,6 @@ public class UniversityDirectorRole extends Role {
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new UniversityWorkAreaJPanel(userProcessContainer, account,(UniversityOrganization)organization);
+        return new UniversityWorkAreaJPanel1(userProcessContainer, account,(UniversityOrganization)organization);
     }
 }

@@ -88,8 +88,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="View University Request">
-                    <Property name="tabTitle" type="java.lang.String" value="View University Request"/>
+                  <JTabbedPaneConstraints tabName="View Fire Work Request">
+                    <Property name="tabTitle" type="java.lang.String" value="View Fire Work Request"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -107,21 +107,21 @@
                                   <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="AcceptRequestCM" min="-2" max="-2" attributes="0"/>
+                                          <Component id="AcceptRequestCFM" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="declineRequestCM" min="-2" max="-2" attributes="0"/>
+                                          <Component id="declineRequestCFM" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btnViewUM" min="-2" pref="136" max="-2" attributes="0"/>
+                                          <Component id="btnViewCFM" min="-2" pref="136" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="lblSearch" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="uniSearchBarTxt" min="-2" pref="509" max="-2" attributes="0"/>
+                                              <Component id="criFireSearchBarTxt" min="-2" pref="509" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="uniSearchBtn" max="32767" attributes="0"/>
+                                              <Component id="criFireSearchBtn" max="32767" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="clearUniSearchBtn" min="-2" max="-2" attributes="0"/>
+                                              <Component id="clearCriSearchBtn" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="jScrollPane9" min="-2" pref="872" max="-2" attributes="0"/>
                                       </Group>
@@ -132,21 +132,28 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="btnAssign" min="-2" pref="116" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="updateBtn" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lblDL" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblPL" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblDL1" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="lblDL" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblPL" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblEmergencyType" max="32767" attributes="0"/>
+                                              <Component id="lblLocation" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
                                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                                   <Component id="commentTxt" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="advisingTxt" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="emergencyTxt" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="cbPL" alignment="1" min="-2" pref="492" max="-2" attributes="0"/>
                                               </Group>
+                                              <Component id="txtDL1" min="-2" pref="491" max="-2" attributes="0"/>
                                           </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btnMap" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
+                                          <Component id="updateBtn" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -160,20 +167,20 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="uniEmpWelcomeTxt" min="-2" pref="41" max="-2" attributes="0"/>
-                          <EmptySpace pref="49" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="uniSearchBarTxt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="uniSearchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="clearUniSearchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="criFireSearchBarTxt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="criFireSearchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="clearCriSearchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane9" min="-2" pref="158" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="AcceptRequestCM" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="declineRequestCM" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnViewUM" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="AcceptRequestCFM" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="declineRequestCFM" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnViewCFM" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -188,48 +195,54 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="advisingTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblDL1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="emergencyTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblEmergencyType" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="commentTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblDL" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblLocation" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnMap" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDL1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblDL" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="commentTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                           <Component id="updateBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="uniSearchBarTxt">
+                <Component class="javax.swing.JTextField" name="criFireSearchBarTxt">
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblSearch">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Search Bar:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="AcceptRequestCM">
+                <Component class="javax.swing.JButton" name="AcceptRequestCFM">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Accept Request"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AcceptRequestCMActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AcceptRequestCFMActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="declineRequestCM">
+                <Component class="javax.swing.JButton" name="declineRequestCFM">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Decline Request"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="declineRequestCMActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="declineRequestCFMActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblPL">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Priority Level"/>
+                    <Property name="text" type="java.lang.String" value="Priority Level:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblDL">
@@ -237,16 +250,16 @@
                     <Property name="text" type="java.lang.String" value="Comments"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="advisingTxt">
+                <Component class="javax.swing.JTextField" name="emergencyTxt">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="advisingTxtActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emergencyTxtActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane9">
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="universityEmployeeTbl">
+                    <Component class="javax.swing.JTable" name="crisisFireEmployeeTbl">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="8" rowCount="0">
@@ -254,7 +267,7 @@
                             <Column editable="true" title="Request Date" type="java.lang.Object"/>
                             <Column editable="true" title="Status" type="java.lang.Object"/>
                             <Column editable="true" title="Student Name" type="java.lang.Object"/>
-                            <Column editable="true" title="Advising Type" type="java.lang.Object"/>
+                            <Column editable="true" title="Emergency Type" type="java.lang.Object"/>
                             <Column editable="true" title="Comments" type="java.lang.Object"/>
                             <Column editable="true" title="Assigned Employee" type="java.lang.Object"/>
                             <Column editable="true" title="Completed Date" type="java.lang.Object"/>
@@ -342,20 +355,20 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="uniSearchBtn">
+                <Component class="javax.swing.JButton" name="criFireSearchBtn">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Search"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uniSearchBtnActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="criFireSearchBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="clearUniSearchBtn">
+                <Component class="javax.swing.JButton" name="clearCriSearchBtn">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Clear Search"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearUniSearchBtnActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearCriSearchBtnActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAssign">
@@ -381,12 +394,12 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnViewUM">
+                <Component class="javax.swing.JButton" name="btnViewCFM">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="View"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewUMActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewCFMActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="uniEmpWelcomeTxt">
@@ -396,10 +409,28 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblDL1">
+                <Component class="javax.swing.JLabel" name="lblEmergencyType">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Advising Type"/>
+                    <Property name="text" type="java.lang.String" value="Emergency Type:"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblLocation">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Location"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnMap">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Lookup MAP"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMapActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtDL1">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDL1ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -411,7 +442,7 @@
               <Font name="Lucida Grande" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="University Work Area Panel"/>
+            <Property name="text" type="java.lang.String" value="Crisis Fire Work Area Panel"/>
           </Properties>
         </Component>
       </SubComponents>

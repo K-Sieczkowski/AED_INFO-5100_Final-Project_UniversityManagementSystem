@@ -65,6 +65,19 @@ public class UserAccountDirectory {
     public void setUserAccountList(ArrayList<UserAccount> userAccountList) {
         this.userAccountList = userAccountList;
     }
-    
+    public UserAccount findUserAccount(String employee) {
+
+
+
+       for (UserAccount ua : userAccountList) {
+
+
+
+           if (ua.isMatch(employee)) {
+                return ua;
+            }
+        }
+            return null; //not found after going through the whole list
+         }
     
 }

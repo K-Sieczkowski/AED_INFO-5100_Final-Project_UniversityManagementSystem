@@ -41,6 +41,11 @@ public class Employee {
     public String toString() {
         return name;
     }
-    
+     public boolean isMatch(String name) {
+        if (getName().equals(name)) {
+            return true;
+        }
+        return false;
+    }
     
 }
