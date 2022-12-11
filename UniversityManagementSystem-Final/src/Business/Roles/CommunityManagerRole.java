@@ -10,6 +10,7 @@ import Business.Network.Network;
 import Business.Organizations.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import ui.Enterprise.CommunityWorkAreaJPanel;
 
 /**
  *

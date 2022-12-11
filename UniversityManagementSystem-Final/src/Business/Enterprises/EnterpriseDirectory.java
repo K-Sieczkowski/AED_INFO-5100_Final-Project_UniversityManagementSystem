@@ -25,32 +25,36 @@ public class EnterpriseDirectory {
     public void setEnterpriseList(ArrayList<Enterprise> enterpriseList) {
         this.enterpriseList = enterpriseList;
     }
-    public Enterprise createEnterprise(String name, Enterprise.EnterpriseType type){
-        
+    
+    
+    public Enterprise createEnterprise(String name, Enterprise.EnterpriseType enType){
         Enterprise enterprise = null;
-        if(type == Enterprise.EnterpriseType.Students){
-            
-            enterprise = new StudentAdvisingEnterprise(name);
-            enterpriseList.add(enterprise);
-        }
-         else if (type == Enterprise.EnterpriseType.HousingManagement){
-            
-            enterprise = new HousingManagementEnterprise(name);
+        
+        if(enType == Enterprise.EnterpriseType.CommunityInvolvementManagement){
+            enterprise = new CommunityInvolvementEnterprise(name);
             enterpriseList.add(enterprise);
         }
         
-        else if (type == Enterprise.EnterpriseType.CrisisManagement){
-            
+        else if(enType == Enterprise.EnterpriseType.CrisisManagement){
             enterprise = new CrisisManagementEnterprise(name);
             enterpriseList.add(enterprise);
         }
         
-        else if (type == Enterprise.EnterpriseType.WellbeingSupport){
-                
-            enterprise=new WellbeingSupportEnterprise(name);
+        else if(enType == Enterprise.EnterpriseType.HousingManagement){
+            enterprise = new HousingManagementEnterprise(name);
             enterpriseList.add(enterprise);
-           
         }
+        
+        else if(enType == Enterprise.EnterpriseType.StudentAdvising){
+            enterprise = new StudentAdvisingEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        
+        else if(enType == Enterprise.EnterpriseType.WellbeingSupport){
+            enterprise = new WellbeingSupportEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        
         return enterprise;
     }
     

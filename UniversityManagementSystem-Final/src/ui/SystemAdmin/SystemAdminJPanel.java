@@ -22,14 +22,17 @@ public class SystemAdminJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     UserAccount userAccount;
+    Network network;
+    
     /**
      * Creates new form SystemAdminJPanel
      */
-    public SystemAdminJPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount userAccount) {
+    public SystemAdminJPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount userAccount, Network network) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
         this.userAccount = userAccount;
+        this.network = network;
     }
 
     /**
@@ -54,7 +57,7 @@ public class SystemAdminJPanel extends javax.swing.JPanel {
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("System Administrator");
 
-        jButton1.setBackground(new java.awt.Color(204, 255, 204));
+        jButton1.setBackground(new java.awt.Color(242, 242, 242));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/network.png"))); // NOI18N
         jButton1.setText("Manage Network");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

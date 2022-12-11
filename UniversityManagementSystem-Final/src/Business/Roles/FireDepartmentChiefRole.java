@@ -10,6 +10,7 @@ import Business.Network.Network;
 import Business.Organizations.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import ui.Enterprise.CrisisFireWorkAreaJPanel;
 
 /**
  *
@@ -19,6 +20,6 @@ public class FireDepartmentChiefRole extends Role {
    
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
-        return new CrisisFireWorkAreaJPanel1(userProcessContainer, account, organization);
+        return new CrisisFireWorkAreaJPanel(userProcessContainer, account, organization);
     }
 }

@@ -5,12 +5,7 @@
  */
 package ui.EnterpriseAdmin;
 
-import Business.Employees.Employee;
-import Business.Enterprises.Enterprise;
-import Business.Organizations.OrganizationDirectory;
-import Organization.Organization;
-import java.awt.CardLayout;
-import javax.swing.JPanel;
+
 import javax.swing.table.DefaultTableModel;
 import Business.Enterprises.CommunityInvolvementEnterprise;
 import Business.Enterprises.CrisisManagementEnterprise;
@@ -18,10 +13,9 @@ import Business.Enterprises.Enterprise;
 import Business.Enterprises.HousingManagementEnterprise;
 import Business.Enterprises.StudentAdvisingEnterprise;
 import Business.Enterprises.WellbeingSupportEnterprise;
+import Business.Organizations.Organization;
 import Business.Organizations.Organization.orgType;
 import Business.Organizations.OrganizationDirectory;
-import Business.UserAccount.UserAccount;
-import Business.UserAccount.UserAccountDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -321,3 +315,6 @@ private void populateOrganizationComboBox(){
            break;
            
     }
+       }
+}
+}

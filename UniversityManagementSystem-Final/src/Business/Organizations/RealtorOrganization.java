@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class RealtorOrganization extends Organization{
     
     public RealtorOrganization(){
-        super(Organization.orgType.RelatorOrg.getValue());
+        super(Organization.orgType.RealtorOrg.getValue());
     }
     
     @Override

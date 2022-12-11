@@ -25,7 +25,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.enterprise = enterprise;
         this.userProcessContainer = userProcessContainer;
-        uniEmpWelcomeTxt.setText(enterprise.getName());
+        //uniEmpWelcomeTxt.setText(enterprise.getName());
     }
 
     /**
@@ -136,7 +136,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrganizationActionPerformed
         // TODO add your handling code here:
-        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise, enterprise.getOrganizationDirectory());
+        AdminManageOrganizationJPanel manageOrganizationJPanel = new AdminManageOrganizationJPanel(userProcessContainer, enterprise, enterprise.getOrgDirectory());
         userProcessContainer.add("manageOrganization", manageOrganizationJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -145,7 +145,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private void btnManageEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEmployeeActionPerformed
         // TODO add your handling code here:
           int checkOrg=0;
-        for(Organization organization: enterprise.getOrganizationDirectory().getOrganizationList())
+        for(Organization organization: enterprise.getOrgDirectory().getOrgList())
         {
             checkOrg++;
             

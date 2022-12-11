@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.SystemAdminTesting;
+package ui.SystemAdmin;
 
 import Business.EcoSystem;
 import Business.Employees.Employee;
@@ -55,32 +55,32 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     public void showPieChart(){
         
         //create dataset
-      DefaultPieDataset barDataset = new DefaultPieDataset( );
-      barDataset.setValue( "IPhone 5s" , new Double( 20 ) );  
-      barDataset.setValue( "SamSung Grand" , new Double( 20 ) );   
-      barDataset.setValue( "MotoG" , new Double( 40 ) );    
-      barDataset.setValue( "Nokia Lumia" , new Double( 10 ) );  
-      
-      //create chart
-       JFreeChart piechart = ChartFactory.createPieChart("mobile sales",barDataset, false,true,false);//explain
-      
-        PiePlot piePlot =(PiePlot) piechart.getPlot();
-      
-       //changing pie chart blocks colors
-       piePlot.setSectionPaint("IPhone 5s", new Color(255,255,102));
-        piePlot.setSectionPaint("SamSung Grand", new Color(102,255,102));
-        piePlot.setSectionPaint("MotoG", new Color(255,102,153));
-        piePlot.setSectionPaint("Nokia Lumia", new Color(0,204,204));
-      
-       
-        piePlot.setBackgroundPaint(Color.white);
-        
-        //create chartPanel to display chart(graph)
-        ChartPanel barChartPanel = new ChartPanel(piechart);
-        panelBarChart.removeAll();
-        panelBarChart.add(barChartPanel, BorderLayout.CENTER);
-        panelBarChart.validate();
-        
+//      DefaultPieDataset barDataset = new DefaultPieDataset( );
+//      barDataset.setValue( "IPhone 5s" , new Double( 20 ) );  
+//      barDataset.setValue( "SamSung Grand" , new Double( 20 ) );   
+//      barDataset.setValue( "MotoG" , new Double( 40 ) );    
+//      barDataset.setValue( "Nokia Lumia" , new Double( 10 ) );  
+//      
+//      //create chart
+//       JFreeChart piechart = ChartFactory.createPieChart("mobile sales",barDataset, false,true,false);//explain
+//      
+//        PiePlot piePlot =(PiePlot) piechart.getPlot();
+//      
+//       //changing pie chart blocks colors
+//       piePlot.setSectionPaint("IPhone 5s", new Color(255,255,102));
+//        piePlot.setSectionPaint("SamSung Grand", new Color(102,255,102));
+//        piePlot.setSectionPaint("MotoG", new Color(255,102,153));
+//        piePlot.setSectionPaint("Nokia Lumia", new Color(0,204,204));
+//      
+//       
+//        piePlot.setBackgroundPaint(Color.white);
+//        
+//        //create chartPanel to display chart(graph)
+//        ChartPanel barChartPanel = new ChartPanel(piechart);
+//        panelBarChart.removeAll();
+//        panelBarChart.add(barChartPanel, BorderLayout.CENTER);
+//        panelBarChart.validate();
+//        
     
     }
 
@@ -484,23 +484,23 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void btnChartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChartActionPerformed
         // TODO add your handling code here:
-        DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("Doctor", new String(2));
-        dataset.setValue("Student", new String(10));
-        dataset.setValue("Patient", new String(5));
-        dataset.setValue("Police", new String(20));
-        
-        JFreeChart chart = ChartFactory.createPieChart3D("Tickets", dataset, true, true, false);
-        
-        final PiePlot3D plot = (PiePlot3D)chart.getPlot();
-        plot.setStartAngle(270);
-        plot.setForegroundAlpha(0.60f);
-        plot.setInteriorGap(0.02);
-        
-        ChartPanel chartPanel = new ChartPanel(chart);
-        pnChart.removeAll();
-        pnChart.add(chartPanel, BorderLayout.CENTER);
-        pnChart.validate();
+//        DefaultPieDataset dataset = new DefaultPieDataset();
+//        dataset.setValue("Doctor", new String(2));
+//        dataset.setValue("Student", new String(10));
+//        dataset.setValue("Patient", new String(5));
+//        dataset.setValue("Police", new String(20));
+//        
+//        JFreeChart chart = ChartFactory.createPieChart3D("Tickets", dataset, true, true, false);
+//        
+//        final PiePlot3D plot = (PiePlot3D)chart.getPlot();
+//        plot.setStartAngle(270);
+//        plot.setForegroundAlpha(0.60f);
+//        plot.setInteriorGap(0.02);
+//        
+//        ChartPanel chartPanel = new ChartPanel(chart);
+//        pnChart.removeAll();
+//        pnChart.add(chartPanel, BorderLayout.CENTER);
+        //pnChart.validate();
     }//GEN-LAST:event_btnChartActionPerformed
 
     public static boolean validUsername(String name) {
