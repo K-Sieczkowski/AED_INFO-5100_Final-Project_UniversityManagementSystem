@@ -11,6 +11,18 @@ import Organization.Organization;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.Enterprises.CommunityInvolvementEnterprise;
+import Business.Enterprises.CrisisManagementEnterprise;
+import Business.Enterprises.Enterprise;
+import Business.Enterprises.HousingManagementEnterprise;
+import Business.Enterprises.StudentAdvisingEnterprise;
+import Business.Enterprises.WellbeingSupportEnterprise;
+import Business.Organizations.Organization.orgType;
+import Business.Organizations.OrganizationDirectory;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 
 /**
  *
@@ -20,18 +32,16 @@ public class AdminManageOrganizationJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Enterprise enterprise;
     private OrganizationDirectory organizationDirectory;
-    DefaultTableModel model;
     /**
      * Creates new form AdminManageOrganizationJPanel
      */
     public AdminManageOrganizationJPanel(JPanel userProcessContainer,Enterprise enterprise, OrganizationDirectory organizationDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.enterprise=enterprise;
+        this.enterprise = enterprise;
         this.organizationDirectory = organizationDirectory;
-        model = (DefaultTableModel) tblManageOrganization.getModel();
         populateTable();
-     //   populateComboBox();
+        populateOrganizationComboBox();
     }
 
     /**
@@ -60,8 +70,6 @@ public class AdminManageOrganizationJPanel extends javax.swing.JPanel {
         lblTitle.setText("Manage Organization");
 
         lblSelectOrganization.setText("Select an Organization");
-
-        cbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Government", "Hospital", "Police", "Realtor", "University", " " }));
 
         tblManageOrganization.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,37 +107,34 @@ public class AdminManageOrganizationJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(250, 250, 250)
                         .addComponent(lblSelectOrganization)
                         .addGap(68, 68, 68)
-                        .addComponent(cbOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(230, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbOrganization, 0, 227, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAdd)
-                        .addGap(441, 441, 441))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(136, 136, 136))))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(108, 108, 108))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(jButton1)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSelectOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(41, 41, 41)
                 .addComponent(btnAdd)
-                .addGap(44, 44, 44)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 571, Short.MAX_VALUE))
         );
@@ -155,9 +160,41 @@ public class AdminManageOrganizationJPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        Organization.Type type = (Organization.Type) cbOrganization.getSelectedItem();
-        organizationDirectory.getOrganizationList();
+        if(cbOrganization.getSelectedItem().equals(Organization.orgType.RealtorOrg.getValue())){
+          orgType type = Organization.orgType.RealtorOrg;
+          organizationDirectory.createOrg(type);
+       }
+       else if(cbOrganization.getSelectedItem().equals(Organization.orgType.TherapistOrg.getValue())){
+          orgType type = Organization.orgType.TherapistOrg;
+          organizationDirectory.createOrg(type);   
+       }
+       else if(cbOrganization.getSelectedItem().equals(Organization.orgType.HospitalOrg.getValue())){
+          orgType type = Organization.orgType.HospitalOrg;
+          organizationDirectory.createOrg(type);   
+       }
+       else if(cbOrganization.getSelectedItem().equals(Organization.orgType.FireDepartmentOrg.getValue())){
+          orgType type = Organization.orgType.FireDepartmentOrg;
+          organizationDirectory.createOrg(type);   
+       }
+       
+       else if(cbOrganization.getSelectedItem().equals(Organization.orgType.PoliceOrg.getValue())){
+          orgType type = Organization.orgType.PoliceOrg;
+          organizationDirectory.createOrg(type);   
+       }
+       
+       else if(cbOrganization.getSelectedItem().equals(Organization.orgType.UniversityOrg.getValue())){
+          orgType type = Organization.orgType.UniversityOrg;
+          organizationDirectory.createOrg(type);   
+       }
+       
+       else if(cbOrganization.getSelectedItem().equals(Organization.orgType.MulticulturalOrg.getValue())){
+          orgType type = Organization.orgType.MulticulturalOrg;
+          organizationDirectory.createOrg(type);   
+       }
+        JOptionPane.showMessageDialog(this, "The organization has been added.");
+        
         populateTable();
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
 
@@ -173,46 +210,43 @@ public class AdminManageOrganizationJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-       model.setRowCount(0);
+          DefaultTableModel model = (DefaultTableModel) tblManageOrganization.getModel();
         
-        for (Business.Organizations.Organization organization : organizationDirectory.getOrganizationList()){
+        model.setRowCount(0);
+        
+        for (Organization organization : organizationDirectory.getOrgList()){
+            Object[] row = new Object[2];
+            row[0] = organization.getOrgID();
+            row[1] = organization.getOrgName();
             
-            Object[] obj = {organization.getOrganizationID(), organization.getName()};
-            model.addRow(obj);
-        }
-}
+            model.addRow(row);
+        }  
 }
 
-  /*  private void populateComboBox() {
-        cbOrganization.removeAllItems();
-        for (Organization.Type type : Organization.Type.values()){
-            
-            if (!type.getValue().equals(Organization.Type.Admin))
-            {
-                if(enterprise instanceof GrievanceManagementEnterprise)
-                {
-                    
-                     cbOrganization.addItem(Organization.Type.);
-                     cbOrganization.addItem(Organization.Type.StreetLighting);
-                     cbOrganization.addItem(Organization.Type.WaterSupply);
-                     cbOrganization.addItem(Organization.Type.Police);
-                     break;
-                }
-                else if(enterprise instanceof EmergencyResponseEnterprise)
-                {
-                    
-                     boxOrganization.addItem(Organization.Type.Hospital);
-                     boxOrganization.addItem(Organization.Type.FireControl);
-                     break;
-                    
-                }
-                else if(enterprise instanceof CovidHelpEnterprise)
-                {
-                     boxOrganization.addItem(Organization.Type.Government);
-                     boxOrganization.addItem(Organization.Type.NonGovernment);
-                     break;
-                }
-                  
-            }
-        }
-}*/
+private void populateOrganizationComboBox(){
+       
+       for(Organization.orgType type : Organization.orgType.values()){
+           
+           if (enterprise instanceof HousingManagementEnterprise){
+               cbOrganization.addItem(Organization.orgType.RealtorOrg.getValue());
+               break;
+           }
+           else if(enterprise instanceof CommunityInvolvementEnterprise){
+             cbOrganization.addItem(Organization.orgType.MulticulturalOrg.getValue());
+             break;
+           }
+           else if(enterprise instanceof CrisisManagementEnterprise){
+              cbOrganization.addItem(Organization.orgType.FireDepartmentOrg.getValue());
+              cbOrganization.addItem(Organization.orgType.PoliceOrg.getValue());
+              break;
+           }
+           else if(enterprise instanceof StudentAdvisingEnterprise){
+           cbOrganization.addItem(Organization.orgType.UniversityOrg.getValue());
+            break;
+           }
+           else if(enterprise instanceof WellbeingSupportEnterprise){
+           cbOrganization.addItem(Organization.orgType.TherapistOrg.getValue());
+           cbOrganization.addItem(Organization.orgType.HospitalOrg.getValue());
+           break;
+           
+    }

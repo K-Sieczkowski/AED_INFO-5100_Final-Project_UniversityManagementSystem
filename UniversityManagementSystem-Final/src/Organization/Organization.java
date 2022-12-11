@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @author arfinansari
  */
 public abstract class Organization {
-     public String name;
+    public String name;
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;

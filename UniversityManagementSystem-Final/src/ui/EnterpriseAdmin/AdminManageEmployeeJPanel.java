@@ -45,19 +45,32 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import org.apache.poi.sl.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-//import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.Row;
-//import org.apache.poi.ss.usermodel.Sheet;
-//import org.apache.poi.ss.usermodel.Workbook;
-//import org.apache.poi.ss.usermodel.XSSWorkbook;
+import Business.Employees.Employee;
+import Business.Enterprises.Enterprise;
+import Business.Organizations.FireDepartmentOrganization;
+import Business.Organizations.HospitalOrganization;
+import Business.Organizations.MulticulturalOrganization;
+import Business.Organizations.Organization;
+import Business.Organizations.PoliceOrganization;
+import Business.Organizations.RealtorOrganization;
+import Business.Organizations.TherapistOrganization;
+import Business.Organizations.UniversityOrganization;
+import Business.Roles.AcademicCounselorRole;
+import Business.Roles.CommunityCulturalAidRole;
+import Business.Roles.DoctorRole;
+import Business.Roles.FiremanRole;
+import Business.Roles.PoliceOfficerRole;
+import Business.Roles.RealEstateAgentRole;
+import Business.Roles.TherapistRole;
+import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
+import Business.WorkQueue.CommunityRequest;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 
 /**
@@ -67,47 +80,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private JPanel userProcessContainer;
-    private OrganizationDirectory organizationDirectory;
-    DefaultTableModel model;
+    
     /**
      * Creates new form AdminManageEmployeeJPanel
      */
     public AdminManageEmployeeJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.organizationDirectory = organizationDirectory;
         this.enterprise = enterprise;
-        model = (DefaultTableModel) tblManageEmployee.getModel();
-     //   populateOrganizationEmployeeComboBox();
-     //   populateEmployeeRoleComboBox();
-     //   populateTable();
-     fillDataJTable(tblManageEmployee);
+        populateOrganizationComboBox();
+        populateTable();
     }
 
-        public void fillDataJTable(JTable jt){
-            String[] columns = new String[]{
-                "Organization","Employee Type","Employee Name","User Name","Password"
-            };
-            Object[][] data = new Object[][]{
-                
-                    {1,"Fire Department","Employee","Peter","Pet","Pet123"},
-                    {},
-                    {},
-                    {4,"University","Manager","JAck","Pac","123"},
-                };
-            DefaultTableModel model = new DefaultTableModel(data,columns);
-            jt.setModel(model);
-            
-        }
-        
-        public void openFile(String file){
-            try{
-                File path = new File(file);
-                Desktop.getDesktop().open(path);
-            } catch(IOException ioe){
-                System.out.println(ioe);
-            }
-        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,7 +115,8 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
         txtPassword = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setMinimumSize(new java.awt.Dimension(1050, 1050));
@@ -164,7 +149,12 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
 
         lblPassword.setText("Password");
 
-        cbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fire Department", "Hospital", "Multicultural", "Police", "Realtor", "Therapist", "University", " ", " " }));
+        cbOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cbOrganization.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbOrganizationActionPerformed(evt);
+            }
+        });
 
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,10 +173,17 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setText("View Report");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -194,6 +191,7 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(278, 278, 278)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,39 +200,36 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
                     .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtEmployeeName)
-                    .addComponent(cbOrganization, 0, 208, Short.MAX_VALUE)
-                    .addComponent(txtUserName)
-                    .addComponent(txtPassword))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtEmployeeName)
+                        .addComponent(cbOrganization, 0, 208, Short.MAX_VALUE)
+                        .addComponent(txtUserName)
+                        .addComponent(txtPassword)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(456, 456, 456))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(146, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(58, 58, 58))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton2)
-                            .addGap(75, 75, 75)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnUpdate)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDelete))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(36, 36, 36)
                 .addComponent(jButton2)
-                .addGap(85, 85, 85)
+                .addGap(87, 87, 87)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblOrganization)
                     .addComponent(cbOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -246,18 +241,20 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblUserName)
-                        .addGap(47, 47, 47)
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPassword)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(jButton3)
-                .addGap(0, 333, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(btnUpdate))
+                .addGap(0, 363, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -274,147 +271,93 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Organization organization = (Organization) cbOrganization.getSelectedItem();
-
+      if(cbOrganization.getSelectedItem().toString() != null){
+        
+        String orgName = cbOrganization.getSelectedItem().toString();
+        
+        Organization organization = enterprise.getOrgDirectory().findOrg(orgName);
+        
+        
         UserAccountDirectory useraccountdirectory = organization.getUserAccountDirectory();
         String name = txtEmployeeName.getText();
         String username = txtUserName.getText();
         String password = txtPassword.getText();
 
-        String empRole = cbEmployeeType.getSelectedItem().toString();
 
-        int n = 0;
-        Role role = null;
 
-        switch (empRole) {
 
-            case "Hospital Manager":
-
-            n = 2;
-            role = new HospitalManagerRole();
-            break;
-
-            case "Therapist":
-
-            n = 3;
-            role = new TherapistRole();
-            break;
-
-            case "Doctor":
-
-            n = 4;
-            role = new DoctorRole();
-            break;
-
-            case "PoliceDepartmentChief":
-
-            n = 5;
-            role = new PoliceDepartmentChiefRole();
-            break;
-
-            case "PoliceOffice":
-
-            n = 6;
-            role = new PoliceOfficerRole();
-            break;
-
-            case "RealEstateManager":
-
-            n = 7;
-            role = new RealEstateCompanyManagerRole();
-            break;
-
-            case "RealEstateAgent":
-
-            n = 8;
-            role = new RealEstateAgentRole();
-            break;
-
-            case "CommunityCulturalAid":
-
-            n = 9;
-            role = new CommunityCulturalAidRole();
-            break;
-
-            case "CommunityManager":
-
-            n = 10;
-            role = new CommunityManagerRole();
-            break;
-
-            case "UniversityDirector":
-
-            n = 11;
-            role = new UniversityDirectorRole();
-            break;
-
-            case "AcademicCounsellor":
-
-            n = 12;
-            role = new AcademicCounselorRole();
-            break;
-
-            case "Student":
-
-            n = 13;
-            role = new StudentRole();
-            break;
-
-            case "Fireman":
-
-            n = 14;
-            role = new FiremanRole();
-            break;
-
-            case "FireDepartmentChief":
-
-            n = 15;
-            role = new FireDepartmentChiefRole();
-            break;
-
-        }
-        System.out.println(role);
         for(Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
             if(employee.getName().equals(name)){
-                JOptionPane.showMessageDialog(null, "please input another name");
+                JOptionPane.showMessageDialog(null, "Employee already exsists, please input another name.");
                 return;
             }
         }
 
-        ArrayList<String>usernamecheck = new ArrayList<>();
+
+
+       ArrayList<String>usernamecheck = new ArrayList<>();
         for(UserAccount user: organization.getUserAccountDirectory().getUserAccountList())
         {
             usernamecheck.add(user.getUsername());
 
-        }
+
+
+       }
         if(usernamecheck.contains(username))
         {
-            JOptionPane.showMessageDialog(null,"UserName already exists");
+            JOptionPane.showMessageDialog(null,"UserName already exists.");
             return;
         }
         if(username.isEmpty()||password.isEmpty())
         {
-            JOptionPane.showMessageDialog(null,"Please enter a Valid input");
+            JOptionPane.showMessageDialog(null,"Please fill in all fields.");
             return;
         }
+        
+        
 
-        // System.out.println(role);
-        Employee employee = organization.getEmployeeDirectory().createEmployee("");
 
-        //System.out.println(employee.getRole());
-        UserAccount userAccount = organization.getUserAccountDirectory().createUserAccount(username, password, employee, role);
 
-        //        for (Organization organization1 : this.enterprise.getOrganizationDirectory().getOrganizationList()) {
-            //            for (UserAccount userAccount1 : organization1.getUserAccountDirectory().getUserAccountList()) {
-                //                System.out.println(this.enterprise.getName() + organization.getName() + userAccount1.getUsername());
-                //            }
-            //        }
-        populateTable();
-        cbEmployeeType.setSelectedIndex(0);
+       // System.out.println(role);
+        Employee employee = organization.getEmployeeDirectory().createEmployee(name);
+
+
+
+       if(enterprise.getOrgDirectory().findOrg(orgName) instanceof RealtorOrganization){
+            UserAccount ua = organization.getUserAccountDirectory().createUserAccount(username, password, employee, new RealEstateAgentRole());
+        }
+        
+        else if(enterprise.getOrgDirectory().findOrg(orgName) instanceof FireDepartmentOrganization){
+            UserAccount ua = organization.getUserAccountDirectory().createUserAccount(username, password, employee, new FiremanRole());
+        }
+        
+        else if(enterprise.getOrgDirectory().findOrg(orgName) instanceof HospitalOrganization){
+            UserAccount ua = organization.getUserAccountDirectory().createUserAccount(username, password, employee, new DoctorRole());
+        }
+        
+        else if(enterprise.getOrgDirectory().findOrg(orgName) instanceof MulticulturalOrganization){
+            UserAccount ua = organization.getUserAccountDirectory().createUserAccount(username, password, employee, new CommunityCulturalAidRole());
+        }
+        
+        else if(enterprise.getOrgDirectory().findOrg(orgName) instanceof PoliceOrganization){
+            UserAccount ua = organization.getUserAccountDirectory().createUserAccount(username, password, employee, new PoliceOfficerRole());
+        }
+        
+        else if(enterprise.getOrgDirectory().findOrg(orgName) instanceof TherapistOrganization){
+            UserAccount ua = organization.getUserAccountDirectory().createUserAccount(username, password, employee, new TherapistRole());
+        }
+        
+        else if(enterprise.getOrgDirectory().findOrg(orgName) instanceof UniversityOrganization){
+            UserAccount ua = organization.getUserAccountDirectory().createUserAccount(username, password, employee, new AcademicCounselorRole());
+        }
+    
+        populateTable(organization);
         cbOrganization.setSelectedIndex(0);
         txtEmployeeName.setText("");
         txtUserName.setText("");
         txtPassword.setText("");
+        }
+                                      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
@@ -428,90 +371,74 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    //Choose Location for saving excel sheet
- 
-        JFileChooser excelFileChooser = new JFileChooser("/Users/arfinansari");
-        excelFileChooser.setDialogTitle("Save As");
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter("Organization","Employee Type","Employee Name","User Name","Password");
-        excelFileChooser.setFileFilter(fnef);
-        int excelChooser = excelFileChooser.showSaveDialog(null);
+    private void cbOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOrganizationActionPerformed
+        // TODO add your handling code here:
+        if(cbOrganization.getSelectedItem().toString() != null){
         
-        //Check if save button is clicked
-        if(excelChooser == JFileChooser.APPROVE_OPTION){
-         
-            //Import excel poi lib to netbeans
-            XSSFWorkbook excelJTableExporter = new XSSFWorkbook();
-            XSSFSheet excelSheet = excelJTableExporter.createSheet("Jtable Sheet");
+        String orgName = cbOrganization.getSelectedItem().toString();
+        
+        Organization organization = enterprise.getOrgDirectory().findOrg(orgName);
+        if (organization != null){
+            populateTable(organization);
+        }
+        }
+    }//GEN-LAST:event_cbOrganizationActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblManageEmployee.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update.");
+            return;
+        }
+
+        else{
+            DefaultTableModel model = (DefaultTableModel) tblManageEmployee.getModel();
+            Employee selectedEmployee = (Employee) model.getValueAt(selectedRowIndex, 0);
+
+            selectedEmployee.setName(txtEmployeeName.getText());
+            selectedEmployee.setName(txtUserName.getText());
+            selectedEmployee.setName(txtPassword.getText());
             
-            for (int i = 0; i < tblManageEmployee.getRowCount(); i++){
-                XSSFRow excelRow = excelSheet.createRow(i);
-            for (int j = 0); j < tblManageEmployee.getColumnCount(); j++){
-                XSSFCell excelCell = excelRow.createCell(j);
-           
-            excelCell.setCellValue(tblManageEmployee.getValueAt(i, j).toString());}
+            JOptionPane.showMessageDialog(this, "Request has been updated.");
         }
+
+       
+        cbOrganization.setName("");
+        txtEmployeeName.setText("");
+        txtUserName.setText("");
+        txtPassword.setText("");
+        
+        populateTable();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblManageEmployee.getSelectedRow();
+        if (selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
         }
+        DefaultTableModel model = (DefaultTableModel) tblManageEmployee.getModel();
+        Employee selectedEmployee = (Employee) model.getValueAt(selectedRowIndex, 0);
+
+        String orgName = cbOrganization.getSelectedItem().toString();
         
-        FileOutputStream excelFOU = new FileOutputStream(excelFileChooser.getSelectedFile() + ".xlsx");
-        BufferedOutputStream excelBOU = new BufferedOutputStream(excelFOU);
-        excelJTableExporter.write(excelBOU);
-    } catch (FileNotFoundException ex){
-    Logger.getLogger(AddDataToJTable.class.getName()).log(Level.SEVERE, null, ex);
-} finally {
-   try {
-        excelFOU.close();
-        
-    }catch (IOExceotion ex){
-        Logger.getLogger(AddDataToJTable.class.getName()).log(Level.SEVERE, null, ex);
-        
-    }
-   /*     try{
-            JFileChooser jFileChooser = new JFileChooser();
-            jFileChooser.showSaveDialog(this);
-            File saveFile = jFileChooser.getSelectedFile();
-            
-            File (saveFile !=null){
-                saveFile = new File(saveFile.toString()+".xlsx");
-                Workbook wb = new XSSFWorkbook();
-                Sheet sheet = wb.createSheet("Organization");
-                
-                Row rowCol = sheet.createRow(0);
-                for(int 1=0;i<tblManageEmployee.getColumnCount();i++){
-                Cell cell = rowCol.createCell(i);
-                cell.setCellValue(tblManageEmployee.getColumnName(i));
-                
-            }
-                for(int j=0;j<tblManageEmployee.getRowCount();j++){
-                    Row row = sheet.createRow(j);
-                    for(int k=0;k<tblManageEmployee.getColumnCount();k++){
-                        Cell cell = row.createCell(k);
-                    
-                        if(tblManageEmployee.getValueAt(j,k) !=null))
-                        cell.setCellValue(tblManageEmployee.getValueAt(j, k).toString());
-                    }
-                }
-        }
-            FileOutputStream out = new FileOutputStream(new File(saveFile.toString()));
-            wb.write(out);
-            wb.close();
-            out.close();
-            openFile(saveFile.toString());
-        } else{
-                JOptionPane.showMessageDialog(null, "Error");
-                }
-    }catch(FileNotFoundException e){
-    System.out.println(e);
-}catch(IOException io){
-    System.out.println(io);*/
-    }//GEN-LAST:event_jButton3ActionPerformed
+        Organization organization = enterprise.getOrgDirectory().findOrg(orgName);
+        organization.getEmployeeDirectory().deleteEmployee(selectedEmployee);
+
+        JOptionPane.showMessageDialog(this, "Employee details deleted");
+        populateTable();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cbOrganization;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -525,24 +452,34 @@ public class AdminManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 
-    private void populateTable() {
-          DefaultTableModel model = (DefaultTableModel) tblManageEmployee.getModel();
+private void populateOrganizationComboBox(){
+       
+       for(Organization organization : this.enterprise.getOrgDirectory().getOrgList()){
+           cbOrganization.addItem(organization.getOrgName());
+    
+    }
+    }
+    
+    private void populateTable(Organization organization) {
+            DefaultTableModel model = (DefaultTableModel) tblManageEmployee.getModel();
             model.setRowCount(0);
             
-            
-            for(Organization organization : this.enterprise.getOrganizationDirectory().getOrganizationList()){
-                for(UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()){
-                 if(userAccount.getEmployee() != null) {  
-                //for(UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()){
-                Object[] row = new Object[5];
-                row[0] = organization.getName();
+            for(UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()){
+                Object[] row = new Object[4];
+                row[0] = organization.getOrgName();
                 row[1] = userAccount.getEmployee().getName();
                 row[2] = userAccount.getUsername();
                 row[3] = userAccount.getPassword();
-                        
+                
+                model.addRow(row);
                         }    
                         }         
-            }
+            
         
-    }
+private void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) tblManageEmployee.getModel();
+        model.setRowCount(0);
+
+
+}
 }

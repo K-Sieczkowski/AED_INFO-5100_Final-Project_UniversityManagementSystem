@@ -75,6 +75,7 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
         btnViewCM = new javax.swing.JButton();
         uniEmpWelcomeTxt = new javax.swing.JLabel();
         lblDL1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(1050, 850));
@@ -194,7 +195,9 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(declineRequestCM)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnViewCM, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnViewCM, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(139, 139, 139)
+                                .addComponent(jLabel2))
                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel8Layout.createSequentialGroup()
                                     .addComponent(jLabel75)
@@ -242,7 +245,8 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AcceptRequestCM)
                     .addComponent(declineRequestCM)
-                    .addComponent(btnViewCM))
+                    .addComponent(btnViewCM)
+                    .addComponent(jLabel2))
                 .addGap(71, 71, 71)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAssignEmployee)
@@ -295,7 +299,7 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -555,6 +559,7 @@ public class CommunityWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton declineRequestCM;
     private javax.swing.JTextField involveTxt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;
