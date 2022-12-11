@@ -25,8 +25,8 @@ public class SendEmail {
     String to = recipient;
 
     // email ID of  Sender.
-    String sender = "bostonapt220@gmail.com";
-    String pass = "kcxnbabmrmdzkgoe";
+    String sender = "sprucestudentsystem@gmail.com";
+    String pass = "waidowrmaazsubqj";
 
     // using host
     // Getting system properties
