@@ -108,6 +108,13 @@ public abstract class Organization {
         this.orgID = orgID;
     }
     
+     public boolean isMatch(String name) {
+        if (getOrgName().equals(name)) {
+            return true;
+        }
+        return false;
+    }
+    
     
     @Override
     public String toString(){
