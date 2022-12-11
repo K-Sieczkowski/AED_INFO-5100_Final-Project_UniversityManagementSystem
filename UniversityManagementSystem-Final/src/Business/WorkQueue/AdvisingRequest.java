@@ -4,8 +4,6 @@
  */
 package Business.WorkQueue;
 
-import java.util.Date;
-
 /**
  *
  * @author ksiec
@@ -13,7 +11,6 @@ import java.util.Date;
 public class AdvisingRequest extends WorkRequest {
     private String priorityLevel;
     private String advisingType;
-    private Date requestDate;
     private String comments;
 
     public String getPriorityLevel() {
@@ -40,6 +37,9 @@ public class AdvisingRequest extends WorkRequest {
         this.comments = comments;
     }
     
-    
+    @Override
+    public String toString() {
+        return priorityLevel;
+    }
     
 }

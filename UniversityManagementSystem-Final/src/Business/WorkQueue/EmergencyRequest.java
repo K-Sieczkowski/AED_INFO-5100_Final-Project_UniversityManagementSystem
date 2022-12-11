@@ -12,6 +12,7 @@ public class EmergencyRequest extends WorkRequest {
     private String emergencyType;
     private String priorityLevel;
     private String comments;
+    private String location;
 
     public String getEmergencyType() {
         return emergencyType;
@@ -36,6 +37,20 @@ public class EmergencyRequest extends WorkRequest {
     public void setComments(String comments) {
         this.comments = comments;
     }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
     
+    
+    
+    @Override
+    public String toString() {
+        return priorityLevel;
+    }
     
 }

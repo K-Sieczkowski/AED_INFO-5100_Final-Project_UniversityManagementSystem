@@ -37,6 +37,9 @@ public class CommunityRequest extends WorkRequest {
         this.comments = comments;
     }
     
-    
+    @Override
+    public String toString() {
+        return priorityLevel;
+    }
     
 }
