@@ -19,7 +19,8 @@ We have streamlined a ticketing system for Student where they can register issue
 3.	Housing Management
 4.	Student Advising
 5.	Wellbeing Support
-6 Organizations:
+
+7 Organizations:
 1.	Fire Department Organization
 2.	Hospital Organization
 3.	Multicultural Organization
