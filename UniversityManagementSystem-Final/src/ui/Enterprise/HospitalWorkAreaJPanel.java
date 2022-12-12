@@ -8,7 +8,6 @@ package ui.Enterprise;
 import Business.Organizations.HospitalOrganization;
 import Business.Organizations.MulticulturalOrganization;
 import Business.Organizations.Organization;
-import Business.Organizations.PoliceOrganization;
 import Business.Organizations.RealtorOrganization;
 import Business.Roles.CommunityCulturalAidRole;
 import Business.Roles.DoctorRole;
@@ -454,10 +453,10 @@ public class HospitalWorkAreaJPanel extends javax.swing.JPanel {
 
         else if(hospitalEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Accepted")) {
 
-            HealthRequest healthRequest = (HealthRequest) ((PoliceOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
+            HealthRequest healthRequest = (HealthRequest) ((HospitalOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
 
             String employeeName = cbAssignEmployee.getSelectedItem().toString();
-            UserAccount userAccount1 = ((PoliceOrganization)organization).getUserAccountDirectory().findUserAccount(employeeName);
+            UserAccount userAccount1 = ((HospitalOrganization)organization).getUserAccountDirectory().findUserAccount(employeeName);
             healthRequest.setReceiver(userAccount1);
             healthRequest.setStatus("Assigned");
             userAccount1.getWorkQueue().addRequestToQueue(healthRequest);
