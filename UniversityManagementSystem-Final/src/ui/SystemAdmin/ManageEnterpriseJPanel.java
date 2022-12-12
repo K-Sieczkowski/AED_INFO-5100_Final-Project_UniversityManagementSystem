@@ -246,9 +246,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     for (Network network : ecosystem.getNetworkList()) {
          for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
         Object[] row = new Object[3];
-        row[0] = enterprise.getOrgName();
-        row[1] = network.getName();
-        row[2] = enterprise.getEnterpriseType().getValue();
+        row[0] = network.getName();
+        row[1] = enterprise.getEnterpriseType().getValue();
+        row[2] = enterprise.getOrgName();
         
         model.addRow(row);
 
