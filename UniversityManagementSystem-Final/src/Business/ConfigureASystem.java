@@ -1287,6 +1287,89 @@ public class ConfigureASystem {
         sua4.getWorkQueue().addRequestToQueue(emergencyRequest5);
         fireEmpUA2.getWorkQueue().addRequestToQueue(emergencyRequest5);
         
+        EmergencyRequest emergencyRequest6 = new EmergencyRequest();
+        emergencyRequest6.setEmergencyType("Fire");
+        emergencyRequest6.setLocation("393 Huntington Ave, Ste 101, Boston, MA 02115");
+        emergencyRequest6.setComments("Reporting a fire");
+        Calendar c28 = Calendar.getInstance();
+        c28.set(2022, 6, 10, 7, 4);
+        Date date28 = c28.getTime();
+        emergencyRequest6.setDateOfRequest(date28);
+        emergencyRequest6.setStatus("Completed");
+        emergencyRequest6.setPriorityLevel("P1");
+        emergencyRequest6.setSender(sua7);
+        emergencyRequest6.setRequestType("Emergency Request");    
+        emergencyRequest6.setOrgType("Fire Department Organization");
+        emergencyRequest6.setReceiver(fireEmpUA3);
+        Calendar c29 = Calendar.getInstance();
+        c29.set(2022, 6, 10, 10, 8);
+        Date date29 = c29.getTime();
+        emergencyRequest6.setDateResolved(date29);
+            for(Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof CrisisManagementEnterprise){
+                    for(Organization org : enterprise.getOrgDirectory().getOrgList()){
+                        if(org instanceof FireDepartmentOrganization){
+                            ((FireDepartmentOrganization) org).getWorkQueue().addRequestToQueue(emergencyRequest6);
+                        }
+                    }
+                    
+                }
+            }
+        sua7.getWorkQueue().addRequestToQueue(emergencyRequest6);
+        fireEmpUA2.getWorkQueue().addRequestToQueue(emergencyRequest6);
+        
+        EmergencyRequest emergencyRequest7 = new EmergencyRequest();
+        emergencyRequest7.setEmergencyType("Police");
+        emergencyRequest7.setLocation("768 Columbus Ave, Boston, MA 02120");
+        emergencyRequest7.setComments("Noise Complaint");
+        Calendar c30 = Calendar.getInstance();
+        c30.set(2022, 12, 8, 12, 28);
+        Date date30 = c30.getTime();
+        emergencyRequest7.setDateOfRequest(date30);
+        emergencyRequest7.setStatus("Submitted");
+        emergencyRequest7.setPriorityLevel("P4");
+        emergencyRequest7.setSender(sua5);
+        emergencyRequest7.setRequestType("Emergency Request");    
+        emergencyRequest7.setOrgType("Police Organization");
+        
+        for(Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof CrisisManagementEnterprise){
+                    for(Organization org : enterprise.getOrgDirectory().getOrgList()){
+                        if(org instanceof PoliceOrganization){
+                            ((PoliceOrganization) org).getWorkQueue().addRequestToQueue(emergencyRequest7);
+                        }
+                    }
+                    
+                }
+        }
+        sua5.getWorkQueue().addRequestToQueue(emergencyRequest6);
+        
+        EmergencyRequest emergencyRequest8 = new EmergencyRequest();
+        emergencyRequest8.setEmergencyType("Police");
+        emergencyRequest8.setLocation("768 Columbus Ave, Boston, MA 02120");
+        emergencyRequest8.setComments("Reporting break-in");
+        Calendar c31 = Calendar.getInstance();
+        c31.set(2022, 12 , 9, 19, 46);
+        Date date31 = c31.getTime();
+        emergencyRequest8.setDateOfRequest(date31);
+        emergencyRequest8.setStatus("Accepted");
+        emergencyRequest8.setPriorityLevel("P2");
+        emergencyRequest8.setSender(sua7);
+        emergencyRequest8.setRequestType("Emergency Request");    
+        emergencyRequest8.setOrgType("Police Organization");
+        
+        for(Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof CrisisManagementEnterprise){
+                    for(Organization org : enterprise.getOrgDirectory().getOrgList()){
+                        if(org instanceof PoliceOrganization){
+                            ((PoliceOrganization) org).getWorkQueue().addRequestToQueue(emergencyRequest8);
+                        }
+                    }
+                    
+                }
+        }
+        sua7.getWorkQueue().addRequestToQueue(emergencyRequest8);
+        
     return system;
     }
     }
