@@ -87,7 +87,7 @@ public class ConfigureASystem {
     
     
     //create a system admin account
-    UserAccount ua = system.getUserAccountDirectory().createUserAccount("systemadmin", "123", employee, new SystemAdminRole()); 
+    UserAccount ua = system.getUserAccountDirectory().createUserAccount("systemAdmin", "systemadmin123", employee, new SystemAdminRole()); 
             
     //create an enterprises and orgs
     
@@ -116,35 +116,50 @@ public class ConfigureASystem {
     
     Employee admin1 = new Employee();
     housingEnterprise.getEmployeeDirectory().createEmployee("Ed Smith");
-    UserAccount ad1 = housingEnterprise.getUserAccountDirectory().createUserAccount("realtorAdmin01", "123", admin1, new AdminRole());
+    UserAccount ad1 = housingEnterprise.getUserAccountDirectory().createUserAccount("housingAdmin", "housingadmin123", admin1, new AdminRole());
     ad1.getEmployee().setName("Ed Smith");
     
-    
     Employee admin2 = new Employee();
-    wellbeingEnterprise.getEmployeeDirectory().createEmployee("Lane Road");
-    UserAccount ad2 = wellbeingEnterprise.getUserAccountDirectory().createUserAccount("wellAdmin01", "123", admin2, new AdminRole());
-    ad2.getEmployee().setName("Lane Road");
+    wellbeingEnterprise.getEmployeeDirectory().createEmployee("Ryan Dee");
+    UserAccount ad2 = wellbeingEnterprise.getUserAccountDirectory().createUserAccount("wellbeingAdmin", "wellbeingadmin123", admin2, new AdminRole());
+    ad2.getEmployee().setName("Ryan Dee");
+    
+    Employee admin3 = new Employee();
+    advisingEnterprise.getEmployeeDirectory().createEmployee("Sue Locks");
+    UserAccount ad3 = advisingEnterprise.getUserAccountDirectory().createUserAccount("advisingAdmin", "advising123", admin3, new AdminRole());
+    ad3.getEmployee().setName("Sue Locks");
+    
+    Employee admin4 = new Employee();
+    communityEnterprise.getEmployeeDirectory().createEmployee("Ron Williams");
+    UserAccount ad4 = communityEnterprise.getUserAccountDirectory().createUserAccount("communityAdmin", "communityadmin123", admin4, new AdminRole());
+    ad4.getEmployee().setName("Ron Williams");
+    
+    Employee admin5 = new Employee();
+    crisisEnterprise.getEmployeeDirectory().createEmployee("Lex Jones");
+    UserAccount ad5 = crisisEnterprise.getUserAccountDirectory().createUserAccount("crisisAdmin", "crisisadmin123", admin5, new AdminRole());
+    ad5.getEmployee().setName("Lex Jones");
+    
     
 
 //create students
     
-    Student s1 = new Student("Liz Conway", "01234", 18, "Female", "10 Hope Ave, Boston, MA 02222", "liz@email.com", "343-454-4544", "liz123", "123", network1);
+    Student s1 = new Student("Liz Conway", "01234", 18, "Female", "10 Hope Ave, Boston, MA 02222", "k.sieczkowski16@gmail.com", "343-454-4544", "liz123", "123", network1);
     network1.getStudentDirectory().addStudent(s1);
-    UserAccount sua1 = network1.getUserAccountDirectory().createStudentUserAccount("liz123", "123", s1);
+    UserAccount sua1 = network1.getUserAccountDirectory().createStudentUserAccount("stu001", "stu222", s1);
     
-    Student s2 = new Student("Max Jones", "01111", 19, "Male", "12 Park Drive, Boston, MA 02322", "max@email.com", "474-454-4533", "max123", "123", network1);
+    Student s2 = new Student("Max Jones", "01111", 19, "Male", "12 Park Drive, Boston, MA 02322", "madhatarfin11@gmail.com", "474-454-4533", "max123", "123", network1);
     network1.getStudentDirectory().addStudent(s2);
-    UserAccount sua2 = network1.getUserAccountDirectory().createStudentUserAccount("max123", "123", s2);
+    UserAccount sua2 = network1.getUserAccountDirectory().createStudentUserAccount("stu002", "stu222", s2);
     
     Student s3 = new Student("Jake Brown", "03333", 20, "Male", "1 Canal St, Boston, MA 02114", "k.sieczkowski16@gmail.com", "343-343-2322", "jake123", "123", network1);
     network1.getStudentDirectory().addStudent(s3);
-    UserAccount sua3 = network1.getUserAccountDirectory().createStudentUserAccount("jake123", "123", s3);
+    UserAccount sua3 = network1.getUserAccountDirectory().createStudentUserAccount("stu003", "stu222", s3);
     
-    Student s4 = new Student("Hannah Smith", "01232", 18, "Female", "15 Sun Lane, Boston, MA 02474", "hannah@email.com", "565-454-5655", "hannah123", "123", network1);
+    Student s4 = new Student("Hannah Smith", "01232", 18, "Female", "15 Sun Lane, Boston, MA 02474", "madhatarfin11@gmail.com", "565-454-5655", "hannah123", "123", network1);
     network1.getStudentDirectory().addStudent(s4);
-    UserAccount sua4 = network1.getUserAccountDirectory().createStudentUserAccount("hannah123", "123", s4);
+    UserAccount sua4 = network1.getUserAccountDirectory().createStudentUserAccount("stu004", "stu222", s4);
     
-    Student s9 = new Student("Jess Miller", "03454", 19, "Male", "21 Forsyth St, Boston, MA 02115", "jess@email.com", "453-458-5643", "jess123", "123", network1);
+    Student s9 = new Student("Jess Miller", "03454", 19, "Male", "21 Forsyth St, Boston, MA 02115", "madhatarfin11@gmail.com", "453-458-5643", "jess123", "123", network1);
     network1.getStudentDirectory().addStudent(s9);
     UserAccount sua9 = network1.getUserAccountDirectory().createStudentUserAccount("jess123", "123", s9);
     
@@ -161,10 +176,10 @@ public class ConfigureASystem {
     network1.getStudentDirectory().addStudent(s6);
     network1.getStudentDirectory().addStudent(s7);
     network1.getStudentDirectory().addStudent(s8);
-    UserAccount sua5 = network1.getUserAccountDirectory().createStudentUserAccount("stu001", "123", s5);
-    UserAccount sua6 = network1.getUserAccountDirectory().createStudentUserAccount("stu002", "123", s6);
-    UserAccount sua7 = network1.getUserAccountDirectory().createStudentUserAccount("stu003", "123", s7);
-    UserAccount sua8 = network1.getUserAccountDirectory().createStudentUserAccount("stu004", "123", s8);
+    UserAccount sua5 = network1.getUserAccountDirectory().createStudentUserAccount("stu009", "123", s5);
+    UserAccount sua6 = network1.getUserAccountDirectory().createStudentUserAccount("stu010", "123", s6);
+    UserAccount sua7 = network1.getUserAccountDirectory().createStudentUserAccount("stu011", "123", s7);
+    UserAccount sua8 = network1.getUserAccountDirectory().createStudentUserAccount("stu012", "123", s8);
     
 //create and add employees to Orgs
    
@@ -204,9 +219,9 @@ public class ConfigureASystem {
     Employee advisingEmp4 = new Employee();
     advisingEmp4.setName("Ted Barker");
     
-    UserAccount adManagerUA1 = ((UniversityOrganization) universityOrg).getUserAccountDirectory().createUserAccount("nick", "123", advisingManager1, new UniversityDirectorRole());
-    UserAccount adEmpUA2 =((UniversityOrganization) universityOrg).getUserAccountDirectory().createUserAccount("sam", "123", advisingEmp1, new AcademicCounselorRole());
-    UserAccount adEmpUA3 = ((UniversityOrganization) universityOrg).getUserAccountDirectory().createUserAccount("jill", "123", advisingEmp2, new AcademicCounselorRole());
+    UserAccount adManagerUA1 = ((UniversityOrganization) universityOrg).getUserAccountDirectory().createUserAccount("advisingManager", "advisingManager000", advisingManager1, new UniversityDirectorRole());
+    UserAccount adEmpUA2 =((UniversityOrganization) universityOrg).getUserAccountDirectory().createUserAccount("counselor001", "counselor111", advisingEmp1, new AcademicCounselorRole());
+    UserAccount adEmpUA3 = ((UniversityOrganization) universityOrg).getUserAccountDirectory().createUserAccount("counselor002", "counselor111", advisingEmp2, new AcademicCounselorRole());
     UserAccount adEmpUA4 = ((UniversityOrganization) universityOrg).getUserAccountDirectory().createUserAccount("erin", "123", advisingEmp3, new AcademicCounselorRole());
     UserAccount adEmpUA5 = ((UniversityOrganization) universityOrg).getUserAccountDirectory().createUserAccount("ted", "123", advisingEmp4, new AcademicCounselorRole());
                         
@@ -269,9 +284,9 @@ public class ConfigureASystem {
     communityEmp4.setName("Lex Lane");
     
     
-    UserAccount comManagerUA1 = ((MulticulturalOrganization) communityOrg).getUserAccountDirectory().createUserAccount("dan", "123", communityManager1, new CommunityManagerRole());
-    UserAccount comEmpUA2 =((MulticulturalOrganization) communityOrg).getUserAccountDirectory().createUserAccount("ryan", "123", communityEmp1, new CommunityCulturalAidRole());
-    UserAccount comEmpUA3 = ((MulticulturalOrganization) communityOrg).getUserAccountDirectory().createUserAccount("rob", "123", communityEmp2, new CommunityCulturalAidRole());
+    UserAccount comManagerUA1 = ((MulticulturalOrganization) communityOrg).getUserAccountDirectory().createUserAccount("communityManager", "communityManager000", communityManager1, new CommunityManagerRole());
+    UserAccount comEmpUA2 =((MulticulturalOrganization) communityOrg).getUserAccountDirectory().createUserAccount("comEmployee001", "comEmployee111", communityEmp1, new CommunityCulturalAidRole());
+    UserAccount comEmpUA3 = ((MulticulturalOrganization) communityOrg).getUserAccountDirectory().createUserAccount("comEmployee002", "comEmployee111", communityEmp2, new CommunityCulturalAidRole());
     UserAccount comEmpUA4 = ((MulticulturalOrganization) communityOrg).getUserAccountDirectory().createUserAccount("kate", "123", communityEmp3, new CommunityCulturalAidRole());
     UserAccount comEmpUA5 = ((MulticulturalOrganization) communityOrg).getUserAccountDirectory().createUserAccount("lex", "123", communityEmp4, new CommunityCulturalAidRole());
                                             
@@ -328,9 +343,9 @@ public class ConfigureASystem {
     Employee crisisEmp3 = new Employee();
     crisisEmp3.setName("Dex Rose");
     
-    UserAccount fireManagerUA1 = ((FireDepartmentOrganization) fireOrg).getUserAccountDirectory().createUserAccount("bob", "123", crisisManager1, new FireDepartmentChiefRole());
-    UserAccount fireEmpUA2 = ((FireDepartmentOrganization) fireOrg).getUserAccountDirectory().createUserAccount("theo", "123", crisisEmp1, new FiremanRole());
-    UserAccount fireEmpUA3 = ((FireDepartmentOrganization) fireOrg).getUserAccountDirectory().createUserAccount("keith", "123", crisisEmp2, new FiremanRole());
+    UserAccount fireManagerUA1 = ((FireDepartmentOrganization) fireOrg).getUserAccountDirectory().createUserAccount("fireManager", "fireManager000", crisisManager1, new FireDepartmentChiefRole());
+    UserAccount fireEmpUA2 = ((FireDepartmentOrganization) fireOrg).getUserAccountDirectory().createUserAccount("fireman001", "fireman111", crisisEmp1, new FiremanRole());
+    UserAccount fireEmpUA3 = ((FireDepartmentOrganization) fireOrg).getUserAccountDirectory().createUserAccount("fireman002", "fireman111", crisisEmp2, new FiremanRole());
     UserAccount fireEmpUA4 = ((FireDepartmentOrganization) fireOrg).getUserAccountDirectory().createUserAccount("dex", "123", crisisEmp3, new FiremanRole());                        
     
     
@@ -384,9 +399,9 @@ public class ConfigureASystem {
     Employee crisisEmp6 = new Employee();
     crisisEmp6.setName("Fred Fax");
     
-    UserAccount policeManagerUA1 = ((PoliceOrganization) policeOrg).getUserAccountDirectory().createUserAccount("mary", "123", crisisManager2, new PoliceDepartmentChiefRole());
-    UserAccount policeEmpUA2 = ((PoliceOrganization) policeOrg).getUserAccountDirectory().createUserAccount("alan", "123", crisisEmp4, new PoliceOfficerRole());
-    UserAccount policeEmpUA3 = ((PoliceOrganization) policeOrg).getUserAccountDirectory().createUserAccount("becky", "123", crisisEmp5, new PoliceOfficerRole());
+    UserAccount policeManagerUA1 = ((PoliceOrganization) policeOrg).getUserAccountDirectory().createUserAccount("policeManager", "policeManager000", crisisManager2, new PoliceDepartmentChiefRole());
+    UserAccount policeEmpUA2 = ((PoliceOrganization) policeOrg).getUserAccountDirectory().createUserAccount("police001", "police111", crisisEmp4, new PoliceOfficerRole());
+    UserAccount policeEmpUA3 = ((PoliceOrganization) policeOrg).getUserAccountDirectory().createUserAccount("police002", "police111", crisisEmp5, new PoliceOfficerRole());
     UserAccount policeEmpUA4 = ((PoliceOrganization) policeOrg).getUserAccountDirectory().createUserAccount("fred", "123", crisisEmp6, new PoliceOfficerRole());
                                     
     
@@ -444,9 +459,9 @@ public class ConfigureASystem {
     Employee wellbeingEmp3 = new Employee();
     wellbeingEmp3.setName("John Jones");
     
-    UserAccount hospManagerUA1 = ((HospitalOrganization) hospitalOrg).getUserAccountDirectory().createUserAccount("zach", "123", wellbeingManager1, new HospitalManagerRole());
-    UserAccount hospEmpUA2 = ((HospitalOrganization) hospitalOrg).getUserAccountDirectory().createUserAccount("michelle", "123", wellbeingEmp1, new DoctorRole());
-    UserAccount hospEmpUA3 = ((HospitalOrganization) hospitalOrg).getUserAccountDirectory().createUserAccount("zee", "123", wellbeingEmp2, new DoctorRole());
+    UserAccount hospManagerUA1 = ((HospitalOrganization) hospitalOrg).getUserAccountDirectory().createUserAccount("hospitalManager", "hospitalManager000", wellbeingManager1, new HospitalManagerRole());
+    UserAccount hospEmpUA2 = ((HospitalOrganization) hospitalOrg).getUserAccountDirectory().createUserAccount("doctor001", "doctor111", wellbeingEmp1, new DoctorRole());
+    UserAccount hospEmpUA3 = ((HospitalOrganization) hospitalOrg).getUserAccountDirectory().createUserAccount("doctor002", "doctor111", wellbeingEmp2, new DoctorRole());
     UserAccount hospEmpUA4 = ((HospitalOrganization) hospitalOrg).getUserAccountDirectory().createUserAccount("john", "123", wellbeingEmp3, new DoctorRole());
                                     
     
@@ -501,9 +516,9 @@ public class ConfigureASystem {
     wellbeingEmp6.setName("Peter Pan");
     
     
-    UserAccount therapistManagerUA1 = ((TherapistOrganization) therapistOrg).getUserAccountDirectory().createUserAccount("gina", "123", wellbeingManager2, new TherapistOrgManagerRole());
-    UserAccount therapistEmpUA2 = ((TherapistOrganization) therapistOrg).getUserAccountDirectory().createUserAccount("emily", "123", wellbeingEmp4, new TherapistRole());
-    UserAccount therapistEmpUA3 = ((TherapistOrganization) therapistOrg).getUserAccountDirectory().createUserAccount("lee", "123", wellbeingEmp5, new TherapistRole());
+    UserAccount therapistManagerUA1 = ((TherapistOrganization) therapistOrg).getUserAccountDirectory().createUserAccount("therapistManager", "therapistManager000", wellbeingManager2, new TherapistOrgManagerRole());
+    UserAccount therapistEmpUA2 = ((TherapistOrganization) therapistOrg).getUserAccountDirectory().createUserAccount("therapist001", "therapist111", wellbeingEmp4, new TherapistRole());
+    UserAccount therapistEmpUA3 = ((TherapistOrganization) therapistOrg).getUserAccountDirectory().createUserAccount("therapist002", "therapist111", wellbeingEmp5, new TherapistRole());
     UserAccount therapistEmpUA4 = ((TherapistOrganization) therapistOrg).getUserAccountDirectory().createUserAccount("peter", "123", wellbeingEmp6, new TherapistRole());
                         
     
@@ -561,9 +576,9 @@ public class ConfigureASystem {
     housEmp4.setName("Eric Lake");
     
     
-    UserAccount realtorManagerUA1 = ((RealtorOrganization) housingOrg).getUserAccountDirectory().createUserAccount("jack", "123", housManager1, new RealEstateCompanyManagerRole());
-    UserAccount realtorEmpUA5 = ((RealtorOrganization) housingOrg).getUserAccountDirectory().createUserAccount("eric", "123", housEmp4, new RealEstateAgentRole());
-    UserAccount realtorEmpUA2 = ((RealtorOrganization) housingOrg).getUserAccountDirectory().createUserAccount("sarah", "123", housEmp1, new RealEstateAgentRole());
+    UserAccount realtorManagerUA1 = ((RealtorOrganization) housingOrg).getUserAccountDirectory().createUserAccount("housingManager", "housingManager000", housManager1, new RealEstateCompanyManagerRole());
+    UserAccount realtorEmpUA5 = ((RealtorOrganization) housingOrg).getUserAccountDirectory().createUserAccount("realtor001", "realtor111", housEmp4, new RealEstateAgentRole());
+    UserAccount realtorEmpUA2 = ((RealtorOrganization) housingOrg).getUserAccountDirectory().createUserAccount("realtor002", "realtor111", housEmp1, new RealEstateAgentRole());
     UserAccount realtorEmpUA3 = ((RealtorOrganization) housingOrg).getUserAccountDirectory().createUserAccount("alex", "123", housEmp2, new RealEstateAgentRole());
     UserAccount realtorEmpUA4 = ((RealtorOrganization) housingOrg).getUserAccountDirectory().createUserAccount("lary", "123", housEmp3, new RealEstateAgentRole());
      
@@ -1240,6 +1255,37 @@ public class ConfigureASystem {
         sua3.getWorkQueue().addRequestToQueue(healthRequest7);
         hospEmpUA4.getWorkQueue().addRequestToQueue(healthRequest7);
         
+        
+        EmergencyRequest emergencyRequest5 = new EmergencyRequest();
+        emergencyRequest5.setEmergencyType("Fire");
+        emergencyRequest5.setLocation("369 Huntington Ave, Boston, MA 02115");
+        emergencyRequest5.setComments("Reporting a fire");
+        Calendar c26 = Calendar.getInstance();
+        c26.set(2022, 10, 18, 17, 20);
+        Date date26 = c26.getTime();
+        emergencyRequest5.setDateOfRequest(date26);
+        emergencyRequest5.setStatus("Completed");
+        emergencyRequest5.setPriorityLevel("P1");
+        emergencyRequest5.setSender(sua4);
+        emergencyRequest5.setRequestType("Emergency Request");    
+        emergencyRequest5.setOrgType("Fire Department Organization");
+        emergencyRequest5.setReceiver(fireEmpUA2);
+        Calendar c27 = Calendar.getInstance();
+        c27.set(2022, 10, 18, 19, 11);
+        Date date27 = c27.getTime();
+        emergencyRequest5.setDateResolved(date27);
+            for(Enterprise enterprise : network1.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise instanceof CrisisManagementEnterprise){
+                    for(Organization org : enterprise.getOrgDirectory().getOrgList()){
+                        if(org instanceof FireDepartmentOrganization){
+                            ((FireDepartmentOrganization) org).getWorkQueue().addRequestToQueue(emergencyRequest5);
+                        }
+                    }
+                    
+                }
+            }
+        sua4.getWorkQueue().addRequestToQueue(emergencyRequest5);
+        fireEmpUA2.getWorkQueue().addRequestToQueue(emergencyRequest5);
         
     return system;
     }
