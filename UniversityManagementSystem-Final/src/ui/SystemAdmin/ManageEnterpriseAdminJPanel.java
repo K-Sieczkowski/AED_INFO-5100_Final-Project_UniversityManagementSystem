@@ -195,6 +195,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/images/icons8-go-back-48.png"))); // NOI18N
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -447,6 +452,13 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         txtPassword.setText("");
         populateTable();
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     public static boolean validUsername(String name) {
         Pattern pattern;
