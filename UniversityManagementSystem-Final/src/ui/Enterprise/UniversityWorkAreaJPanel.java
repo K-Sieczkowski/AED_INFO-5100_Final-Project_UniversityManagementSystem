@@ -5,7 +5,6 @@
  */
 package ui.Enterprise;
 
-import Business.Organizations.MulticulturalOrganization;
 import Business.Organizations.Organization;
 import Business.Organizations.RealtorOrganization;
 import Business.Organizations.UniversityOrganization;
@@ -456,10 +455,10 @@ public class UniversityWorkAreaJPanel extends javax.swing.JPanel {
 
         else if(universityEmployeeTbl.getValueAt(selectedRowIndex, 2).equals("Accepted")) {
 
-            AdvisingRequest advisingRequest = (AdvisingRequest) ((MulticulturalOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
+            AdvisingRequest advisingRequest = (AdvisingRequest) ((UniversityOrganization)organization).getWorkQueue().getWorkQueueList().get(selectedRowIndex);
 
             String employeeName = cbAssignEmployee.getSelectedItem().toString();
-            UserAccount userAccount1 = ((MulticulturalOrganization)organization).getUserAccountDirectory().findUserAccount(employeeName);
+            UserAccount userAccount1 = ((UniversityOrganization)organization).getUserAccountDirectory().findUserAccount(employeeName);
             advisingRequest.setReceiver(userAccount1);
             advisingRequest.setStatus("Assigned");
             userAccount1.getWorkQueue().addRequestToQueue(advisingRequest);
