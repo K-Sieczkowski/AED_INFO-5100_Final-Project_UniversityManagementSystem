@@ -111,56 +111,56 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="declineRequestCFM" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btnViewCFM" min="-2" pref="136" max="-2" attributes="0"/>
+                                          <Component id="btnViewCFM" min="-2" pref="106" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="lblSearch" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="criFireSearchBarTxt" min="-2" pref="509" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="criFireSearchBtn" max="32767" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="criFireSearchBtn" min="-2" pref="102" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="clearCriSearchBtn" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="jScrollPane9" min="-2" pref="872" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblAssignEmployee" min="-2" pref="146" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cbAssignEmployee" min="-2" pref="491" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="btnAssign" min="-2" pref="116" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="lblDL" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblPL" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblEmergencyType" max="32767" attributes="0"/>
-                                              <Component id="lblLocation" alignment="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="commentTxt" min="-2" pref="492" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="lblDL" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblPL" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblEmergencyType" max="32767" attributes="0"/>
+                                                  <Component id="lblLocation" alignment="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="lblAssignEmployee" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                                   <Component id="emergencyTxt" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="cbPL" alignment="0" pref="491" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="txtDL1" min="-2" pref="491" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="btnMap" min="-2" max="-2" attributes="0"/>
                                               </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="cbAssignEmployee" min="-2" pref="491" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="btnAssign" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                  <Component id="updateBtn" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="commentTxt" min="-2" pref="492" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
-                                          <Component id="updateBtn" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="80" max="32767" attributes="0"/>
+                          <EmptySpace pref="101" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -169,14 +169,14 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="uniEmpWelcomeTxt" min="-2" pref="41" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="11" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="criFireSearchBarTxt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="criFireSearchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="clearCriSearchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="jScrollPane9" min="-2" pref="158" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -211,9 +211,9 @@
                               <Component id="lblDL" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="commentTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="updateBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
