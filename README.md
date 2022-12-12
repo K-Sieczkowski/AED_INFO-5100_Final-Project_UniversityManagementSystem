@@ -1,11 +1,15 @@
-# AED_INFO-5100_Final-Project_Spruce Student Management System
+# AED_INFO-5100_Final-Project_Spruce Student Management System 
 
 Project Information:
-Name: Spruce Student System
-Date: 2022-12-11
+Name: Spruce Student System 
+Date: 2022-12-11                                            
 Team:
 1. Kaleigh Sieczkowski – 002756791
-2. Madhatarfin Habib Ansari – 001502771
+2. Madhatarfin Habib Ansari – 001502771 
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ![image](https://user-images.githubusercontent.com/98202905/206941566-2bb2b6dc-4cc8-45bb-8923-c8cbf47231bf.png)
+
+
 
 
 # Project Background:
